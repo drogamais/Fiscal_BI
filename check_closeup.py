@@ -1,102 +1,78 @@
-# check_data_layers.py (antigo check_bronze_closeup.py)
+# check_closeup.py (Lógica de Sincronia)
 
 import pandas as pd
-from datetime import date
 import warnings
 
 # Importa as funções do seu arquivo database.py
 from database import get_db_connection, insert_dataframe
 
-def check_table_status(conn, table_name, asset_type):
+def check_closeup_sync():
     """
-    Verifica a data da última inserção em uma tabela específica e retorna
-    um dicionário com os dados para o log.
-
-    Args:
-        conn: Objeto de conexão com o banco de dados.
-        table_name (str): O nome da tabela a ser verificada.
-        asset_type (str): O tipo de ativo (ex: 'TABELA BRONZE').
-
-    Returns:
-        dict: Um dicionário contendo as informações de log para a tabela.
-    """
-    print(f"---> Verificando a tabela: '{table_name}'...")
-    status = "Não Definido"
-    data_ref = None
-
-    try:
-        # A query é parametrizada para evitar SQL Injection, embora aqui seja seguro.
-        # Pandas não suporta parâmetros em `read_sql` para nomes de tabela,
-        # então construímos a string de forma segura.
-        query = f"SELECT MAX(data_insercao) FROM `{table_name}`"
-        
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", UserWarning)
-            df_result = pd.read_sql(query, conn)
-        
-        max_date_from_db = pd.to_datetime(df_result.iloc[0, 0])
-        data_ref = max_date_from_db
-
-        if pd.isna(max_date_from_db):
-            status = 'Sem Histórico'
-            print(f"AVISO: Não há registros em '{table_name}'. Status: Sem Histórico.")
-        else:
-            if max_date_from_db.date() == date.today():
-                status = 'Atualizada'
-                print(f"SUCESSO: Tabela atualizada. (Última inserção: {max_date_from_db.date()})")
-            else:
-                status = 'Failed'
-                print(f"FALHA: Tabela DESATUALIZADA. (Última inserção: {max_date_from_db.date()}, Hoje: {date.today()})")
-
-    except Exception as e:
-        status = 'Erro na Verificação'
-        print(f"ERRO INESPERADO ao checar a tabela '{table_name}': {e}")
-    
-    # Monta o dicionário de resultado para esta tabela
-    log_entry = {
-        'nome_workspace': 'dbDrogamais',
-        'nome_ativo': table_name,
-        'tipo_ativo': asset_type,
-        'status_atualizacao': status,
-        'data_atualizacao': data_ref,
-        'tipo_atualizacao': 'Scheduled'
-    }
-    return log_entry
-
-
-def main():
-    """
-    Função principal que orquestra a verificação de todas as tabelas
-    e insere os logs no banco de dados.
+    Verifica se a data máxima de inserção das tabelas silver e gold de
+    Close-Up são iguais, indicando que estão sincronizadas.
     """
     print("="*50)
-    print("--- INICIANDO VERIFICAÇÃO DE ATUALIDADE DAS TABELAS ---")
+    print("--- INICIANDO VERIFICAÇÃO DE SINCRONIA 'CLOSE-UP' ---")
     print("="*50)
 
-    # Lista de tabelas para verificar
-    tabelas_para_checar = [
-        {'nome': 'bronze_close_up', 'tipo': 'TABELA BRONZE'},
-        {'nome': 'silver_close_up', 'tipo': 'TABELA SILVER'},
-        {'nome': 'gold_closeUp_estoque_vendas_analise_de_mercado', 'tipo': 'TABELA GOLD'}
-    ]
-    
-    all_logs = []
     conn = get_db_connection()
-
     if conn is None:
         print("ERRO CRÍTICO: Não foi possível conectar ao banco. O script será encerrado.")
         return
 
+    # --- Nomes das tabelas e colunas ---
+    # Usando o nome corrigido da tabela gold que descobrimos anteriormente
+    silver_table = {'nome': 'silver_close_up', 'tipo': 'TABELA SILVER', 'coluna': 'data_insercao'}
+    gold_table = {'nome': 'gold_closeUp_estoque_vendas_analise_de_mercado', 'tipo': 'TABELA GOLD', 'coluna': 'data_insercao'}
+    
+    all_logs = []
+    status_geral = "Não Definido"
+    date_silver = None
+    date_gold = None
+
     try:
-        for tabela in tabelas_para_checar:
-            log = check_table_status(conn, tabela['nome'], tabela['tipo'])
-            all_logs.append(log)
-            print("-" * 20)
-        
-        # --- PREPARAÇÃO DO DATAFRAME FINAL PARA INSERÇÃO ---
-        if not all_logs:
-            print("AVISO: Nenhum log foi gerado. Nada para inserir.")
-            return
+        # Pega a data máxima da tabela Silver
+        print(f"Buscando data da tabela: '{silver_table['nome']}'...")
+        query_silver = f"SELECT MAX(`{silver_table['coluna']}`) FROM `{silver_table['nome']}`"
+        df_silver = pd.read_sql(query_silver, conn)
+        date_silver = pd.to_datetime(df_silver.iloc[0, 0])
+
+        # Pega a data máxima da tabela Gold
+        print(f"Buscando data da tabela: '{gold_table['nome']}'...")
+        query_gold = f"SELECT MAX(`{gold_table['coluna']}`) FROM `{gold_table['nome']}`"
+        df_gold = pd.read_sql(query_gold, conn)
+        date_gold = pd.to_datetime(df_gold.iloc[0, 0])
+        print("-" * 20)
+
+        # --- LÓGICA DE COMPARAÇÃO ---
+        if pd.isna(date_silver) or pd.isna(date_gold):
+            status_geral = "Sem Histórico"
+            print("AVISO: Uma das tabelas está vazia. Não foi possível comparar.")
+        elif date_silver.date() == date_gold.date():
+            status_geral = "Sincronizado"
+            print(f"SUCESSO: As tabelas estão sincronizadas. (Data: {date_silver.date()})")
+        else:
+            status_geral = "Dessincronizado"
+            print(f"FALHA: As tabelas estão DESSINCRONIZADAS! (Silver: {date_silver.date()}, Gold: {date_gold.date()})")
+
+    except Exception as e:
+        status_geral = 'Erro na Verificação'
+        print(f"ERRO INESPERADO durante a checagem: {e}")
+    
+    finally:
+        # --- PREPARAÇÃO DOS LOGS PARA INSERÇÃO ---
+        # Gera um log para cada tabela com o status geral da sincronia
+        log_silver = {
+            'nome_workspace': 'dbDrogamais', 'nome_ativo': silver_table['nome'],
+            'tipo_ativo': silver_table['tipo'], 'status_atualizacao': status_geral,
+            'data_atualizacao': date_silver, 'tipo_atualizacao': 'Sync Check'
+        }
+        log_gold = {
+            'nome_workspace': 'dbDrogamais', 'nome_ativo': gold_table['nome'],
+            'tipo_ativo': gold_table['tipo'], 'status_atualizacao': status_geral,
+            'data_atualizacao': date_gold, 'tipo_atualizacao': 'Sync Check'
+        }
+        all_logs.extend([log_silver, log_gold])
 
         df_para_inserir = pd.DataFrame(all_logs)
 
@@ -109,10 +85,8 @@ def main():
         print(df_para_inserir.to_string())
         print("="*50 + "\n")
 
-        # --- INSERÇÃO DO LOG NO BANCO USANDO A SUA FUNÇÃO ---
         insert_dataframe(conn, df_para_inserir, "fat_fiscal")
 
-    finally:
         if conn:
             conn.close()
             print("\n" + "="*50)
@@ -120,4 +94,4 @@ def main():
             print("="*50)
 
 if __name__ == "__main__":
-    main()
+    check_closeup_sync()

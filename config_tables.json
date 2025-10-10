@@ -1,0 +1,25 @@
+{
+  "closeup": [
+    {"nome": "bronze_close_up", "tipo": "TABELA BRONZE", "coluna": "data_insercao"}
+  ],
+  "iqvia": [
+    {"nome": "bronze_iqvia_cpp", "tipo": "TABELA BRONZE", "coluna": "data_insercao"},
+    {"nome": "silver_iqvia", "tipo": "TABELA SILVER", "coluna": "data_insercao"},
+    {"nome": "gold_iqvia_estoque_vendas_analise_de_mercado", "tipo": "TABELA GOLD", "coluna": "data_insercao"}
+  ],
+  "plugpharma": [
+    {"nome": "bronze_plugpharma_estoque", "tipo": "TABELA BRONZE", "coluna": "data_insercao"},
+    {"nome": "bronze_plugpharma_vendas", "tipo": "TABELA BRONZE", "coluna": "data_insercao"},
+    {"nome": "silver_plugpharma_lojas_camapanhaPrincipia", "tipo": "TABELA SILVER", "coluna": "data_de_criacao"},
+    {"nome": "silver_plugpharma_vendas_campanhaPrincipia", "tipo": "TABELA SILVER", "coluna": "data_atualização"}
+  ],
+  "acode": [
+    {"nome": "silver_acode_vendas_parceiros", "tipo": "TABELA SILVER", "coluna": "data_atualizacao"},
+    {"nome": "gold_acode_vendas_distribuidorMAT", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO"},
+    {"nome": "gold_acode_vendas_distribuidorMES", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO"},
+    {"nome": "gold_acode_vendas_distribuidorTRI", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO"}
+  ],
+  "outros": [
+    {"nome": "silver_menorPreco_produtos", "tipo": "TABELA SILVER", "coluna": "data_atualizacao"}
+  ]
+}
