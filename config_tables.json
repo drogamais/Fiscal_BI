@@ -18,8 +18,5 @@
     {"nome": "gold_acode_vendas_distribuidorMAT", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO"},
     {"nome": "gold_acode_vendas_distribuidorMES", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO"},
     {"nome": "gold_acode_vendas_distribuidorTRI", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO"}
-  ],
-  "outros": [
-    {"nome": "silver_menorPreco_produtos", "tipo": "TABELA SILVER", "coluna": "data_atualizacao"}
   ]
 }
