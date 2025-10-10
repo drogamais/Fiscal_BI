@@ -57,7 +57,7 @@ def check_closeup_sync():
 
         if pd.isna(date_bronze) or pd.isna(date_silver) or pd.isna(date_gold):
             status_geral = "Sem Histórico"
-        elif date_silver.date() == date_bronze.date() and date_gold.date() == date_bronze.date():
+        elif date_silver.date() >= date_bronze.date() and date_gold.date() >= date_bronze.date():
             status_geral = "Sincronizado"
         else:
             status_geral = "Dessincronizado"
