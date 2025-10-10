@@ -1,19 +1,17 @@
-{   
-     "_comment": "Este arquivo configura TODAS as tabelas que devem ser verificadas contra a data atual (hoje) e MAT",
-
-    "base_check": [
-        {"nome": "bronze_close_up", "tipo": "TABELA BRONZE", "coluna": "data_insercao", "enabled": true},
-        {"nome": "bronze_iqvia_cpp", "tipo": "TABELA BRONZE", "coluna": "data_insercao", "enabled": true}
-    ],
-
-    "daily_checks": [   
-        {"nome": "bronze_plugpharma_estoque", "tipo": "TABELA BRONZE", "coluna": "data_insercao", "enabled": true},
-        {"nome": "bronze_plugpharma_vendas", "tipo": "TABELA BRONZE", "coluna": "data_insercao", "enabled": true},
-        {"nome": "silver_acode_vendas_parceiros", "tipo": "TABELA SILVER", "coluna": "data_atualizacao", "enabled": true},
-        {"nome": "gold_acode_vendas_distribuidorMAT", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO", "enabled": true},
-        {"nome": "gold_acode_vendas_distribuidorMES", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO", "enabled": true},
-        {"nome": "gold_acode_vendas_distribuidorTRI", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO", "enabled": true},
-        {"nome": "gold_closeUp_estoque_vendas_analise_de_mercado", "tipo": "TABELA GOLD", "coluna":"data_insercao", "enable": true},
-        {"nome": "gold_iqvia_estoque_vendas_analise_de_mercado", "tipo": "TABELA GOLD", "coluna":"data_insercao", "enable": true}
-    ]
+{
+  "_comment": "Este arquivo configura TODAS as tabelas que devem ser verificadas contra a data atual (hoje).",
+  "daily_checks": [
+    {"nome": "bronze_plugpharma_estoque", "tipo": "TABELA BRONZE", "coluna": "data_insercao", "enabled": true},
+    {"nome": "bronze_plugpharma_vendas", "tipo": "TABELA BRONZE", "coluna": "data_insercao", "enabled": true},
+    {"nome": "gold_acode_vendas_distribuidorMAT", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO", "enabled": true},
+    {"nome": "gold_acode_vendas_distribuidorMES", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO", "enabled": true},
+    {"nome": "gold_acode_vendas_distribuidorTRI", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO", "enabled": true},
+    {"nome": "gold_closeUp_estoque_vendas_analise_de_mercado", "tipo": "TABELA GOLD", "coluna": "data_insercao", "enabled": true},
+    {"nome": "gold_iqvia_estoque_vendas_analise_de_mercado", "tipo": "TABELA GOLD", "coluna": "data_insercao", "enabled": true},
+    {"nome": "silver_acode_vendas_parceiros", "tipo": "TABELA SILVER", "coluna": "data_atualizacao", "enabled": true},
+    {"nome": "silver_plugpharma_estoque", "tipo": "TABELA BRONZE", "coluna": "data_insercao", "enabled": true},
+    {"nome": "silver_plugpharma_lojas_camapanhaPrincipia", "tipo": "TABELA SILVER", "coluna": "data_de_criacao", "enabled": true},
+    {"nome": "silver_plugpharma_vendas", "tipo": "TABELA SILVER", "coluna": "data_insercao", "enabled": true},
+    {"nome": "silver_plugpharma_vendas_campanhaPrincipia", "tipo": "TABELA SILVER", "coluna": "data_atualização", "enabled": true}
+  ]
 }

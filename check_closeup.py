@@ -1,97 +1,95 @@
-# check_closeup.py (Lógica de Sincronia)
+# check_closeup.py (Lógica de Sincronia Direta)
 
 import pandas as pd
 import warnings
+from datetime import date
 
 # Importa as funções do seu arquivo database.py
 from database import get_db_connection, insert_dataframe
 
 def check_closeup_sync():
     """
-    Verifica se a data máxima de inserção das tabelas silver e gold de
-    Close-Up são iguais, indicando que estão sincronizadas.
+    Verifica se as tabelas Silver e Gold do Close-Up estão sincronizadas
+    com a tabela Bronze, fazendo a consulta diretamente no banco.
     """
     print("="*50)
-    print("--- INICIANDO VERIFICAÇÃO DE SINCRONIA 'CLOSE-UP' ---")
+    print("--- INICIANDO VERIFICAÇÃO DE SINCRONIA 'CLOSE-UP' (DIRETA) ---")
     print("="*50)
 
     conn = get_db_connection()
     if conn is None:
-        print("ERRO CRÍTICO: Não foi possível conectar ao banco. O script será encerrado.")
         return
 
-    # --- Nomes das tabelas e colunas ---
-    # Usando o nome corrigido da tabela gold que descobrimos anteriormente
+    # --- Configuração das tabelas Close-Up ---
+    bronze_table = {'nome': 'bronze_close_up', 'coluna': 'data_insercao'}
     silver_table = {'nome': 'silver_close_up', 'tipo': 'TABELA SILVER', 'coluna': 'data_insercao'}
+    # Usando o nome corrigido para evitar o erro "Table doesn't exist"
     gold_table = {'nome': 'gold_closeUp_estoque_vendas_analise_de_mercado', 'tipo': 'TABELA GOLD', 'coluna': 'data_insercao'}
     
     all_logs = []
     status_geral = "Não Definido"
-    date_silver = None
-    date_gold = None
+    date_bronze, date_silver, date_gold = None, None, None
+    dias_silver, dias_gold = None, None
 
     try:
-        # Pega a data máxima da tabela Silver
-        print(f"Buscando data da tabela: '{silver_table['nome']}'...")
-        query_silver = f"SELECT MAX(`{silver_table['coluna']}`) FROM `{silver_table['nome']}`"
-        df_silver = pd.read_sql(query_silver, conn)
-        date_silver = pd.to_datetime(df_silver.iloc[0, 0])
+        # Pega a data de todas as três tabelas diretamente
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            
+            query_bronze = f"SELECT MAX(`{bronze_table['coluna']}`) FROM `{bronze_table['nome']}`"
+            date_bronze = pd.to_datetime(pd.read_sql(query_bronze, conn).iloc[0, 0])
 
-        # Pega a data máxima da tabela Gold
-        print(f"Buscando data da tabela: '{gold_table['nome']}'...")
-        query_gold = f"SELECT MAX(`{gold_table['coluna']}`) FROM `{gold_table['nome']}`"
-        df_gold = pd.read_sql(query_gold, conn)
-        date_gold = pd.to_datetime(df_gold.iloc[0, 0])
+            query_silver = f"SELECT MAX(`{silver_table['coluna']}`) FROM `{silver_table['nome']}`"
+            date_silver = pd.to_datetime(pd.read_sql(query_silver, conn).iloc[0, 0])
+
+            query_gold = f"SELECT MAX(`{gold_table['coluna']}`) FROM `{gold_table['nome']}`"
+            date_gold = pd.to_datetime(pd.read_sql(query_gold, conn).iloc[0, 0])
+        
+        # --- Lógica de Comparação e Cálculo ---
+        hoje = date.today()
+        if not pd.isna(date_silver): dias_silver = (hoje - date_silver.date()).days
+        if not pd.isna(date_gold): dias_gold = (hoje - date_gold.date()).days
+
+        print(f"   Data de Referência (Bronze): {date_bronze.date() if not pd.isna(date_bronze) else 'N/A'}")
+        print(f"   Data Atual (Silver):       {date_silver.date() if not pd.isna(date_silver) else 'N/A'} ({dias_silver} dias atrás)")
+        print(f"   Data Atual (Gold):         {date_gold.date() if not pd.isna(date_gold) else 'N/A'} ({dias_gold} dias atrás)")
         print("-" * 20)
 
-        # --- LÓGICA DE COMPARAÇÃO ---
-        if pd.isna(date_silver) or pd.isna(date_gold):
+        if pd.isna(date_bronze) or pd.isna(date_silver) or pd.isna(date_gold):
             status_geral = "Sem Histórico"
-            print("AVISO: Uma das tabelas está vazia. Não foi possível comparar.")
-        elif date_silver.date() == date_gold.date():
+        elif date_silver.date() == date_bronze.date() and date_gold.date() == date_bronze.date():
             status_geral = "Sincronizado"
-            print(f"SUCESSO: As tabelas estão sincronizadas. (Data: {date_silver.date()})")
         else:
             status_geral = "Dessincronizado"
-            print(f"FALHA: As tabelas estão DESSINCRONIZADAS! (Silver: {date_silver.date()}, Gold: {date_gold.date()})")
 
     except Exception as e:
         status_geral = 'Erro na Verificação'
-        print(f"ERRO INESPERADO durante a checagem: {e}")
+        print(f"   ERRO INESPERADO: {e}")
     
     finally:
-        # --- PREPARAÇÃO DOS LOGS PARA INSERÇÃO ---
-        # Gera um log para cada tabela com o status geral da sincronia
-        log_silver = {
+        # Gera logs para Silver e Gold com o status da sincronia
+        all_logs.append({
             'nome_workspace': 'dbDrogamais', 'nome_ativo': silver_table['nome'],
             'tipo_ativo': silver_table['tipo'], 'status_atualizacao': status_geral,
-            'data_atualizacao': date_silver, 'tipo_atualizacao': 'Sync Check'
-        }
-        log_gold = {
+            'data_atualizacao': date_silver, 'tipo_atualizacao': 'Sync Check',
+            'dias_sem_atualizar': dias_silver
+        })
+        all_logs.append({
             'nome_workspace': 'dbDrogamais', 'nome_ativo': gold_table['nome'],
             'tipo_ativo': gold_table['tipo'], 'status_atualizacao': status_geral,
-            'data_atualizacao': date_gold, 'tipo_atualizacao': 'Sync Check'
-        }
-        all_logs.extend([log_silver, log_gold])
+            'data_atualizacao': date_gold, 'tipo_atualizacao': 'Sync Check',
+            'dias_sem_atualizar': dias_gold
+        })
 
         df_para_inserir = pd.DataFrame(all_logs)
-
-        # Formata a data e trata valores nulos
         df_para_inserir['data_atualizacao'] = pd.to_datetime(df_para_inserir['data_atualizacao']).dt.strftime('%Y-%m-%d %H:%M:%S')
         df_para_inserir['data_atualizacao'] = df_para_inserir['data_atualizacao'].fillna(pd.NA).replace({pd.NaT: None})
-
-        print("\n" + "="*50)
-        print("--- DADOS A SEREM INSERIDOS NO LOG ---")
-        print(df_para_inserir.to_string())
-        print("="*50 + "\n")
-
+        
+        print("\n" + df_para_inserir.to_string())
         insert_dataframe(conn, df_para_inserir, "fat_fiscal")
 
-        if conn:
-            conn.close()
-            print("\n" + "="*50)
-            print("INFO: Processo finalizado. Conexão com o banco fechada.")
-            print("="*50)
+        if conn: conn.close()
+        print("\n--- PROCESSO CLOSE-UP FINALIZADO ---\n")
 
 if __name__ == "__main__":
     check_closeup_sync()

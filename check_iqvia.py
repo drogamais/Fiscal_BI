@@ -1,121 +1,94 @@
-# check_data_layers.py (antigo check_bronze_closeup.py)
+# check_iqvia.py (Lógica de Sincronia Direta)
 
 import pandas as pd
-from datetime import date
 import warnings
+from datetime import date
 
 # Importa as funções do seu arquivo database.py
 from database import get_db_connection, insert_dataframe
 
-def check_table_status(conn, table_name, asset_type):
+def check_iqvia_sync():
     """
-    Verifica a data da última inserção em uma tabela específica e retorna
-    um dicionário com os dados para o log.
-
-    Args:
-        conn: Objeto de conexão com o banco de dados.
-        table_name (str): O nome da tabela a ser verificada.
-        asset_type (str): O tipo de ativo (ex: 'TABELA BRONZE').
-
-    Returns:
-        dict: Um dicionário contendo as informações de log para a tabela.
-    """
-    print(f"---> Verificando a tabela: '{table_name}'...")
-    status = "Não Definido"
-    data_ref = None
-
-    try:
-        # A query é parametrizada para evitar SQL Injection, embora aqui seja seguro.
-        # Pandas não suporta parâmetros em `read_sql` para nomes de tabela,
-        # então construímos a string de forma segura.
-        query = f"SELECT MAX(data_insercao) FROM `{table_name}`"
-        
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", UserWarning)
-            df_result = pd.read_sql(query, conn)
-        
-        max_date_from_db = pd.to_datetime(df_result.iloc[0, 0])
-        data_ref = max_date_from_db
-
-        if pd.isna(max_date_from_db):
-            status = 'Sem Histórico'
-            print(f"AVISO: Não há registros em '{table_name}'. Status: Sem Histórico.")
-        else:
-            if max_date_from_db.date() == date.today():
-                status = 'Atualizada'
-                print(f"SUCESSO: Tabela atualizada. (Última inserção: {max_date_from_db.date()})")
-            else:
-                status = 'Failed'
-                print(f"FALHA: Tabela DESATUALIZADA. (Última inserção: {max_date_from_db.date()}, Hoje: {date.today()})")
-
-    except Exception as e:
-        status = 'Erro na Verificação'
-        print(f"ERRO INESPERADO ao checar a tabela '{table_name}': {e}")
-    
-    # Monta o dicionário de resultado para esta tabela
-    log_entry = {
-        'nome_workspace': 'dbDrogamais',
-        'nome_ativo': table_name,
-        'tipo_ativo': asset_type,
-        'status_atualizacao': status,
-        'data_atualizacao': data_ref,
-        'tipo_atualizacao': 'Scheduled'
-    }
-    return log_entry
-
-
-def main():
-    """
-    Função principal que orquestra a verificação de todas as tabelas
-    e insere os logs no banco de dados.
+    Verifica se as camadas Silver e Gold do IQVIA estão sincronizadas
+    com a camada Bronze, fazendo a consulta diretamente no banco.
     """
     print("="*50)
-    print("--- INICIANDO VERIFICAÇÃO DE ATUALIDADE DAS TABELAS ---")
+    print("--- INICIANDO VERIFICAÇÃO DE SINCRONIA 'IQVIA' (DIRETA) ---")
     print("="*50)
 
-    # Lista de tabelas para verificar
-    tabelas_para_checar = [
-        {'nome': 'silver_iqvia', 'tipo': 'TABELA SILVER'}
-    ]
-    
-    all_logs = []
     conn = get_db_connection()
-
     if conn is None:
-        print("ERRO CRÍTICO: Não foi possível conectar ao banco. O script será encerrado.")
         return
 
+    # --- Configuração das tabelas IQVIA ---
+    bronze_table = {'nome': 'bronze_iqvia_cpp', 'coluna': 'data_insercao'}
+    silver_table = {'nome': 'silver_iqvia', 'tipo': 'TABELA SILVER', 'coluna': 'data_insercao'}
+    gold_table = {'nome': 'gold_iqvia_estoque_vendas_analise_de_mercado', 'tipo': 'TABELA GOLD', 'coluna': 'data_insercao'}
+    
+    all_logs = []
+    status_geral = "Não Definido"
+    date_bronze, date_silver, date_gold = None, None, None
+    dias_silver, dias_gold = None, None
+
     try:
-        for tabela in tabelas_para_checar:
-            log = check_table_status(conn, tabela['nome'], tabela['tipo'])
-            all_logs.append(log)
-            print("-" * 20)
+        # Pega a data de todas as três tabelas diretamente
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            
+            query_bronze = f"SELECT MAX(`{bronze_table['coluna']}`) FROM `{bronze_table['nome']}`"
+            date_bronze = pd.to_datetime(pd.read_sql(query_bronze, conn).iloc[0, 0])
+
+            query_silver = f"SELECT MAX(`{silver_table['coluna']}`) FROM `{silver_table['nome']}`"
+            date_silver = pd.to_datetime(pd.read_sql(query_silver, conn).iloc[0, 0])
+
+            query_gold = f"SELECT MAX(`{gold_table['coluna']}`) FROM `{gold_table['nome']}`"
+            date_gold = pd.to_datetime(pd.read_sql(query_gold, conn).iloc[0, 0])
         
-        # --- PREPARAÇÃO DO DATAFRAME FINAL PARA INSERÇÃO ---
-        if not all_logs:
-            print("AVISO: Nenhum log foi gerado. Nada para inserir.")
-            return
+        # --- Lógica de Comparação e Cálculo ---
+        hoje = date.today()
+        if not pd.isna(date_silver): dias_silver = (hoje - date_silver.date()).days
+        if not pd.isna(date_gold): dias_gold = (hoje - date_gold.date()).days
+
+        print(f"   Data de Referência (Bronze): {date_bronze.date() if not pd.isna(date_bronze) else 'N/A'}")
+        print(f"   Data Atual (Silver):       {date_silver.date() if not pd.isna(date_silver) else 'N/A'} ({dias_silver} dias atrás)")
+        print(f"   Data Atual (Gold):         {date_gold.date() if not pd.isna(date_gold) else 'N/A'} ({dias_gold} dias atrás)")
+        print("-" * 20)
+
+        if pd.isna(date_bronze) or pd.isna(date_silver) or pd.isna(date_gold):
+            status_geral = "Sem Histórico"
+        elif date_silver.date() >= date_bronze.date() and date_gold.date() >= date_bronze.date():
+            status_geral = "Sincronizado"
+        else:
+            status_geral = "Dessincronizado"
+
+    except Exception as e:
+        status_geral = 'Erro na Verificação'
+        print(f"   ERRO INESPERADO: {e}")
+    
+    finally:
+        # Gera logs para Silver e Gold com o status da sincronia
+        all_logs.append({
+            'nome_workspace': 'dbDrogamais', 'nome_ativo': silver_table['nome'],
+            'tipo_ativo': silver_table['tipo'], 'status_atualizacao': status_geral,
+            'data_atualizacao': date_silver, 'tipo_atualizacao': 'Sync Check',
+            'dias_sem_atualizar': dias_silver
+        })
+        all_logs.append({
+            'nome_workspace': 'dbDrogamais', 'nome_ativo': gold_table['nome'],
+            'tipo_ativo': gold_table['tipo'], 'status_atualizacao': status_geral,
+            'data_atualizacao': date_gold, 'tipo_atualizacao': 'Sync Check',
+            'dias_sem_atualizar': dias_gold
+        })
 
         df_para_inserir = pd.DataFrame(all_logs)
-
-        # Formata a data e trata valores nulos
         df_para_inserir['data_atualizacao'] = pd.to_datetime(df_para_inserir['data_atualizacao']).dt.strftime('%Y-%m-%d %H:%M:%S')
         df_para_inserir['data_atualizacao'] = df_para_inserir['data_atualizacao'].fillna(pd.NA).replace({pd.NaT: None})
-
-        print("\n" + "="*50)
-        print("--- DADOS A SEREM INSERIDOS NO LOG ---")
-        print(df_para_inserir.to_string())
-        print("="*50 + "\n")
-
-        # --- INSERÇÃO DO LOG NO BANCO USANDO A SUA FUNÇÃO ---
+        
+        print("\n" + df_para_inserir.to_string())
         insert_dataframe(conn, df_para_inserir, "fat_fiscal")
 
-    finally:
-        if conn:
-            conn.close()
-            print("\n" + "="*50)
-            print("INFO: Processo finalizado. Conexão com o banco fechada.")
-            print("="*50)
+        if conn: conn.close()
+        print("\n--- PROCESSO IQVIA FINALIZADO ---\n")
 
 if __name__ == "__main__":
-    main()
+    check_iqvia_sync()

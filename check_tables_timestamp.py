@@ -57,7 +57,7 @@ def check_table_status(conn, table_name, asset_type, date_column):
         'status_atualizacao': status,
         'data_atualizacao': data_ref,
         'tipo_atualizacao': 'Scheduled',
-        'dias_sem_atualizar': dias_sem_atualizar # <-- Nova chave no dicionário
+        'dias_sem_atualizar': dias_sem_atualizar 
     }
     return log_entry
 
@@ -71,17 +71,21 @@ def main():
     print("--- INICIANDO VERIFICAÇÃO DE ATUALIDADE DAS TABELAS ---")
     print("="*50)
 
-    # Carrega a configuração do arquivo JSON
-    config = load_table_config() # Supondo que load_table_config exista
+    config = load_table_config()
     if not config:
         sys.exit(1)
 
     tabelas_para_checar = []
+    
+    # --- A CORREÇÃO ESTÁ AQUI ---
+    # Este loop agora verifica se o 'grupo' é uma lista antes de processá-lo.
+    # Isso ignora automaticamente os campos de texto como "_comment".
     for grupo in config.values():
-        tabelas_para_checar.extend(grupo)
+        if isinstance(grupo, list):
+            tabelas_para_checar.extend(grupo)
 
     if not tabelas_para_checar:
-        print("ERRO: Nenhuma tabela encontrada no arquivo de configuração.")
+        print("ERRO: Nenhuma lista de tabelas válida foi encontrada no arquivo de configuração.")
         sys.exit(1)
 
     all_logs = []
@@ -123,6 +127,7 @@ def main():
             print("\n" + "="*50)
             print("INFO: Processo finalizado. Conexão com o banco fechada.")
             print("="*50)
+
 
 # Supondo que você tenha essa função para carregar o JSON
 def load_table_config(config_file='config_tables.json'):
