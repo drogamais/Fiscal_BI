@@ -75,9 +75,7 @@ def main():
 
     # Lista de tabelas para verificar
     tabelas_para_checar = [
-        {'nome': 'bronze_iqvia_cpp', 'tipo': 'TABELA BRONZE'},
-        {'nome': 'silver_iqvia', 'tipo': 'TABELA SILVER'},
-        {'nome': 'gold_iqvia_estoque_vendas_analise_de_mercado', 'tipo': 'TABELA GOLD'}
+        {'nome': 'silver_iqvia', 'tipo': 'TABELA SILVER'}
     ]
     
     all_logs = []
