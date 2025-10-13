@@ -12,7 +12,9 @@
     "password": "senha",
     "host": "host",
     "port": 3306,
-    "database": "dbDrogamais"
+    "database": "dbDrogamais",
+    "read_timeout": 300,
+    "write_timeout": 300 
   },
 
   "databaseSults": 
@@ -21,6 +23,8 @@
     "password": "senha",
     "host": "host",
     "port": 3306,
-    "database": "dbSults"
+    "database": "dbSults",
+    "read_timeout": 300,
+    "write_timeout": 300
   }
 }

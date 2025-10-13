@@ -45,7 +45,7 @@ def check_sync_status(conn_data, bronze_table_name, gold_table_name, date_column
         hoje = date.today()
         
         if not pd.isna(date_gold): 
-            dias_gold = (hoje - date_gold.date()).days
+            dias_gold = (date_gold.date() - date_bronze.date()).days
 
         if pd.isna(date_bronze) or pd.isna(date_gold):
             status_geral = "Sem Histórico"

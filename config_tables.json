@@ -74,14 +74,6 @@
       "workspace_log": "dbDrogamais"
     },
     {
-      "nome": "silver_plugpharma_lojas_camapanhaPrincipia",
-      "tipo": "TABELA SILVER",
-      "coluna": "data_de_criacao",
-      "enabled": true,
-      "conn_key": "databaseDrogamais",
-      "workspace_log": "dbDrogamais"
-    },
-    {
       "nome": "silver_plugpharma_vendas",
       "tipo": "TABELA SILVER",
       "coluna": "data_insercao",
@@ -209,7 +201,7 @@
       "coluna": "data_atualizacao",
       "workspace_log": "dbSults",
       "conn_key": "databaseSults",
-      "enabled": true
+      "enabled": false
     },
     {
       "nome_bronze": "bronze_sults_chamados",
@@ -217,7 +209,7 @@
       "coluna": "data_atualizacao",
       "workspace_log": "dbSults",
       "conn_key": "databaseSults",
-      "enabled": true
+      "enabled": false
     },
     {
       "nome_bronze": "bronze_sults_implantacao",
@@ -225,7 +217,7 @@
       "coluna": "data_atualizacao",
       "workspace_log": "dbSults",
       "conn_key": "databaseSults",
-      "enabled": true
+      "enabled": false
     }
   ],
   "gold_sync_checks": [
@@ -235,7 +227,7 @@
       "coluna": "data_insercao",
       "workspace_log": "dbDrogamais",
       "conn_key": "databaseDrogamais",
-      "enabled": true
+      "enabled": false
     },
     {
       "nome_bronze": "bronze_iqvia_cpp",
@@ -243,7 +235,7 @@
       "coluna": "data_insercao",
       "workspace_log": "dbDrogamais",
       "conn_key": "databaseDrogamais",
-      "enabled": true
+      "enabled": false
     }
   ]
 }
