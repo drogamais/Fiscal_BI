@@ -13,5 +13,18 @@
     {"nome": "silver_plugpharma_lojas_camapanhaPrincipia", "tipo": "TABELA SILVER", "coluna": "data_de_criacao", "enabled": true},
     {"nome": "silver_plugpharma_vendas", "tipo": "TABELA SILVER", "coluna": "data_insercao", "enabled": true},
     {"nome": "silver_plugpharma_vendas_campanhaPrincipia", "tipo": "TABELA SILVER", "coluna": "data_atualização", "enabled": true}
+  ],
+  "sults_checks": [
+    {"nome": "bronze_movidesk_chamados", "tipo": "TABELA BRONZE", "coluna": "data_atualizacao", "enabled": true},
+    {"nome": "bronze_sults_chamados", "tipo": "TABELA BRONZE", "coluna": "data_atualizacao", "enabled": true},
+    {"nome": "bronze_sults_implantacao", "tipo": "TABELA BRONZE", "coluna": "data_atualizacao", "enabled": true},
+    {"nome": "tb_atendimentos", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
+    {"nome": "tb_atendimentos_massa", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
+    {"nome": "tb_projetos", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
+    {"nome": "tb_tarefas", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
+    {"nome": "tb_reports_embedded", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
+    {"nome": "tb_report_auditoria_embedded", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
+    {"nome": "tb_users_embedded", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
+    {"nome": "tb_workspaces_embedded", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true}
   ]
 }

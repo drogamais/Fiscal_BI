@@ -5,17 +5,18 @@ import mariadb
 import sys
 import pandas as pd
 
-def get_db_connection():
+def get_db_connection(config_key='database'):
     """
-    Lê o config.json e estabelece uma conexão com o banco de dados MariaDB.
+    Lê o config.json e estabelece uma conexão com o banco de dados MariaDB
+    usando a chave de configuração especificada.
     Retorna o objeto de conexão ou None em caso de falha.
     """
     try:
         with open('config.json', 'r') as f:
             config = json.load(f)
-            db_config = config['database'] # Pega a seção 'database' do JSON
+            db_config = config[config_key] # Usa o parâmetro config_key
         
-        print("INFO: Conectando ao banco de dados MariaDB...")
+        print(f"INFO: Conectando ao banco de dados MariaDB (Chave: '{config_key}')...")
         conn = mariadb.connect(**db_config)
         print("INFO: Conexão bem-sucedida.")
         return conn
@@ -24,7 +25,7 @@ def get_db_connection():
         print("ERRO CRÍTICO: Arquivo 'config.json' não encontrado.")
         return None
     except KeyError:
-        print("ERRO CRÍTICO: A chave 'database' não foi encontrada no 'config.json'.")
+        print(f"ERRO CRÍTICO: A chave '{config_key}' não foi encontrada no 'config.json'.")
         return None
     except mariadb.Error as ex:
         print(f"ERRO CRÍTICO: Falha ao conectar ao MariaDB. (Erro nº {ex.errno}) {ex.errmsg}")
@@ -68,4 +69,3 @@ def insert_dataframe(conn, df, table_name):
     finally:
         if cursor:
             cursor.close()
-

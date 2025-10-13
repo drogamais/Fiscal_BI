@@ -46,6 +46,8 @@ def main():
         'check_powerbi.py',
         'check_tables_base.py',
         'check_tables_timestamp.py',
+        'check_tables_sults.py',
+        'check_tables_silver.py',
         'check_closeup.py',
         'check_iqvia.py'
     ]
