@@ -1,30 +1,249 @@
 {
-  "_comment": "Este arquivo configura TODAS as tabelas que devem ser verificadas contra a data atual (hoje).",
-  "daily_checks": [
-    {"nome": "bronze_plugpharma_estoque", "tipo": "TABELA BRONZE", "coluna": "data_insercao", "enabled": true},
-    {"nome": "bronze_plugpharma_vendas", "tipo": "TABELA BRONZE", "coluna": "data_insercao", "enabled": true},
-    {"nome": "gold_acode_vendas_distribuidorMAT", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO", "enabled": true},
-    {"nome": "gold_acode_vendas_distribuidorMES", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO", "enabled": true},
-    {"nome": "gold_acode_vendas_distribuidorTRI", "tipo": "TABELA GOLD", "coluna": "DATA_ATUALIZACAO", "enabled": true},
-    {"nome": "gold_closeUp_estoque_vendas_analise_de_mercado", "tipo": "TABELA GOLD", "coluna": "data_insercao", "enabled": true},
-    {"nome": "gold_iqvia_estoque_vendas_analise_de_mercado", "tipo": "TABELA GOLD", "coluna": "data_insercao", "enabled": true},
-    {"nome": "silver_acode_vendas_parceiros", "tipo": "TABELA SILVER", "coluna": "data_atualizacao", "enabled": true},
-    {"nome": "silver_plugpharma_estoque", "tipo": "TABELA BRONZE", "coluna": "data_insercao", "enabled": true},
-    {"nome": "silver_plugpharma_lojas_camapanhaPrincipia", "tipo": "TABELA SILVER", "coluna": "data_de_criacao", "enabled": true},
-    {"nome": "silver_plugpharma_vendas", "tipo": "TABELA SILVER", "coluna": "data_insercao", "enabled": true},
-    {"nome": "silver_plugpharma_vendas_campanhaPrincipia", "tipo": "TABELA SILVER", "coluna": "data_atualização", "enabled": true}
+  "_comment": "Este arquivo configura TODAS as tabelas que devem ser verificadas. A chave 'conn_key' deve espelhar o config.json.",
+  "freshness_checks": [
+    {
+      "nome": "bronze_plugpharma_estoque",
+      "tipo": "TABELA BRONZE",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais"
+    },
+    {
+      "nome": "bronze_plugpharma_vendas",
+      "tipo": "TABELA BRONZE",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais"
+    },
+    {
+      "nome": "gold_acode_vendas_distribuidorMAT",
+      "tipo": "TABELA GOLD",
+      "coluna": "DATA_ATUALIZACAO",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais"
+    },
+    {
+      "nome": "gold_acode_vendas_distribuidorMES",
+      "tipo": "TABELA GOLD",
+      "coluna": "DATA_ATUALIZACAO",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais"
+    },
+    {
+      "nome": "gold_acode_vendas_distribuidorTRI",
+      "tipo": "TABELA GOLD",
+      "coluna": "DATA_ATUALIZACAO",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais"
+    },
+    {
+      "nome": "gold_closeUp_estoque_vendas_analise_de_mercado",
+      "tipo": "TABELA GOLD",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais"
+    },
+    {
+      "nome": "gold_iqvia_estoque_vendas_analise_de_mercado",
+      "tipo": "TABELA GOLD",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais"
+    },
+    {
+      "nome": "silver_acode_vendas_parceiros",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais"
+    },
+    {
+      "nome": "silver_plugpharma_estoque",
+      "tipo": "TABELA BRONZE",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais"
+    },
+    {
+      "nome": "silver_plugpharma_lojas_camapanhaPrincipia",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_de_criacao",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais"
+    },
+    {
+      "nome": "silver_plugpharma_vendas",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais"
+    },
+    {
+      "nome": "silver_plugpharma_vendas_campanhaPrincipia",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_atualização",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais"
+    },
+    {
+      "nome": "bronze_movidesk_chamados",
+      "tipo": "TABELA BRONZE",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "databaseSults",
+      "workspace_log": "dbSults"
+    },
+    {
+      "nome": "bronze_sults_chamados",
+      "tipo": "TABELA BRONZE",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "databaseSults",
+      "workspace_log": "dbSults"
+    },
+    {
+      "nome": "bronze_sults_implantacao",
+      "tipo": "TABELA BRONZE",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "databaseSults",
+      "workspace_log": "dbSults"
+    },
+    {
+      "nome": "tb_atendimentos",
+      "tipo": "TABELA",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "databaseSults",
+      "workspace_log": "dbSults"
+    },
+    {
+      "nome": "tb_atendimentos_massa",
+      "tipo": "TABELA",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "databaseSults",
+      "workspace_log": "dbSults"
+    },
+    {
+      "nome": "tb_projetos",
+      "tipo": "TABELA",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "databaseSults",
+      "workspace_log": "dbSults"
+    },
+    {
+      "nome": "tb_tarefas",
+      "tipo": "TABELA",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "databaseSults",
+      "workspace_log": "dbSults"
+    },
+    {
+      "nome": "tb_reports_embedded",
+      "tipo": "TABELA",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "databaseSults",
+      "workspace_log": "dbSults"
+    },
+    {
+      "nome": "tb_report_auditoria_embedded",
+      "tipo": "TABELA",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "databaseSults",
+      "workspace_log": "dbSults"
+    },
+    {
+      "nome": "tb_users_embedded",
+      "tipo": "TABELA",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "databaseSults",
+      "workspace_log": "dbSults"
+    },
+    {
+      "nome": "tb_workspaces_embedded",
+      "tipo": "TABELA",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "databaseSults",
+      "workspace_log": "dbSults"
+    }
   ],
-  "sults_checks": [
-    {"nome": "bronze_movidesk_chamados", "tipo": "TABELA BRONZE", "coluna": "data_atualizacao", "enabled": true},
-    {"nome": "bronze_sults_chamados", "tipo": "TABELA BRONZE", "coluna": "data_atualizacao", "enabled": true},
-    {"nome": "bronze_sults_implantacao", "tipo": "TABELA BRONZE", "coluna": "data_atualizacao", "enabled": true},
-    {"nome": "tb_atendimentos", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
-    {"nome": "tb_atendimentos_massa", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
-    {"nome": "tb_projetos", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
-    {"nome": "tb_tarefas", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
-    {"nome": "tb_reports_embedded", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
-    {"nome": "tb_report_auditoria_embedded", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
-    {"nome": "tb_users_embedded", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true},
-    {"nome": "tb_workspaces_embedded", "tipo": "TABELA", "coluna": "data_atualizacao", "enabled": true}
+  "silver_sync_checks": [
+    {
+      "nome_bronze": "bronze_close_up",
+      "nome_silver": "silver_close_up",
+      "coluna": "data_insercao",
+      "workspace_log": "dbDrogamais",
+      "conn_key": "databaseDrogamais",
+      "enabled": true
+    },
+    {
+      "nome_bronze": "bronze_iqvia_cpp",
+      "nome_silver": "silver_iqvia",
+      "coluna": "data_insercao",
+      "workspace_log": "dbDrogamais",
+      "conn_key": "databaseDrogamais",
+      "enabled": true
+    },
+    {
+      "nome_bronze": "bronze_movidesk_chamados",
+      "nome_silver": "silver_movidesk_chamados",
+      "coluna": "data_atualizacao",
+      "workspace_log": "dbSults",
+      "conn_key": "databaseSults",
+      "enabled": true
+    },
+    {
+      "nome_bronze": "bronze_sults_chamados",
+      "nome_silver": "silver_sults_chamados",
+      "coluna": "data_atualizacao",
+      "workspace_log": "dbSults",
+      "conn_key": "databaseSults",
+      "enabled": true
+    },
+    {
+      "nome_bronze": "bronze_sults_implantacao",
+      "nome_silver": "silver_sults_implantacao",
+      "coluna": "data_atualizacao",
+      "workspace_log": "dbSults",
+      "conn_key": "databaseSults",
+      "enabled": true
+    }
+  ],
+  "gold_sync_checks": [
+    {
+      "nome_bronze": "bronze_close_up",
+      "nome_gold": "gold_closeUp_estoque_vendas_analise_de_mercado",
+      "coluna": "data_insercao",
+      "workspace_log": "dbDrogamais",
+      "conn_key": "databaseDrogamais",
+      "enabled": true
+    },
+    {
+      "nome_bronze": "bronze_iqvia_cpp",
+      "nome_gold": "gold_iqvia_estoque_vendas_analise_de_mercado",
+      "coluna": "data_insercao",
+      "workspace_log": "dbDrogamais",
+      "conn_key": "databaseDrogamais",
+      "enabled": true
+    }
   ]
 }

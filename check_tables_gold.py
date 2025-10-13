@@ -1,4 +1,4 @@
-# check_tables_silver.py (Lógica de Sincronia Bronze vs Silver Generalizada)
+# check_tables_gold.py (Lógica de Sincronia Bronze vs Gold Generalizada)
 
 import pandas as pd
 import warnings
@@ -17,16 +17,16 @@ def load_table_config(config_file='config_tables.json'):
         print(f"Erro ao carregar config: {e}")
         return None
 
-def check_sync_status(conn_data, bronze_table_name, silver_table_name, date_column, workspace_log):
+def check_sync_status(conn_data, bronze_table_name, gold_table_name, date_column, workspace_log):
     """
-    Verifica se a tabela Silver está sincronizada (data >= Bronze).
-    Retorna o log para a tabela Silver.
+    Verifica se a tabela Gold está sincronizada (data >= Bronze).
+    Retorna o log para a tabela Gold.
     """
     status_geral = "Não Definido"
-    date_bronze, date_silver = None, None
-    dias_silver = None
+    date_bronze, date_gold = None, None
+    dias_gold = None
     
-    print(f"---> Verificando sincronia ({workspace_log}): {silver_table_name} (Silver) vs {bronze_table_name} (Bronze)...")
+    print(f"---> Verificando sincronia ({workspace_log}): {gold_table_name} (Gold) vs {bronze_table_name} (Bronze)...")
 
     try:
         # Para evitar UserWarning do pandas ao ler a data
@@ -37,59 +37,59 @@ def check_sync_status(conn_data, bronze_table_name, silver_table_name, date_colu
             query_bronze = f"SELECT MAX(`{date_column}`) FROM `{bronze_table_name}`"
             date_bronze = pd.to_datetime(pd.read_sql(query_bronze, conn_data).iloc[0, 0])
 
-            # Pega a data da tabela Silver (Atual)
-            query_silver = f"SELECT MAX(`{date_column}`) FROM `{silver_table_name}`"
-            date_silver = pd.to_datetime(pd.read_sql(query_silver, conn_data).iloc[0, 0])
+            # Pega a data da tabela Gold (Atual)
+            query_gold = f"SELECT MAX(`{date_column}`) FROM `{gold_table_name}`"
+            date_gold = pd.to_datetime(pd.read_sql(query_gold, conn_data).iloc[0, 0])
         
         # Lógica de Comparação e Cálculo
         hoje = date.today()
         
-        if not pd.isna(date_silver): 
-            dias_silver = (hoje - date_silver.date()).days
+        if not pd.isna(date_gold): 
+            dias_gold = (hoje - date_gold.date()).days
 
-        if pd.isna(date_bronze) or pd.isna(date_silver):
+        if pd.isna(date_bronze) or pd.isna(date_gold):
             status_geral = "Sem Histórico"
-        elif date_silver.date() >= date_bronze.date():
+        elif date_gold.date() >= date_bronze.date():
             status_geral = "Sincronizado"
         else:
             status_geral = "Dessincronizado"
 
         print(f"   Data de Referência (Bronze): {date_bronze.date() if not pd.isna(date_bronze) else 'N/A'}")
-        print(f"   Data Atual (Silver):       {date_silver.date() if not pd.isna(date_silver) else 'N/A'} ({dias_silver} dias atrás)")
+        print(f"   Data Atual (Gold):         {date_gold.date() if not pd.isna(date_gold) else 'N/A'} ({dias_gold} dias atrás)")
 
     except Exception as e:
         status_geral = 'Erro na Verificação'
-        print(f"   ERRO INESPERADO ao checar '{silver_table_name}': {e}")
+        print(f"   ERRO INESPERADO ao checar '{gold_table_name}': {e}")
     
-    # Gera log para a tabela Silver
+    # Gera log para a tabela Gold
     log_entry = {
         'nome_workspace': workspace_log,
-        'nome_ativo': silver_table_name,
-        'tipo_ativo': 'TABELA SILVER',
+        'nome_ativo': gold_table_name,
+        'tipo_ativo': 'TABELA GOLD',
         'status_atualizacao': status_geral,
-        'data_atualizacao': date_silver,
+        'data_atualizacao': date_gold,
         'tipo_atualizacao': 'Sync Check',
-        'dias_sem_atualizar': dias_silver
+        'dias_sem_atualizar': dias_gold
     }
     return log_entry
 
 
 def main():
     """
-    Função principal que verifica a sincronia entre Bronze e Silver.
+    Função principal que verifica a sincronia entre Bronze e Gold.
     """
     print("="*50)
-    print("--- INICIANDO VERIFICAÇÃO DE SINCRONIA 'BRONZE/SILVER' ---")
+    print("--- INICIANDO VERIFICAÇÃO DE SINCRONIA 'BRONZE/GOLD' ---")
     print("="*50)
 
     config = load_table_config()
     if not config:
         sys.exit(1)
 
-    tabelas_para_checar = config.get('silver_sync_checks', [])
+    tabelas_para_checar = config.get('gold_sync_checks', [])
     
     if not tabelas_para_checar:
-        print("AVISO: Nenhuma lista de tabelas válida foi encontrada para 'silver_sync_checks'. Encerrando.")
+        print("AVISO: Nenhuma lista de tabelas válida foi encontrada para 'gold_sync_checks'. Encerrando.")
         return
 
     all_logs = []
@@ -100,7 +100,7 @@ def main():
     try:
         for par in tabelas_para_checar:
             if not par.get('enabled', True):
-                print(f"---> Pulando a sincronia desativada: {par['nome_silver']}")
+                print(f"---> Pulando a sincronia desativada: {par['nome_gold']}")
                 continue
             
             conn_key = par['conn_key']
@@ -118,7 +118,7 @@ def main():
             log = check_sync_status(
                 conn_data, 
                 par['nome_bronze'], 
-                par['nome_silver'], 
+                par['nome_gold'], 
                 par['coluna'],
                 par['workspace_log']
             )
@@ -148,7 +148,7 @@ def main():
         insert_dataframe(conn_log, df_para_inserir, "fat_fiscal")
 
     except Exception as e:
-        print(f"ERRO CRÍTICO: Falha no processo principal de sincronia Silver: {e}")
+        print(f"ERRO CRÍTICO: Falha no processo principal de sincronia Gold: {e}")
     
     finally:
         # Fecha todas as conexões de dados abertas
@@ -157,7 +157,7 @@ def main():
         # Fecha a conexão de log
         if conn_log:
             conn_log.close()
-            print("\n--- PROCESSO SINCRONIA SILVER FINALIZADO. CONEXÕES FECHADAS. ---\n")
+            print("\n--- PROCESSO SINCRONIA GOLD FINALIZADO. CONEXÕES FECHADAS. ---\n")
 
 if __name__ == "__main__":
     main()

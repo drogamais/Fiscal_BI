@@ -68,7 +68,7 @@ def main():
     ]
     
     all_logs = []
-    conn = get_db_connection()
+    conn = get_db_connection(config_key='databaseDrogamais')
 
     if conn is None:
         print("ERRO CRÍTICO: Não foi possível conectar ao banco. O script será encerrado.")

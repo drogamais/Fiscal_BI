@@ -1,4 +1,4 @@
-# check_tables_timestamp.py (com cálculo de dias sem atualizar)
+# check_tables_freshness.py (Versão Unificada para dbDrogamais e dbSults)
 
 import pandas as pd
 from datetime import date
@@ -9,15 +9,23 @@ import sys
 # Importa as funções do seu arquivo database.py
 from database import get_db_connection, insert_dataframe
 
-def check_table_status(conn, table_name, asset_type, date_column):
+def load_table_config(config_file='config_tables.json'):
+    try:
+        with open(config_file, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"Erro ao carregar config: {e}")
+        return None
+
+def check_table_status(conn, table_name, asset_type, date_column, workspace_log):
     """
     Verifica a data da última inserção, calcula os dias sem atualização
-    e retorna um dicionário com os dados para o log.
+    e retorna um dicionário com os dados para o log, usando o workspace_log.
     """
-    print(f"---> Verificando a tabela: '{table_name}' (usando coluna '{date_column}')...")
+    print(f"---> Verificando a tabela ({workspace_log}): '{table_name}' (usando coluna '{date_column}')...")
     status = "Não Definido"
     data_ref = None
-    dias_sem_atualizar = None # <-- Nova variável
+    dias_sem_atualizar = None
 
     try:
         query = f"SELECT MAX(`{date_column}`) FROM `{table_name}`"
@@ -31,10 +39,10 @@ def check_table_status(conn, table_name, asset_type, date_column):
 
         if pd.isna(max_date_from_db):
             status = 'Sem Histórico'
-            dias_sem_atualizar = None # Ou um valor alto como 999 se preferir
+            dias_sem_atualizar = None
             print(f"AVISO: Não há registros em '{table_name}'. Status: Sem Histórico.")
         else:
-            # --- NOVA LÓGICA DE CÁLCULO DE DIAS ---
+            # --- LÓGICA DE CÁLCULO DE DIAS ---
             hoje = date.today()
             dias_sem_atualizar = (hoje - max_date_from_db.date()).days
             
@@ -51,7 +59,7 @@ def check_table_status(conn, table_name, asset_type, date_column):
     
     # Adiciona a nova métrica ao log
     log_entry = {
-        'nome_workspace': 'dbDrogamais',
+        'nome_workspace': workspace_log, # Usa o nome do workspace dinamicamente
         'nome_ativo': table_name,
         'tipo_ativo': asset_type,
         'status_atualizacao': status,
@@ -68,32 +76,22 @@ def main():
     e insere os logs no banco de dados.
     """
     print("="*50)
-    print("--- INICIANDO VERIFICAÇÃO DE ATUALIDADE DAS TABELAS ---")
+    print("--- INICIANDO VERIFICAÇÃO DE ATUALIDADE DAS TABELAS (UNIFICADO) ---")
     print("="*50)
 
     config = load_table_config()
     if not config:
         sys.exit(1)
 
-    tabelas_para_checar = []
+    tabelas_para_checar = config.get('freshness_checks', [])
     
-    # --- A CORREÇÃO ESTÁ AQUI ---
-    # Este loop agora verifica se o 'grupo' é uma lista antes de processá-lo.
-    # Isso ignora automaticamente os campos de texto como "_comment".
-    for grupo in config.values():
-        if isinstance(grupo, list):
-            tabelas_para_checar.extend(grupo)
-
     if not tabelas_para_checar:
-        print("ERRO: Nenhuma lista de tabelas válida foi encontrada no arquivo de configuração.")
+        print("ERRO: Nenhuma lista de tabelas válida foi encontrada para 'freshness_checks'.")
         sys.exit(1)
 
     all_logs = []
-    conn = get_db_connection()
-
-    if conn is None:
-        print("ERRO CRÍTICO: Não foi possível conectar ao banco. O script será encerrado.")
-        return
+    conn_data_map = {} # Gerencia conexões de dados
+    conn_log = None # Conexão de destino (dbDrogamais)
 
     try:
         for tabela in tabelas_para_checar:
@@ -101,7 +99,25 @@ def main():
                 print(f"---> Pulando a tabela desativada: '{tabela['nome']}'")
                 continue
             
-            log = check_table_status(conn, tabela['nome'], tabela['tipo'], tabela['coluna'])
+            conn_key = tabela['conn_key']
+            
+            # Obtém ou abre a conexão com o banco de dados de dados (origem)
+            if conn_key not in conn_data_map:
+                conn_data_map[conn_key] = get_db_connection(config_key=conn_key)
+            
+            conn_data = conn_data_map[conn_key]
+
+            if conn_data is None:
+                print(f"ERRO: Não foi possível conectar ao banco '{conn_key}'. Pulando esta checagem.")
+                continue
+
+            log = check_table_status(
+                conn_data, 
+                tabela['nome'], 
+                tabela['tipo'], 
+                tabela['coluna'],
+                tabela['workspace_log']
+            )
             all_logs.append(log)
             print("-" * 20)
         
@@ -118,25 +134,30 @@ def main():
         print("--- DADOS A SEREM INSERIDOS NO LOG ---")
         print(df_para_inserir.to_string())
         print("="*50 + "\n")
+        
+        # Conexão para o banco de logs (dbDrogamais) para o INSERT
+        conn_log = get_db_connection(config_key='databaseDrogamais')
 
-        insert_dataframe(conn, df_para_inserir, "fat_fiscal")
+        if conn_log is None:
+             print("ERRO CRÍTICO: Não foi possível conectar ao banco de LOGS (dbDrogamais). Logs não inseridos.")
+             return
 
+        insert_dataframe(conn_log, df_para_inserir, "fat_fiscal")
+
+    except Exception as e:
+        print(f"ERRO CRÍTICO: Falha no processo principal de Verificação de Atualidade: {e}")
+        
     finally:
-        if conn:
-            conn.close()
+        # Fecha todas as conexões de dados abertas
+        for conn in conn_data_map.values():
+            if conn: conn.close()
+        # Fecha a conexão de log
+        if conn_log:
+            conn_log.close()
             print("\n" + "="*50)
-            print("INFO: Processo finalizado. Conexão com o banco fechada.")
+            print("INFO: Processo finalizado. Conexões fechadas.")
             print("="*50)
 
-
-# Supondo que você tenha essa função para carregar o JSON
-def load_table_config(config_file='config_tables.json'):
-    try:
-        with open(config_file, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"Erro ao carregar config: {e}")
-        return None
 
 if __name__ == "__main__":
     main()

@@ -5,16 +5,19 @@ import mariadb
 import sys
 import pandas as pd
 
-def get_db_connection(config_key='database'):
+def get_db_connection(config_key='databaseDrogamais', read_timeout=300, write_timeout=300):
     """
     Lê o config.json e estabelece uma conexão com o banco de dados MariaDB
-    usando a chave de configuração especificada.
-    Retorna o objeto de conexão ou None em caso de falha.
+    usando a chave de configuração especificada ('databaseDrogamais' ou 'databaseSults').
     """
     try:
         with open('config.json', 'r') as f:
             config = json.load(f)
             db_config = config[config_key] # Usa o parâmetro config_key
+        
+        # Adiciona os timeouts à configuração
+        db_config['read_timeout'] = read_timeout
+        db_config['write_timeout'] = write_timeout
         
         print(f"INFO: Conectando ao banco de dados MariaDB (Chave: '{config_key}')...")
         conn = mariadb.connect(**db_config)

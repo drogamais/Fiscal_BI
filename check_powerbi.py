@@ -5,7 +5,7 @@ import msal
 import requests
 import pandas as pd
 import sys
-from datetime import datetime
+from datetime import datetime, timezone # CORRIGIDO: Importação de timezone
 
 # Importa as funções do nosso módulo de banco de dados
 from database import get_db_connection, insert_dataframe
@@ -88,7 +88,7 @@ def descobrir_datasets(headers):
 
 def main():
     """Função principal: descobre, puxa os dados, formata e insere no banco."""
-    # (A primeira parte da função permanece a mesma)
+    # ... (código de autenticação, descoberta e coleta de dados) ...
     try:
         access_token = obter_token_acesso()
         print("INFO: Token de acesso obtido com sucesso.")
@@ -137,9 +137,9 @@ def main():
     # Converte a coluna de data, mantendo o fuso horário (UTC)
     df['endTime'] = pd.to_datetime(df['endTime'], errors='coerce', utc=True)
     
-    # --- NOVA LÓGICA DE CÁLCULO DE DIAS ---
-    # Pega o dia de hoje com fuso horário UTC para uma comparação correta
-    hoje_utc = pd.to_datetime(datetime.utcnow(), utc=True).normalize()
+    # --- LÓGICA DE CÁLCULO DE DIAS ---
+    # Usa datetime.now(timezone.utc) conforme as boas práticas do Python
+    hoje_utc = pd.to_datetime(datetime.now(timezone.utc)).normalize()
     # Calcula a diferença em dias
     df['dias_sem_atualizar'] = (hoje_utc - df['endTime'].dt.normalize()).dt.days
     
@@ -176,7 +176,8 @@ def main():
     
     conn = None
     try:
-        conn = get_db_connection()
+        # Usa 'databaseDrogamais' explicitamente para o log
+        conn = get_db_connection(config_key='databaseDrogamais')
         if conn is None:
             sys.exit(1)
         
