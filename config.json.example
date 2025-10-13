@@ -1,0 +1,26 @@
+{
+  "powerbi_api": 
+  {
+    "tenant_id": "tenant",
+    "client_id": "client",
+    "client_secret": "secret"
+  },
+  
+  "database": 
+  {
+    "user": "usuario",
+    "password": "senha",
+    "host": "host",
+    "port": 3306,
+    "database": "dbDrogamais"
+  },
+
+  "databaseSults": 
+  {
+    "user": "usuario",
+    "password": "senha",
+    "host": "host",
+    "port": 3306,
+    "database": "dbSults"
+  }
+}
