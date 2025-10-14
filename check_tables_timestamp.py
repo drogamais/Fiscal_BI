@@ -50,8 +50,8 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log)
                 status = 'Atualizada'
                 print(f"SUCESSO: Tabela atualizada. (Dias sem atualizar: {dias_sem_atualizar})")
             else:
-                status = 'Failed'
-                print(f"FALHA: Tabela DESATUALIZADA. (Dias sem atualizar: {dias_sem_atualizar})")
+                status = 'Desatualizada'
+                print(f"ATENCAO: Tabela DESATUALIZADA. (Dias sem atualizar: {dias_sem_atualizar})")
 
     except Exception as e:
         status = 'Erro na Verificação'
