@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 68,
+            "y": 119
+          },
+          "nodeIndex": "dimCalendario",
+          "nodeLineageTag": "59501126-252e-4de5-812f-0d007ed7c6c3",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 336,
+            "y": 486
+          },
+          "nodeIndex": "_Medidas",
+          "nodeLineageTag": "2b71c345-dddf-4f0e-9980-9d693ac1ef94",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 646,
+            "y": 0
+          },
+          "nodeIndex": "fat_fiscal",
+          "nodeLineageTag": "0ed91e4f-c7bb-426e-913f-173997a3fc74",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 992,
+            "y": 266
+          },
+          "nodeIndex": "dimTempo",
+          "nodeLineageTag": "6fdef084-3361-4a7b-bb53-ecb29039cb97",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

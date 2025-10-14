@@ -130,8 +130,35 @@ def main():
             return
 
         df_para_inserir = pd.DataFrame(all_logs)
-        df_para_inserir['data_atualizacao'] = pd.to_datetime(df_para_inserir['data_atualizacao']).dt.strftime('%Y-%m-%d %H:%M:%S')
-        df_para_inserir['data_atualizacao'] = df_para_inserir['data_atualizacao'].fillna(pd.NA).replace({pd.NaT: None})
+        
+        # 1. Converte a coluna para datetime se ainda não for
+        df_para_inserir['data_atualizacao'] = pd.to_datetime(df_para_inserir['data_atualizacao'])
+        
+        # --- NOVO PROCESSAMENTO: Separação de Data e Hora ---
+        
+        # 2. Cria a coluna de hora (Time)
+        # Aplica uma função para formatar como HH:MM:SS ou retorna None se for nulo/NaT
+        df_para_inserir['hora_atualizacao'] = df_para_inserir['data_atualizacao'].apply(
+            lambda x: x.strftime('%H:%M:%S') if pd.notna(x) else None
+        )
+        
+        # 3. Formata a coluna original (Date)
+        # Aplica uma função para formatar como YYYY-MM-DD ou retorna None se for nulo/NaT
+        df_para_inserir['data_atualizacao'] = df_para_inserir['data_atualizacao'].apply(
+            lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None
+        )
+        
+        # 4. Trata nulos restantes para garantir que a inserção SQL seja segura
+        for col in ['data_atualizacao', 'hora_atualizacao']:
+            df_para_inserir[col] = df_para_inserir[col].fillna(pd.NA).replace({pd.NaT: None})
+        # --- FIM NOVO PROCESSAMENTO ---
+        
+        # 5. Ajusta a ordem das colunas para log e visualização
+        colunas_ordenadas = [
+            'nome_workspace', 'nome_ativo', 'tipo_ativo', 'status_atualizacao', 
+            'data_atualizacao', 'hora_atualizacao', 'tipo_atualizacao', 'dias_sem_atualizar'
+        ]
+        df_para_inserir = df_para_inserir.reindex(columns=colunas_ordenadas)
 
         print("\n" + "="*50)
         print("--- DADOS A SEREM INSERIDOS NO LOG ---")

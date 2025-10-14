@@ -1,0 +1,205 @@
+table dimCalendario
+	lineageTag: 59501126-252e-4de5-812f-0d007ed7c6c3
+
+	column Date
+		formatString: General Date
+		lineageTag: fb1b17e9-d7fd-4c3d-ad19-2954a49b8e5d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: f0195ee3-b593-43a6-9e37-66f56051c067
+			defaultHierarchy: LocalDateTable_164f561c-61e0-443e-82f8-e3aa49f847fd.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		formatString: 0
+		lineageTag: e63d20a0-7c12-4643-bbb8-61207cbf5413
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		formatString: 0
+		lineageTag: 8971524b-2680-4c84-9008-9f6194abd606
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mês]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mês mmm'
+		lineageTag: f32ced97-3c8f-4cf7-afae-f298accef939
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mês mmm]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mês (t)'
+		lineageTag: c4c8b00c-3750-48af-8ae7-4eb54ab03222
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mês (t)]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mês (t) Capitalizado'
+		lineageTag: 7355c95c-ec00-464a-ab94-c25282c9e806
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mês (t) Capitalizado]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Semana
+		formatString: 0
+		lineageTag: 2eb158be-c5ac-46bd-b637-067fd255f394
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Início da semana'
+		formatString: General Date
+		lineageTag: 2b9e1ca5-762c-4a03-a910-51cb52d3dfe8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Início da semana]
+
+		variation Variation
+			isDefault
+			relationship: 573ca214-aecd-4cb2-8838-c16f1866be11
+			defaultHierarchy: LocalDateTable_3c50fb53-303e-4a24-8439-833643d31719.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semana do Mês'
+		formatString: 0
+		lineageTag: 736efa5e-89c1-4dfb-9754-1b8b7099e892
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Semana do Mês]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ano-Mes ordem'
+		lineageTag: c6c93e6c-a672-4d80-8842-7e16dacce9c7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ano-Mes ordem]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês/Ano
+		lineageTag: 83714a02-fa35-46ac-aca0-b6e71cbebb40
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mês/Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 62e1ccd5-7eea-46e6-9639-5792de071e44
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia
+		lineageTag: 62b52b09-da63-47e4-b2c9-fed15f938541
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Dia]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dia da semana'
+		lineageTag: 6c7b3026-d060-415d-b2a8-0163f785ed43
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Dia da semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dia da semana Capitalizado'
+		lineageTag: 8fc87490-3a5a-469a-91eb-32827d2ba738
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Dia da semana Capitalizado]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Numero Dia Semana'
+		formatString: 0
+		lineageTag: b72db9d0-ad70-44a9-b406-ab4061d86b95
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Numero Dia Semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia/Mês
+		lineageTag: d2baf89a-cd26-4ca8-a09b-a38ea674bfe0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Dia/Mês]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateAsInteger
+		lineageTag: 1d2e4a84-bd92-4b33-8a79-4da023f94ccd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DateAsInteger]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dia do Ano'
+		formatString: 0
+		lineageTag: 0a05a7ba-5545-4466-ac58-7fb7f0ede6de
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dia do Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimCalendario = calculated
+		mode: import
+		source = ```
+				
+				VAR datamin = "01/08/2025"
+				VAR datamax = TODAY()
+				
+				RETURN 
+				        ADDCOLUMNS(
+				            CALENDAR(datamin, datamax),
+				            "Ano", YEAR([Date]),
+				            "Mês", MONTH([Date]),  
+				            "Mês mmm", FORMAT([Date], "mmm"),
+				            "Mês (t)", FORMAT([Date], "mmmm"),
+				            "Mês (t) Capitalizado", UPPER(LEFT(FORMAT([Date], "mmmm"), 1)) & LOWER(RIGHT(FORMAT([Date], "mmmm"), LEN(FORMAT([Date], "mmmm")) - 1)),
+				            "Semana", WEEKNUM([Date], 2),
+				            "Início da semana", [Date] - WEEKDAY([Date], 3),
+				            "Semana do Mês", (WEEKNUM([Date]) - WEEKNUM(DATE(YEAR([Date]), MONTH([Date]), 1)) + 1),
+				            "Ano-Mes ordem", CONCATENATE(YEAR([Date]), FORMAT([Date],"MM")), 
+				            "Mês/Ano", FORMAT([Date], "mmm/yy"),
+				            "Quarter", CONCATENATE("Q", QUARTER([Date])),  
+				            "Dia", FORMAT([Date], "dd"),
+				            "Dia da semana", FORMAT([Date], "ddd"),
+				            "Dia da semana Capitalizado", UPPER(LEFT(FORMAT([Date], "ddd"), 1)) & LOWER(RIGHT(FORMAT([Date], "ddd"), 2)),
+				            "Numero Dia Semana", WEEKDAY([Date], 2),
+				            "Dia/Mês", FORMAT([Date], "dd/mm"),
+				            "DateAsInteger", FORMAT([Date], "YYYYMMDD"),
+				            "Dia do Ano", DATEDIFF(DATE(YEAR([Date]), 1, 1), [Date], DAY) + 1)
+				```
+
+	annotation PBI_Id = a059d1d4bbdf4e0b8dad7c5d7a922e58
+

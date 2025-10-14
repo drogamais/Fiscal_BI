@@ -155,14 +155,30 @@ def main():
     }
     df_para_inserir = df.rename(columns=mapa_de_colunas_para_sql)
 
-    # Seleciona e formata as colunas finais
-    df_para_inserir['data_atualizacao'] = df_para_inserir['data_atualizacao'].dt.strftime('%Y-%m-%d %H:%M:%S')
-    df_para_inserir['data_atualizacao'] = df_para_inserir['data_atualizacao'].fillna(pd.NA).replace({pd.NaT: None})
+    # --- NOVO PROCESSAMENTO: Separação de Data e Hora ---
     
+    # 1. Cria a coluna de hora (Time)
+    # Aplica uma função para formatar como HH:MM:SS ou retorna None se for nulo/NaT
+    df_para_inserir['hora_atualizacao'] = df_para_inserir['data_atualizacao'].apply(
+        lambda x: x.strftime('%H:%M:%S') if pd.notna(x) else None
+    )
+    
+    # 2. Formata a coluna original (Date)
+    # Aplica uma função para formatar como YYYY-MM-DD ou retorna None se for nulo/NaT
+    df_para_inserir['data_atualizacao'] = df_para_inserir['data_atualizacao'].apply(
+        lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None
+    )
+    
+    # 3. Trata nulos restantes para garantir que a inserção SQL seja segura
+    for col in ['data_atualizacao', 'hora_atualizacao']:
+        df_para_inserir[col] = df_para_inserir[col].fillna(pd.NA).replace({pd.NaT: None})
+    # --- FIM NOVO PROCESSAMENTO ---
+
     colunas_finais = [
         'nome_workspace', 'nome_ativo', 'tipo_ativo', 
-        'status_atualizacao', 'data_atualizacao', 'tipo_atualizacao', 
-        'dias_sem_atualizar' # <-- Inclui a nova coluna
+        'status_atualizacao', 'data_atualizacao', 'hora_atualizacao', # <--- NOVA COLUNA AQUI
+        'tipo_atualizacao', 
+        'dias_sem_atualizar' 
     ]
     df_para_inserir = df_para_inserir[colunas_finais]
 

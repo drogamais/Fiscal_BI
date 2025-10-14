@@ -1,0 +1,28 @@
+relationship 909ff067-ee77-47a5-989b-e0458d7c41a8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fat_fiscal.data_insercao
+	toColumn: LocalDateTable_913ffa8c-2dea-4cf2-9d34-d0c70afb0614.Date
+
+relationship f0195ee3-b593-43a6-9e37-66f56051c067
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dimCalendario.Date
+	toColumn: LocalDateTable_164f561c-61e0-443e-82f8-e3aa49f847fd.Date
+
+relationship 573ca214-aecd-4cb2-8838-c16f1866be11
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dimCalendario.'Início da semana'
+	toColumn: LocalDateTable_3c50fb53-303e-4a24-8439-833643d31719.Date
+
+relationship daab171d-a818-de40-00c0-b322b85a0d90
+	fromColumn: fat_fiscal.data_atualizacao
+	toColumn: dimCalendario.Date
+
+relationship 35d612fe-b868-4213-a02a-f411056297c4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dimTempo.HoraChave
+	toColumn: LocalDateTable_85ca4926-1f91-459f-9ac1-c76ef9c8e051.Date
+
+relationship 914a70c7-c88f-7180-f5c9-d6fa33535208
+	fromColumn: fat_fiscal.hora_atualizacao
+	toColumn: dimTempo.HoraChave
+

@@ -1,0 +1,122 @@
+table fat_fiscal
+	lineageTag: 0ed91e4f-c7bb-426e-913f-173997a3fc74
+
+	column id_log
+		dataType: int64
+		formatString: 0
+		lineageTag: ae63926b-9b31-46f8-ac70-27eec4e75dd4
+		summarizeBy: sum
+		sourceColumn: id_log
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_workspace
+		dataType: string
+		lineageTag: bbe7df0f-c7f1-4a8f-9775-49369e6f11ed
+		summarizeBy: none
+		sourceColumn: nome_workspace
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_ativo
+		dataType: string
+		lineageTag: ef7a1133-3e48-4259-a9eb-b22bdf795e9e
+		summarizeBy: none
+		sourceColumn: nome_ativo
+		sortByColumn: data_atualizacao
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_ativo
+		dataType: string
+		lineageTag: 30ef486f-7341-430e-946b-d651e2c07fba
+		summarizeBy: none
+		sourceColumn: tipo_ativo
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_sem_atualizar
+		dataType: int64
+		formatString: 0
+		lineageTag: c33f6ac1-7677-4f54-b4a9-582d1a8612c9
+		summarizeBy: sum
+		sourceColumn: dias_sem_atualizar
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_atualizacao
+		dataType: string
+		lineageTag: 0a24b501-1b2a-4368-9b9a-ecc5aaf4f70f
+		summarizeBy: none
+		sourceColumn: status_atualizacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_atualizacao
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 54af48be-d071-42d7-8cc4-ad00acf04d4a
+		summarizeBy: none
+		sourceColumn: data_atualizacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column tipo_atualizacao
+		dataType: string
+		lineageTag: 95f85418-5ed7-42d7-bbe7-a42fa4b112d3
+		summarizeBy: none
+		sourceColumn: tipo_atualizacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_insercao
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: e91e3e84-d4ee-481a-8bd0-3970fb6c416d
+		summarizeBy: none
+		sourceColumn: data_insercao
+
+		variation Variation
+			isDefault
+			relationship: 909ff067-ee77-47a5-989b-e0458d7c41a8
+			defaultHierarchy: LocalDateTable_913ffa8c-2dea-4cf2-9d34-d0c70afb0614.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column hora_atualizacao
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 21c4fcdb-a8bb-4ab6-a91b-8496a23e54c1
+		summarizeBy: none
+		sourceColumn: hora_atualizacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	partition fat_fiscal = m
+		mode: import
+		source =
+				let
+				    Fonte = Odbc.DataSource("dsn=dbDrogamais", [HierarchicalNavigation=true]),
+				    dbDrogamais_Database = Fonte{[Name="dbDrogamais",Kind="Database"]}[Data],
+				    fat_fiscal_Table = dbDrogamais_Database{[Name="fat_fiscal",Kind="Table"]}[Data],
+				    #"Linhas Filtradas" = Table.SelectRows(fat_fiscal_Table, each true),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Linhas Filtradas",{{"data_insercao", type date}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

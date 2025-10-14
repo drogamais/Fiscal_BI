@@ -1,0 +1,105 @@
+table dimTempo
+	lineageTag: 6fdef084-3361-4a7b-bb53-ecb29039cb97
+
+	column Value
+		formatString: 0
+		lineageTag: b7b893c5-120d-445e-a5af-d4874e9fb4a6
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	column HoraChave
+		formatString: Long Time
+		lineageTag: 1f02ce3d-2fc8-48ec-89b5-145ff621d321
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [HoraChave]
+
+		variation Variation
+			isDefault
+			relationship: 35d612fe-b868-4213-a02a-f411056297c4
+			defaultHierarchy: LocalDateTable_85ca4926-1f91-459f-9ac1-c76ef9c8e051.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hora
+		formatString: 0
+		lineageTag: 094ae7e5-9bdb-4262-b561-3c2b03fbfe81
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Hora]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Minuto
+		formatString: 0
+		lineageTag: e3bfb51b-fe29-4575-aa77-317c665287b5
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Minuto]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'HoraFormatada (HH:MM)'
+		lineageTag: e6c40877-f22a-47bf-91b8-d0906120c14c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [HoraFormatada (HH:MM)]
+		sortByColumn: IndiceMinuto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Periodo
+		lineageTag: 9956eb90-7c1a-452b-af81-bed0a3adac2c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Periodo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column IndiceMinuto
+		formatString: 0
+		lineageTag: 2a1fcca0-46dd-4ff2-b518-d30df828cfda
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [IndiceMinuto]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimTempo = calculated
+		mode: import
+		source = ```
+				
+				VAR TempoPorMinuto = GENERATESERIES(0, 1439, 1) // 1440 minutos = 24 horas * 60 minutos
+				RETURN 
+				    ADDCOLUMNS(
+				        TempoPorMinuto,
+				        
+				        // 1. Chave Primária (Para o Relacionamento)
+				        "HoraChave", 
+				            TIME(0, [Value], 0), // Cria um valor TIME onde [Value] é o minuto. Ex: 00:01:00
+				
+				        // 2. Componentes da Hora (Para Visualização)
+				        "Hora", 
+				            HOUR(TIME(0, [Value], 0)),
+				            
+				        "Minuto", 
+				            MINUTE(TIME(0, [Value], 0)),
+				
+				        // 3. Formato de Exibição (Para o Usuário)
+				        "HoraFormatada (HH:MM)", 
+				            FORMAT(TIME(0, [Value], 0), "hh:mm"),
+				            
+				        "Periodo",
+				            IF(HOUR(TIME(0, [Value], 0)) < 12, "Manhã", "Tarde/Noite"),
+				
+				        // 4. Índice de Ordenação (para visuais de tempo)
+				        "IndiceMinuto",
+				            [Value]
+				    )
+				```
+
+	annotation PBI_Id = 943301048f7040c6a32dd8f47dd3e147
+
