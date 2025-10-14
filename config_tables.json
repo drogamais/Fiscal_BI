@@ -117,15 +117,7 @@
       "nome": "tb_atendimentos",
       "tipo": "TABELA",
       "coluna": "data_atualizacao",
-      "enabled": true,
-      "conn_key": "databaseSults",
-      "workspace_log": "dbSults"
-    },
-    {
-      "nome": "tb_atendimentos_massa",
-      "tipo": "TABELA",
-      "coluna": "data_atualizacao",
-      "enabled": true,
+      "enabled": false,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults"
     },

@@ -152,6 +152,19 @@ def main():
         for col in ['data_atualizacao', 'hora_atualizacao']:
             df_para_inserir[col] = df_para_inserir[col].fillna(pd.NA).replace({pd.NaT: None})
         # --- FIM NOVO PROCESSAMENTO ---
+
+        # --- SIMPLIFICAÇÃO DO STATUS PARA 'OK' ou 'Failed' ---
+        status_map_simplified = {
+            'Completed': 'OK',
+            'Atualizada': 'OK',
+            'Sincronizado': 'OK',
+            'Sincronizada': 'OK',
+        }
+        # Aplica o mapeamento e define qualquer outro valor como 'Failed'
+        df_para_inserir['status_atualizacao'] = df_para_inserir['status_atualizacao'].apply(
+            lambda x: status_map_simplified.get(x, 'Failed')
+        )
+        # ---------------------------------------------------
         
         # 5. Ajusta a ordem das colunas para log e visualização
         colunas_ordenadas = [
