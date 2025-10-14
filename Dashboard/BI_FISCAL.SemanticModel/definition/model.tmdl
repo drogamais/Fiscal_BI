@@ -19,8 +19,6 @@ ref table fat_fiscal
 ref table LocalDateTable_913ffa8c-2dea-4cf2-9d34-d0c70afb0614
 ref table LocalDateTable_164f561c-61e0-443e-82f8-e3aa49f847fd
 ref table LocalDateTable_3c50fb53-303e-4a24-8439-833643d31719
-ref table dimTempo
-ref table LocalDateTable_85ca4926-1f91-459f-9ac1-c76ef9c8e051
 
 ref cultureInfo pt-BR
 

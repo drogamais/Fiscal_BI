@@ -2371,837 +2371,9 @@ cultureInfo pt-BR
 			        }
 			      ],
 			      "SemanticType": "Time"
-			    },
-			    "dim_tempo": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "dim tempo": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "dimTempo": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.99
-			          }
-			        },
-			        {
-			          "tempo": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "dim rhythm": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.5
-			          }
-			        },
-			        {
-			          "dim cadence": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.5
-			          }
-			        },
-			        {
-			          "rhythm": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "cadence": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "dim beat": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "dim speed": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "dim pulse": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "dim measure": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "dim pace": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        },
-			        {
-			          "dim stroke": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.485
-			          }
-			        }
-			      ]
-			    },
-			    "dim_tempo.value": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo",
-			          "ConceptualProperty": "Value"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "value": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "assessment": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "worth": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "price": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "cost": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "charge": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "rate": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "importance": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.466
-			          }
-			        },
-			        {
-			          "significance": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.466
-			          }
-			        },
-			        {
-			          "usefulness": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.466
-			          }
-			        },
-			        {
-			          "consequence": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.466
-			          }
-			        }
-			      ]
-			    },
-			    "dim_tempo.hora_chave": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo",
-			          "ConceptualProperty": "HoraChave"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "hora chave": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "HoraChave": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.99
-			          }
-			        },
-			        {
-			          "time": {
-			            "State": "Generated",
-			            "Weight": 0.7
-			          }
-			        }
-			      ],
-			      "SemanticType": "Time"
-			    },
-			    "dim_tempo.hora_chave.hierarquia_de_data": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo",
-			          "VariationSource": "HoraChave",
-			          "VariationSet": "Variation",
-			          "Hierarchy": "Hierarquia de datas"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "hierarquia de data": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "hierarquia de information": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.762
-			          }
-			        },
-			        {
-			          "hierarquia de fact": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.762
-			          }
-			        },
-			        {
-			          "hierarquia de info": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.762
-			          }
-			        },
-			        {
-			          "hierarquia de statistic": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.762
-			          }
-			        },
-			        {
-			          "hierarquia de document": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "hierarquia de figure": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        },
-			        {
-			          "hierarquia de record": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.739
-			          }
-			        }
-			      ]
-			    },
-			    "dim_tempo.hora_chave.ano": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo",
-			          "VariationSource": "HoraChave",
-			          "VariationSet": "Variation",
-			          "Hierarchy": "Hierarquia de datas",
-			          "HierarchyLevel": "Ano"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "ano": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "dim_tempo.hora_chave.trimestre": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo",
-			          "VariationSource": "HoraChave",
-			          "VariationSet": "Variation",
-			          "Hierarchy": "Hierarquia de datas",
-			          "HierarchyLevel": "Trimestre"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "trimestre": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "dim_tempo.hora_chave.mê": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo",
-			          "VariationSource": "HoraChave",
-			          "VariationSet": "Variation",
-			          "Hierarchy": "Hierarquia de datas",
-			          "HierarchyLevel": "Mês"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "mê": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "dim_tempo.hora_chave.dia": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo",
-			          "VariationSource": "HoraChave",
-			          "VariationSet": "Variation",
-			          "Hierarchy": "Hierarquia de datas",
-			          "HierarchyLevel": "Dia"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "dia": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "dim_tempo.hora": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo",
-			          "ConceptualProperty": "Hora"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "hora": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "dim_tempo.minuto": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo",
-			          "ConceptualProperty": "Minuto"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "minuto": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "dim_tempo.HoraFormatada_HHMM": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo",
-			          "ConceptualProperty": "HoraFormatada (HH:MM)"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "HoraFormatada (HH:MM)": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "HoraFormatada": {
-			            "State": "Generated",
-			            "Weight": 0.75
-			          }
-			        }
-			      ]
-			    },
-			    "dim_tempo.periodo": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo",
-			          "ConceptualProperty": "Periodo"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "periodo": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "dim_tempo.indice_minuto": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "dimTempo",
-			          "ConceptualProperty": "IndiceMinuto"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "indice minuto": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "IndiceMinuto": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.99
-			          }
-			        }
-			      ]
 			    }
 			  },
 			  "Relationships": {
-			    "dim_tempo_hora_chave_trimestre_has_dim_tempo_hora_chave_mê": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo.hora_chave.trimestre": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.trimestre"
-			          }
-			        },
-			        "dim_tempo.hora_chave.mê": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.mê"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.trimestre"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.mê"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "trimestres_have_mê"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.mê"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.trimestre"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "mê_have_trimestres"
-			        },
-			        {
-			          "Preposition": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.mê"
-			            },
-			            "Prepositions": [
-			              {
-			                "in": {
-			                  "State": "Generated"
-			                }
-			              }
-			            ],
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.trimestre"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "mê_are_in_trimestres3"
-			        }
-			      ]
-			    },
-			    "dim_tempo_hora_chave_ano_has_dim_tempo_hora_chave_trimestre": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo.hora_chave.ano": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.ano"
-			          }
-			        },
-			        "dim_tempo.hora_chave.trimestre": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.trimestre"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.ano"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.trimestre"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "anos_have_trimestres"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.trimestre"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.ano"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "trimestres_have_anos"
-			        },
-			        {
-			          "Preposition": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.trimestre"
-			            },
-			            "Prepositions": [
-			              {
-			                "in": {
-			                  "State": "Generated"
-			                }
-			              }
-			            ],
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.ano"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "trimestres_are_in_anos3"
-			        }
-			      ]
-			    },
-			    "dim_tempo_hora_chave_hierarquia_de_data_has_dim_tempo_hora_chave_dia": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo.hora_chave.hierarquia_de_data": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.hierarquia_de_data"
-			          }
-			        },
-			        "dim_tempo.hora_chave.dia": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.dia"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.hierarquia_de_data"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.dia"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_dias"
-			        }
-			      ]
-			    },
-			    "dim_tempo_hora_chave_hierarquia_de_data_has_dim_tempo_hora_chave_mê": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo.hora_chave.hierarquia_de_data": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.hierarquia_de_data"
-			          }
-			        },
-			        "dim_tempo.hora_chave.mê": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.mê"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.hierarquia_de_data"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.mê"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_mê"
-			        }
-			      ]
-			    },
-			    "dim_tempo_hora_chave_hierarquia_de_data_has_dim_tempo_hora_chave_trimestre": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo.hora_chave.hierarquia_de_data": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.hierarquia_de_data"
-			          }
-			        },
-			        "dim_tempo.hora_chave.trimestre": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.trimestre"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.hierarquia_de_data"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.trimestre"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_trimestres"
-			        }
-			      ]
-			    },
-			    "dim_tempo_hora_chave_hierarquia_de_data_has_dim_tempo_hora_chave_ano": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo.hora_chave.hierarquia_de_data": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.hierarquia_de_data"
-			          }
-			        },
-			        "dim_tempo.hora_chave.ano": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.ano"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.hierarquia_de_data"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.ano"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos"
-			        }
-			      ]
-			    },
-			    "dim_tempo_hora_chave_has_hierarquia_de_data": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo.hora_chave": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave"
-			          }
-			        },
-			        "dim_tempo.hora_chave.hierarquia_de_data": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.hierarquia_de_data"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.hierarquia_de_data"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "hora_chaves_have_hierarquia_de_data"
-			        }
-			      ]
-			    },
 			    "fat_fiscal_data_insercao_mê_has_fat_fiscal_data_insercao_dia": {
 			      "Binding": {
 			        "ConceptualEntity": "fat_fiscal"
@@ -3297,7 +2469,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_mê1"
+			          "ID": "trimestres_have_mê"
 			        },
 			        {
 			          "Attribute": {
@@ -3310,7 +2482,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_have_trimestres1"
+			          "ID": "mê_have_trimestres"
 			        },
 			        {
 			          "Preposition": {
@@ -3363,7 +2535,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "anos_have_trimestres1"
+			          "ID": "anos_have_trimestres"
 			        },
 			        {
 			          "Attribute": {
@@ -3376,7 +2548,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_anos1"
+			          "ID": "trimestres_have_anos"
 			        },
 			        {
 			          "Preposition": {
@@ -3429,7 +2601,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_dias1"
+			          "ID": "hierarquia_de_data_have_dias"
 			        }
 			      ]
 			    },
@@ -3462,7 +2634,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_mê1"
+			          "ID": "hierarquia_de_data_have_mê"
 			        }
 			      ]
 			    },
@@ -3495,7 +2667,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_trimestres1"
+			          "ID": "hierarquia_de_data_have_trimestres"
 			        }
 			      ]
 			    },
@@ -3528,7 +2700,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos1"
+			          "ID": "hierarquia_de_data_have_anos"
 			        }
 			      ]
 			    },
@@ -3660,7 +2832,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_mê2"
+			          "ID": "trimestres_have_mê1"
 			        },
 			        {
 			          "Attribute": {
@@ -3673,7 +2845,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_have_trimestres2"
+			          "ID": "mê_have_trimestres1"
 			        },
 			        {
 			          "Preposition": {
@@ -3726,7 +2898,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "anos_have_trimestres2"
+			          "ID": "anos_have_trimestres1"
 			        },
 			        {
 			          "Attribute": {
@@ -3739,7 +2911,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_anos2"
+			          "ID": "trimestres_have_anos1"
 			        },
 			        {
 			          "Preposition": {
@@ -3792,7 +2964,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_dias2"
+			          "ID": "hierarquia_de_data_have_dias1"
 			        }
 			      ]
 			    },
@@ -3825,7 +2997,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_mê2"
+			          "ID": "hierarquia_de_data_have_mê1"
 			        }
 			      ]
 			    },
@@ -3858,7 +3030,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_trimestres2"
+			          "ID": "hierarquia_de_data_have_trimestres1"
 			        }
 			      ]
 			    },
@@ -3891,7 +3063,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos2"
+			          "ID": "hierarquia_de_data_have_anos1"
 			        }
 			      ]
 			    },
@@ -4023,7 +3195,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_mê3"
+			          "ID": "trimestres_have_mê2"
 			        },
 			        {
 			          "Attribute": {
@@ -4036,7 +3208,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_have_trimestres3"
+			          "ID": "mê_have_trimestres2"
 			        },
 			        {
 			          "Preposition": {
@@ -4089,7 +3261,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "anos_have_trimestres3"
+			          "ID": "anos_have_trimestres2"
 			        },
 			        {
 			          "Attribute": {
@@ -4102,7 +3274,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_anos3"
+			          "ID": "trimestres_have_anos2"
 			        },
 			        {
 			          "Preposition": {
@@ -4155,7 +3327,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_dias3"
+			          "ID": "hierarquia_de_data_have_dias2"
 			        }
 			      ]
 			    },
@@ -4188,7 +3360,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_mê3"
+			          "ID": "hierarquia_de_data_have_mê2"
 			        }
 			      ]
 			    },
@@ -4221,7 +3393,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_trimestres3"
+			          "ID": "hierarquia_de_data_have_trimestres2"
 			        }
 			      ]
 			    },
@@ -4254,7 +3426,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos3"
+			          "ID": "hierarquia_de_data_have_anos2"
 			        }
 			      ]
 			    },
@@ -4288,52 +3460,6 @@ cultureInfo pt-BR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dates_have_hierarquia_de_data"
-			        }
-			      ]
-			    },
-			    "fat_fiscal_has_dim_tempo": {
-			      "Binding": {
-			        "ConceptualEntity": "fat_fiscal"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "fat_fiscal": {
-			          "Target": {
-			            "Entity": "fat_fiscal"
-			          }
-			        },
-			        "dim_tempo": {
-			          "Target": {
-			            "Entity": "dim_tempo"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fat_fiscal"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "fat_fiscals_have_dim_tempi"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo"
-			            },
-			            "Object": {
-			              "Role": "fat_fiscal"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_tempi_have_fat_fiscals"
 			        }
 			      ]
 			    },
@@ -4380,237 +3506,6 @@ cultureInfo pt-BR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_calendarios_have_fat_fiscals"
-			        }
-			      ]
-			    },
-			    "dim_tempo_has_indice_minuto": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo": {
-			          "Target": {
-			            "Entity": "dim_tempo"
-			          }
-			        },
-			        "dim_tempo.indice_minuto": {
-			          "Target": {
-			            "Entity": "dim_tempo.indice_minuto"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.indice_minuto"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_tempi_have_indice_minutos"
-			        }
-			      ]
-			    },
-			    "dim_tempo_has_periodo": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo": {
-			          "Target": {
-			            "Entity": "dim_tempo"
-			          }
-			        },
-			        "dim_tempo.periodo": {
-			          "Target": {
-			            "Entity": "dim_tempo.periodo"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.periodo"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_tempi_have_periodos"
-			        }
-			      ]
-			    },
-			    "dim_tempo_has_HoraFormatada_HHMM": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo": {
-			          "Target": {
-			            "Entity": "dim_tempo"
-			          }
-			        },
-			        "dim_tempo.HoraFormatada_HHMM": {
-			          "Target": {
-			            "Entity": "dim_tempo.HoraFormatada_HHMM"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.HoraFormatada_HHMM"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_tempi_have_HoraFormatada_HHMM"
-			        }
-			      ]
-			    },
-			    "dim_tempo_has_minuto": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo": {
-			          "Target": {
-			            "Entity": "dim_tempo"
-			          }
-			        },
-			        "dim_tempo.minuto": {
-			          "Target": {
-			            "Entity": "dim_tempo.minuto"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.minuto"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_tempi_have_minutos"
-			        }
-			      ]
-			    },
-			    "dim_tempo_has_hora": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo": {
-			          "Target": {
-			            "Entity": "dim_tempo"
-			          }
-			        },
-			        "dim_tempo.hora": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_tempi_have_horas"
-			        }
-			      ]
-			    },
-			    "dim_tempo_has_hora_chave": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo": {
-			          "Target": {
-			            "Entity": "dim_tempo"
-			          }
-			        },
-			        "dim_tempo.hora_chave": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_tempi_have_hora_chaves"
-			        }
-			      ]
-			    },
-			    "dim_tempo_has_value": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo": {
-			          "Target": {
-			            "Entity": "dim_tempo"
-			          }
-			        },
-			        "dim_tempo.value": {
-			          "Target": {
-			            "Entity": "dim_tempo.value"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.value"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_tempi_have_values"
 			        }
 			      ]
 			    },
@@ -5652,72 +4547,6 @@ cultureInfo pt-BR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_calendarios_have_dates"
-			        }
-			      ]
-			    },
-			    "dim_tempo_hora_chave_mê_has_dim_tempo_hora_chave_dia": {
-			      "Binding": {
-			        "ConceptualEntity": "dimTempo"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "dim_tempo.hora_chave.mê": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.mê"
-			          }
-			        },
-			        "dim_tempo.hora_chave.dia": {
-			          "Target": {
-			            "Entity": "dim_tempo.hora_chave.dia"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.mê"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.dia"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "mê_have_dias3"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.dia"
-			            },
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.mê"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dias_have_mê3"
-			        },
-			        {
-			          "Preposition": {
-			            "Subject": {
-			              "Role": "dim_tempo.hora_chave.dia"
-			            },
-			            "Prepositions": [
-			              {
-			                "in": {
-			                  "State": "Generated"
-			                }
-			              }
-			            ],
-			            "Object": {
-			              "Role": "dim_tempo.hora_chave.mê"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dias_are_in_mê3"
 			        }
 			      ]
 			    }

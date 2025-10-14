@@ -1,0 +1,81 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "8036c24fe305eeac4140",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 240,
+    "width": 320
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fat_fiscal"
+                        }
+                      },
+                      "Property": "tipo_atualizacao"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(fat_fiscal.tipo_atualizacao)",
+              "nativeQueryRef": "Tipo Atualização",
+              "displayName": "Tipo Atualização"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8056c5d670ea0a0c1699",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fat_fiscal"
+                  }
+                },
+                "Property": "tipo_atualizacao"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

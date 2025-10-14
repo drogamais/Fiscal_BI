@@ -1,7 +1,7 @@
 # check_tables_base.py
 
 import pandas as pd
-from datetime import date
+from datetime import date, timedelta # Adicionado timedelta
 import warnings
 import sys
 
@@ -11,12 +11,12 @@ from database import get_db_connection, insert_dataframe
 def check_base_table_status(conn, table_name, asset_type, date_column):
     """
     Verifica a última data de uma tabela base, calcula os dias sem atualização
-    e retorna um log com o status fixo de "Aguardando".
+    e retorna um log com o status, aplicando a lógica de atualização mensal para Close-Up e IQVIA.
     """
     print(f"---> Verificando a tabela base: '{table_name}'...")
     data_ref = None
     dias_sem_atualizar = None
-    status = "Aguardando" # O status será sempre "Aguardando"
+    status = "Não Definido"
 
     try:
         query = f"SELECT MAX(`{date_column}`) FROM `{table_name}`"
@@ -28,13 +28,27 @@ def check_base_table_status(conn, table_name, asset_type, date_column):
         max_date_from_db = pd.to_datetime(df_result.iloc[0, 0])
         data_ref = max_date_from_db
 
+        hoje = date.today()
+        
         if pd.isna(max_date_from_db):
-            print(f"   AVISO: Não há registros em '{table_name}'.")
+            status = 'Sem Histórico'
+            dias_sem_atualizar = None
+            print(f"   AVISO: Não há registros em '{table_name}'. Status: Sem Histórico.")
         else:
-            # Calcula a diferença de dias, mesmo que o status seja fixo
-            hoje = date.today()
+            # Lógica de Cálculo de Dias
             dias_sem_atualizar = (hoje - max_date_from_db.date()).days
             print(f"   Última atualização encontrada em: {max_date_from_db.date()} ({dias_sem_atualizar} dias atrás).")
+
+            # --- LÓGICA DE NEGÓCIO PARA CLOSE-UP E IQVIA (ATUALIZAÇÃO MENSAL ATÉ DIA 15) ---
+            if hoje.day <= 15:
+                # Se for até o dia 15, está OK, mesmo que a data seja antiga.
+                status = 'Atualizada'
+                print("   SUCESSO: Dentro do prazo de atualização mensal (dia 15). Status: Atualizada.")
+            else:
+                # Se for depois do dia 15, está Desatualizada.
+                status = 'Desatualizada'
+                print("   ATENCAO: Fora do prazo de atualização mensal (após dia 15). Status: Desatualizada.")
+            # --- FIM LÓGICA DE NEGÓCIO ---
 
     except Exception as e:
         status = 'Erro na Verificação'
@@ -68,7 +82,8 @@ def main():
     ]
     
     all_logs = []
-    conn = get_db_connection(config_key='databaseDrogamais')
+    # Conexão sempre para databaseDrogamais para essas tabelas base
+    conn = get_db_connection(config_key='databaseDrogamais') 
 
     if conn is None:
         print("ERRO CRÍTICO: Não foi possível conectar ao banco. O script será encerrado.")
@@ -114,6 +129,7 @@ def main():
             'Atualizada': 'OK',
             'Sincronizado': 'OK',
             'Sincronizada': 'OK',
+            'Desatualizada': 'Failed' # Mapeia Desatualizada para Failed
         }
         # Aplica o mapeamento e define qualquer outro valor como 'Failed'
         df_para_inserir['status_atualizacao'] = df_para_inserir['status_atualizacao'].apply(

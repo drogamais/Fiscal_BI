@@ -17,12 +17,3 @@ relationship daab171d-a818-de40-00c0-b322b85a0d90
 	fromColumn: fat_fiscal.data_atualizacao
 	toColumn: dimCalendario.Date
 
-relationship 35d612fe-b868-4213-a02a-f411056297c4
-	joinOnDateBehavior: datePartOnly
-	fromColumn: dimTempo.HoraChave
-	toColumn: LocalDateTable_85ca4926-1f91-459f-9ac1-c76ef9c8e051.Date
-
-relationship 914a70c7-c88f-7180-f5c9-d6fa33535208
-	fromColumn: fat_fiscal.hora_atualizacao
-	toColumn: dimTempo.HoraChave
-

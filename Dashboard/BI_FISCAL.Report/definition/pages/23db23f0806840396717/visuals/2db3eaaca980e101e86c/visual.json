@@ -104,13 +104,13 @@
                           "Entity": "fat_fiscal"
                         }
                       },
-                      "Property": "tipo_atualizacao"
+                      "Property": "tipo_ativo"
                     }
                   },
                   "Function": 3
                 }
               },
-              "queryRef": "Min(fat_fiscal.tipo_atualizacao)",
+              "queryRef": "Min(fat_fiscal.tipo_ativo)",
               "nativeQueryRef": "TIPO",
               "displayName": "TIPO"
             },
@@ -149,13 +149,13 @@
                         "Entity": "fat_fiscal"
                       }
                     },
-                    "Property": "dias_sem_atualizar"
+                    "Property": "status_atualizacao"
                   }
                 },
-                "Function": 0
+                "Function": 3
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -282,12 +282,6 @@
           },
           "selector": {
             "metadata": "Min(fat_fiscal.hora_atualizacao)"
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "metadata": "Min(fat_fiscal.tipo_atualizacao)"
           }
         },
         {
@@ -485,7 +479,7 @@
                               },
                               "Right": {
                                 "Literal": {
-                                  "Value": "'Completed'"
+                                  "Value": "'OK'"
                                 }
                               }
                             },
@@ -532,7 +526,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#D64550'"
+                              "Value": "'#FF0000'"
                             }
                           }
                         }
@@ -664,20 +658,6 @@
                   "Value": "'Center'"
                 }
               }
-            }
-          },
-          "selector": {
-            "metadata": "Min(fat_fiscal.tipo_atualizacao)"
-          }
-        },
-        {
-          "properties": {
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Center'"
-                }
-              }
             },
             "styleTotal": {
               "expr": {
@@ -689,6 +669,20 @@
           },
           "selector": {
             "metadata": "Min(fat_fiscal.data_atualizacao)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(fat_fiscal.tipo_ativo)"
           }
         }
       ]
@@ -738,7 +732,14 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ce4ec803520c55b13445'"
                 }
               }
             }
@@ -798,5 +799,118 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a9ab351016e7d035d007",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fat_fiscal"
+              }
+            },
+            "Property": "nome_ativo"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "85a4722f284e51da7d18",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fat_fiscal"
+                  }
+                },
+                "Property": "data_atualizacao"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "87586323c89abce4066d",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fat_fiscal"
+                  }
+                },
+                "Property": "hora_atualizacao"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6af46008bc4c660d2d40",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fat_fiscal"
+                  }
+                },
+                "Property": "status_atualizacao"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bdfa1d9810dac2016c71",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fat_fiscal"
+                  }
+                },
+                "Property": "dias_sem_atualizar"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "83a9a224420dce2c7082",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fat_fiscal"
+                  }
+                },
+                "Property": "tipo_ativo"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

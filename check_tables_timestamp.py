@@ -1,7 +1,7 @@
-# check_tables_freshness.py (Versão Unificada para dbDrogamais e dbSults)
+# check_tables_timestamp.py (Versão Unificada para dbDrogamais e dbSults)
 
 import pandas as pd
-from datetime import date
+from datetime import date, timedelta # Adicionado timedelta
 import warnings
 import json
 import sys
@@ -21,6 +21,10 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log)
     """
     Verifica a data da última inserção, calcula os dias sem atualização
     e retorna um dicionário com os dados para o log, usando o workspace_log.
+    
+    LÓGICA CUSTOMIZADA PARA 'tb_atendimentos':
+    - Deve estar atualizada no dia anterior (Hoje - 1 dia).
+    - Falha se estiver com 2 ou mais dias de atraso (data_ref < Hoje - 1 dia).
     """
     print(f"---> Verificando a tabela ({workspace_log}): '{table_name}' (usando coluna '{date_column}')...")
     status = "Não Definido"
@@ -37,21 +41,36 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log)
         max_date_from_db = pd.to_datetime(df_result.iloc[0, 0])
         data_ref = max_date_from_db
 
+        hoje = date.today()
+
         if pd.isna(max_date_from_db):
             status = 'Sem Histórico'
             dias_sem_atualizar = None
             print(f"AVISO: Não há registros em '{table_name}'. Status: Sem Histórico.")
         else:
             # --- LÓGICA DE CÁLCULO DE DIAS ---
-            hoje = date.today()
             dias_sem_atualizar = (hoje - max_date_from_db.date()).days
             
-            if dias_sem_atualizar == 0:
-                status = 'Atualizada'
-                print(f"SUCESSO: Tabela atualizada. (Dias sem atualizar: {dias_sem_atualizar})")
+            # --- LÓGICA CUSTOMIZADA PARA TB_ATENDIMENTOS ---
+            if table_name == 'tb_atendimentos':
+                data_limite = hoje - timedelta(days=1)
+                
+                if max_date_from_db.date() >= data_limite:
+                    status = 'Atualizada'
+                    print(f"SUCESSO: Tabela '{table_name}' no prazo (Hoje - 1). Última data: {max_date_from_db.date()}")
+                else:
+                    status = 'Desatualizada'
+                    dias_atraso = (data_limite - max_date_from_db.date()).days
+                    print(f"ATENCAO: Tabela '{table_name}' DESATUALIZADA. Atraso de {dias_atraso} dias. Última data: {max_date_from_db.date()}")
+            
+            # --- LÓGICA GERAL (PARA OUTRAS TABELAS) ---
             else:
-                status = 'Desatualizada'
-                print(f"ATENCAO: Tabela DESATUALIZADA. (Dias sem atualizar: {dias_sem_atualizar})")
+                if dias_sem_atualizar == 0:
+                    status = 'Atualizada'
+                    print(f"SUCESSO: Tabela atualizada. (Dias sem atualizar: {dias_sem_atualizar})")
+                else:
+                    status = 'Desatualizada'
+                    print(f"ATENCAO: Tabela DESATUALIZADA. (Dias sem atualizar: {dias_sem_atualizar})")
 
     except Exception as e:
         status = 'Erro na Verificação'
@@ -154,6 +173,7 @@ def main():
             'Atualizada': 'OK',
             'Sincronizado': 'OK',
             'Sincronizada': 'OK',
+            'Desatualizada': 'Failed'
         }
         # Aplica o mapeamento e define qualquer outro valor como 'Failed'
         df_para_inserir['status_atualizacao'] = df_para_inserir['status_atualizacao'].apply(

@@ -1,11 +1,12 @@
-# check_powerbi.py (com cálculo de dias sem atualizar)
+# check_powerbi.py (com cálculo de dias sem atualizar e Fuso Horário de Brasília)
 
 import json
 import msal
 import requests
 import pandas as pd
 import sys
-from datetime import datetime, timezone # CORRIGIDO: Importação de timezone
+from datetime import datetime, timezone 
+import pytz # <-- NOVO IMPORT para gerenciar fusos horários
 
 # Importa as funções do nosso módulo de banco de dados
 from database import get_db_connection, insert_dataframe
@@ -134,26 +135,47 @@ def main():
     # --- Processamento com Pandas ---
     df = pd.DataFrame(todos_os_dados)
     
-    # Converte a coluna de data, mantendo o fuso horário (UTC)
+    # Define o fuso horário de Brasília (America/Sao_Paulo é o TZ para Brasília)
+    fuso_brasilia = pytz.timezone('America/Sao_Paulo') 
+
+    # Converte a coluna de data para o fuso horário UTC (Original da API)
     df['endTime'] = pd.to_datetime(df['endTime'], errors='coerce', utc=True)
     
+    # Converte a coluna 'endTime' (UTC) para o fuso de Brasília.
+    df['endTime_local'] = df['endTime'].dt.tz_convert(fuso_brasilia)
+    
+    # >>>>> FIX: Preenche valores NaT (que vêm de BIs sem histórico) com o timestamp atual em Brasília.
+    # Cria o objeto datetime com o fuso horário de Brasília
+    now_brasilia = datetime.now(fuso_brasilia)
+    
+    # Preenche NaT com a hora atual de Brasília.
+    df['endTime_local'] = df['endTime_local'].fillna(now_brasilia)
+    # <<<<< FIM FIX
+
     # --- LÓGICA DE CÁLCULO DE DIAS ---
-    # Usa datetime.now(timezone.utc) conforme as boas práticas do Python
-    hoje_utc = pd.to_datetime(datetime.now(timezone.utc)).normalize()
-    # Calcula a diferença em dias
-    df['dias_sem_atualizar'] = (hoje_utc - df['endTime'].dt.normalize()).dt.days
+    # Data de referência de "hoje" (meia-noite de Brasília) para o cálculo de dias
+    hoje_brasilia_normalized = pd.to_datetime(datetime.now(fuso_brasilia)).normalize()
+
+    # O cálculo de dias é feito com a data localizada e normalizada.
+    df['dias_sem_atualizar'] = (hoje_brasilia_normalized - df['endTime_local'].dt.normalize()).dt.days
     
     df['tipo_ativo'] = 'POWER BI'
     
+    # Remove a informação de TimeZone para ser compatível com o MariaDB (DATE/TIME)
+    df['data_atualizacao_temp'] = df['endTime_local'].dt.tz_localize(None)
+
+
     # Renomeia as colunas para o padrão do banco de dados
     mapa_de_colunas_para_sql = {
         'workspace_name': 'nome_workspace',
         'nome_bi': 'nome_ativo',
         'status': 'status_atualizacao',
-        'endTime': 'data_atualizacao',
+        'data_atualizacao_temp': 'data_atualizacao', # Usa a coluna sem TimeZone
         'refreshType': 'tipo_atualizacao'
     }
-    df_para_inserir = df.rename(columns=mapa_de_colunas_para_sql)
+    
+    # Remove as colunas temporárias e originais que não serão usadas (endTime, endTime_local)
+    df_para_inserir = df.drop(columns=['endTime', 'endTime_local']).rename(columns=mapa_de_colunas_para_sql)
 
     # --- NOVO PROCESSAMENTO: Separação de Data e Hora ---
     
@@ -180,6 +202,7 @@ def main():
         'Atualizada': 'OK',
         'Sincronizado': 'OK',
         'Sincronizada': 'OK',
+        'Sem Histórico': 'OK'
     }
     # Aplica o mapeamento e define qualquer outro valor como 'Failed'
     df_para_inserir['status_atualizacao'] = df_para_inserir['status_atualizacao'].apply(
@@ -189,7 +212,7 @@ def main():
 
     colunas_finais = [
         'nome_workspace', 'nome_ativo', 'tipo_ativo', 
-        'status_atualizacao', 'data_atualizacao', 'hora_atualizacao', # <--- NOVA COLUNA AQUI
+        'status_atualizacao', 'data_atualizacao', 'hora_atualizacao', 
         'tipo_atualizacao', 
         'dias_sem_atualizar' 
     ]

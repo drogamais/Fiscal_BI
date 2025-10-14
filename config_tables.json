@@ -2,6 +2,14 @@
   "_comment": "Este arquivo configura TODAS as tabelas que devem ser verificadas. A chave 'conn_key' deve espelhar o config.json.",
   "freshness_checks": [
     {
+      "nome": "dw_tb_acode_temp",
+      "tipo": "TABELA BRONZE",
+      "coluna": "Ultima_Atualizacao",
+      "enabled": true,
+      "conn_key": "bancoDrogamais",
+      "workspace_log": "drogamais"
+    },
+    {
       "nome": "bronze_plugpharma_estoque",
       "tipo": "TABELA BRONZE",
       "coluna": "data_insercao",
@@ -67,7 +75,7 @@
     },
     {
       "nome": "silver_plugpharma_estoque",
-      "tipo": "TABELA BRONZE",
+      "tipo": "TABELA SILVER",
       "coluna": "data_insercao",
       "enabled": true,
       "conn_key": "databaseDrogamais",
@@ -117,7 +125,7 @@
       "nome": "tb_atendimentos",
       "tipo": "TABELA",
       "coluna": "data_atualizacao",
-      "enabled": false,
+      "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults"
     },
@@ -193,7 +201,7 @@
       "coluna": "data_atualizacao",
       "workspace_log": "dbSults",
       "conn_key": "databaseSults",
-      "enabled": false
+      "enabled": true
     },
     {
       "nome_bronze": "bronze_sults_chamados",
@@ -201,7 +209,7 @@
       "coluna": "data_atualizacao",
       "workspace_log": "dbSults",
       "conn_key": "databaseSults",
-      "enabled": false
+      "enabled": true
     },
     {
       "nome_bronze": "bronze_sults_implantacao",
@@ -209,7 +217,7 @@
       "coluna": "data_atualizacao",
       "workspace_log": "dbSults",
       "conn_key": "databaseSults",
-      "enabled": false
+      "enabled": true
     }
   ],
   "gold_sync_checks": [
