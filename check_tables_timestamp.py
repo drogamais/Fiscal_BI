@@ -1,7 +1,7 @@
 # check_tables_timestamp.py (Versão Unificada para dbDrogamais e dbSults)
 
 import pandas as pd
-from datetime import date, timedelta # Adicionado timedelta
+from datetime import date, datetime, timedelta
 import warnings
 import json
 import sys
