@@ -21,71 +21,103 @@ def load_table_config(config_file='config_tables.json'):
 def check_table_status(conn, table_name, asset_type, date_column, workspace_log, update_tolerance_days, time_tolerance):
     """
     Verifica a data/hora da última inserção com base na tolerância de DIAS E HORA.
+    Calcula dias_sem_atualizar E horas_sem_atualizar.
     """
     
-    # 1. Obter a data/hora de hoje e a data limite (date part)
-    hoje = date.today()
-    data_limite_date_part = hoje - timedelta(days=update_tolerance_days)
+    # 1. Obter o momento da checagem
+    now = datetime.now() 
     
-    # 2. Tentar combinar a data limite com a hora de tolerância
-    data_limite = None
-    time_part = datetime.min.time() # Padrão: 00:00:00 se a hora for inválida ou omitida
-    
-    # Processa a hora de tolerância (string "HH:MM" para objeto time)
+    # 2. Processa a hora de tolerância (HH:MM)
+    time_part = datetime.min.time() 
     if time_tolerance and isinstance(time_tolerance, str):
         try:
-            # Converte a string "HH:MM" em um objeto time
-            time_obj = datetime.strptime(time_tolerance, '%H:%M').time()
-            time_part = time_obj
+            time_part = datetime.strptime(time_tolerance, '%H:%M').time()
         except ValueError:
             print(f"AVISO: 'hora_tolerancia' inválida ('{time_tolerance}') para '{table_name}'. Usando padrão 00:00:00.")
+            
+    # 3. Determina o PONTO DE CORTE REQUERIDO (data_limite)
     
-    # Cria o datetime limite completo: (Hoje - dias_tolerancia) + hora_tolerancia
-    data_limite = datetime.combine(data_limite_date_part, time_part)
+    # A data base do ponto de corte é HOJE - dias_tolerancia
+    expected_cutoff_date = now.date() - timedelta(days=update_tolerance_days)
+    data_limite = datetime.combine(expected_cutoff_date, time_part)
+    
+    # --- LÓGICA DE CORREÇÃO PARA CICLOS RÍGIDOS (dias_tolerancia = 1) ---
+    # Se dias_tolerancia é 1 (ou seja, ciclo de 24h), o ponto de corte deve ser movido 
+    # para a hora de tolerância de HOJE SE O PRAZO JÁ PASSOU.
+    
+    # Se a hora atual JÁ PASSOU do tempo de tolerância (Ex: 18:20 > 17:00)
+    # E a tabela tem dias_tolerancia = 1 (o que indica que ela deveria ter atualizado no ciclo de HOJE)
+    if update_tolerance_days == 1:
+        
+        # A data base deve ser HOJE (15/10) e a hora 17:00.
+        data_limite = datetime.combine(now.date(), time_part)
+        
+        # Se a checagem (18:20) for ANTES do horário de tolerância (17:00), 
+        # o Ponto de Corte deve ser ajustado para ONTEM (D-1) às 17:00.
+        if now.time() < time_part:
+            data_limite = data_limite - timedelta(days=1)
+            
+    elif update_tolerance_days == 0:
+        # Lógica original para D-0, que é mais flexível: se ainda não passou da hora, recua o corte para D-1.
+        if now.time() < time_part:
+            data_limite = data_limite - timedelta(days=1)
+    
+    # Se dias_tolerancia é > 1, usa o cálculo inicial (Hoje - D_tolerancia)
+    else:
+        pass 
     
     print(f"---> Verificando a tabela ({workspace_log}): '{table_name}' (usando coluna '{date_column}')...")
-    print(f"     Limite de atualização: {data_limite.strftime('%Y-%m-%d %H:%M:%S')} (Aceita data/hora até este momento).")
+    print(f"     PONTO DE CORTE REQUERIDO: {data_limite.strftime('%Y-%m-%d %H:%M:%S')} (Última atualização deve ser >= este valor)")
     
     status = "Não Definido"
     data_ref = None
     dias_sem_atualizar = None
+    horas_sem_atualizar = None 
+
 
     try:
         query = f"SELECT MAX(`{date_column}`) FROM `{table_name}`"
         
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", UserWarning)
-            # Lê o resultado, garantindo que seja um objeto datetime (incluindo a hora)
             df_result = pd.read_sql(query, conn)
         
-        max_date_from_db = pd.to_datetime(df_result.iloc[0, 0])
-        data_ref = max_date_from_db
+        # Converte para datetime (já que a coluna de origem é TIMESTAMP/DATETIME)
+        max_dt_from_db = pd.to_datetime(df_result.iloc[0, 0])
+        data_ref = max_dt_from_db
 
-        if pd.isna(max_date_from_db):
+        if pd.isna(max_dt_from_db):
             status = 'Sem Histórico'
-            dias_sem_atualizar = None
-            print(f"AVISO: Não há registros em '{table_name}'. Status: Sem Histórico.")
         else:
-            # --- LÓGICA DE CÁLCULO DE DIAS ---
-            dias_sem_atualizar = (hoje - max_date_from_db.date()).days
+            # Removendo TimeZone caso a coluna venha com ele (para comparação com now())
+            max_dt_local = max_dt_from_db.tz_localize(None) 
             
-            # --- LÓGICA DE TOLERÂNCIA (DATETIME) ---
-            # A comparação é feita com o objeto datetime completo
+            # --- CÁLCULO DE DIAS E HORAS SEM ATUALIZAR (CORREÇÃO AQUI) ---
             
-            if max_date_from_db >= data_limite:
+            # 1. dias_sem_atualizar (dias de CALENDÁRIO): (15/10 - 14/10 = 1)
+            dias_sem_atualizar = (now.date() - max_dt_local.date()).days
+            
+            # 2. horas_sem_atualizar (duração total): (22h de diferença -> 22.00)
+            time_diff = now - max_dt_local
+            horas_sem_atualizar = round(time_diff.total_seconds() / 3600.0, 2)
+            
+            # --- LÓGICA DE COMPARAÇÃO CORRIGIDA ---
+            # Compara a última atualização com o PONTO DE CORTE REQUERIDO
+            if max_dt_local >= data_limite:
                 status = 'Atualizada'
-                print(f"SUCESSO: Tabela '{table_name}' no prazo. Última data/hora: {max_date_from_db.strftime('%Y-%m-%d %H:%M:%S')} ({dias_sem_atualizar} dias atrás).")
+                print(f"SUCESSO: Tabela '{table_name}' no prazo. Última data/hora: {max_dt_local.strftime('%Y-%m-%d %H:%M:%S')}. Horas sem atualizar: {horas_sem_atualizar:.2f}h.")
             else:
                 status = 'Desatualizada'
-                diff = data_limite - max_date_from_db
-                dias_atraso_str = f"{diff.days}d {diff.seconds // 3600}h {(diff.seconds % 3600) // 60}m"
-                print(f"ATENCAO: Tabela '{table_name}' DESATUALIZADA. Atraso de {dias_atraso_str}. Última data/hora: {max_date_from_db.strftime('%Y-%m-%d %H:%M:%S')}.")
+                # Calcula o atraso em relação ao ponto de corte (para exibição)
+                diff_atraso = data_limite - max_dt_local
+                horas_atraso = round(diff_atraso.total_seconds() / 3600.0, 2)
+                print(f"ATENCAO: Tabela '{table_name}' DESATUALIZADA. Atraso de {horas_atraso:.2f}h. Última data/hora: {max_dt_local.strftime('%Y-%m-%d %H:%M:%S')}.")
             
     except Exception as e:
         status = 'Erro na Verificação'
         print(f"ERRO INESPERADO ao checar a tabela '{table_name}': {e}")
     
-    # Adiciona a nova métrica ao log
+    # Adiciona as novas métricas ao log
     log_entry = {
         'nome_workspace': workspace_log, 
         'nome_ativo': table_name,
@@ -93,10 +125,10 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log,
         'status_atualizacao': status,
         'data_atualizacao': data_ref,
         'tipo_atualizacao': 'Scheduled',
-        'dias_sem_atualizar': dias_sem_atualizar 
+        'dias_sem_atualizar': dias_sem_atualizar,
+        'horas_sem_atualizar': horas_sem_atualizar 
     }
     return log_entry
-
 
 def main():
     """
