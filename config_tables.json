@@ -8,7 +8,8 @@
       "enabled": true,
       "conn_key": "bancoDrogamais",
       "workspace_log": "drogamais",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "bronze_plugpharma_estoque",
@@ -17,7 +18,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "bronze_plugpharma_vendas",
@@ -26,7 +28,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "gold_acode_vendas_distribuidorMAT",
@@ -35,7 +38,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "gold_acode_vendas_distribuidorMES",
@@ -44,7 +48,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "gold_acode_vendas_distribuidorTRI",
@@ -53,7 +58,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "gold_closeUp_estoque_vendas_analise_de_mercado",
@@ -62,7 +68,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "gold_iqvia_estoque_vendas_analise_de_mercado",
@@ -71,7 +78,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "silver_acode_vendas_parceiros",
@@ -80,7 +88,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "silver_plugpharma_estoque",
@@ -89,7 +98,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "silver_plugpharma_vendas",
@@ -98,7 +108,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "silver_plugpharma_vendas_campanhaPrincipia",
@@ -107,7 +118,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "bronze_movidesk_chamados",
@@ -116,7 +128,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 1
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "20:00"
     },
     {
       "nome": "bronze_sults_chamados",
@@ -125,7 +138,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 1
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "20:00"
     },
     {
       "nome": "bronze_sults_implantacao",
@@ -134,7 +148,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 1
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "20:00"
     },
     {
       "nome": "tb_atendimentos",
@@ -143,7 +158,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 1 
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "tb_projetos",
@@ -152,7 +168,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "tb_tarefas",
@@ -161,7 +178,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "tb_reports_embedded",
@@ -170,7 +188,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "tb_report_auditoria_embedded",
@@ -179,7 +198,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "tb_users_embedded",
@@ -188,7 +208,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     },
     {
       "nome": "tb_workspaces_embedded",
@@ -197,7 +218,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 0
+      "dias_tolerancia": 0,
+      "hora_tolerancia": "00:00"
     }
   ],
   "silver_sync_checks": [

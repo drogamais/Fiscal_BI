@@ -17,17 +17,34 @@ def load_table_config(config_file='config_tables.json'):
         print(f"Erro ao carregar config: {e}")
         return None
 
-# Alteração 1: Adicionado o parâmetro 'update_tolerance_days'
-def check_table_status(conn, table_name, asset_type, date_column, workspace_log, update_tolerance_days):
+# Alteração: Adicionado o parâmetro 'time_tolerance'
+def check_table_status(conn, table_name, asset_type, date_column, workspace_log, update_tolerance_days, time_tolerance):
     """
-    Verifica a data da última inserção, calcula os dias sem atualização
-    e retorna um dicionário com os dados para o log, aplicando a lógica de tolerância.
+    Verifica a data/hora da última inserção com base na tolerância de DIAS E HORA.
+    """
     
-    A tabela é considerada ATUALIZADA se a última data for maior ou igual a
-    (Hoje - update_tolerance_days).
-    """
+    # 1. Obter a data/hora de hoje e a data limite (date part)
+    hoje = date.today()
+    data_limite_date_part = hoje - timedelta(days=update_tolerance_days)
+    
+    # 2. Tentar combinar a data limite com a hora de tolerância
+    data_limite = None
+    time_part = datetime.min.time() # Padrão: 00:00:00 se a hora for inválida ou omitida
+    
+    # Processa a hora de tolerância (string "HH:MM" para objeto time)
+    if time_tolerance and isinstance(time_tolerance, str):
+        try:
+            # Converte a string "HH:MM" em um objeto time
+            time_obj = datetime.strptime(time_tolerance, '%H:%M').time()
+            time_part = time_obj
+        except ValueError:
+            print(f"AVISO: 'hora_tolerancia' inválida ('{time_tolerance}') para '{table_name}'. Usando padrão 00:00:00.")
+    
+    # Cria o datetime limite completo: (Hoje - dias_tolerancia) + hora_tolerancia
+    data_limite = datetime.combine(data_limite_date_part, time_part)
+    
     print(f"---> Verificando a tabela ({workspace_log}): '{table_name}' (usando coluna '{date_column}')...")
-    print(f"     Tolerância de atraso definida: D-{update_tolerance_days} (Aceita data até: {date.today() - timedelta(days=update_tolerance_days)})")
+    print(f"     Limite de atualização: {data_limite.strftime('%Y-%m-%d %H:%M:%S')} (Aceita data/hora até este momento).")
     
     status = "Não Definido"
     data_ref = None
@@ -38,12 +55,11 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log,
         
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", UserWarning)
+            # Lê o resultado, garantindo que seja um objeto datetime (incluindo a hora)
             df_result = pd.read_sql(query, conn)
         
         max_date_from_db = pd.to_datetime(df_result.iloc[0, 0])
         data_ref = max_date_from_db
-
-        hoje = date.today()
 
         if pd.isna(max_date_from_db):
             status = 'Sem Histórico'
@@ -53,19 +69,18 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log,
             # --- LÓGICA DE CÁLCULO DE DIAS ---
             dias_sem_atualizar = (hoje - max_date_from_db.date()).days
             
-            # --- LÓGICA DE TOLERÂNCIA PERSONALIZADA ---
-            # A data limite é (Hoje - dias_tolerancia). 
-            data_limite = hoje - timedelta(days=update_tolerance_days)
+            # --- LÓGICA DE TOLERÂNCIA (DATETIME) ---
+            # A comparação é feita com o objeto datetime completo
             
-            if max_date_from_db.date() >= data_limite:
+            if max_date_from_db >= data_limite:
                 status = 'Atualizada'
-                print(f"SUCESSO: Tabela '{table_name}' no prazo. Última data: {max_date_from_db.date()} ({dias_sem_atualizar} dias atrás).")
+                print(f"SUCESSO: Tabela '{table_name}' no prazo. Última data/hora: {max_date_from_db.strftime('%Y-%m-%d %H:%M:%S')} ({dias_sem_atualizar} dias atrás).")
             else:
                 status = 'Desatualizada'
-                # O atraso é em relação ao dia limite.
-                dias_atraso = (data_limite - max_date_from_db.date()).days 
-                print(f"ATENCAO: Tabela '{table_name}' DESATUALIZADA. Atraso de {dias_atraso} dias. Última data: {max_date_from_db.date()}.")
-
+                diff = data_limite - max_date_from_db
+                dias_atraso_str = f"{diff.days}d {diff.seconds // 3600}h {(diff.seconds % 3600) // 60}m"
+                print(f"ATENCAO: Tabela '{table_name}' DESATUALIZADA. Atraso de {dias_atraso_str}. Última data/hora: {max_date_from_db.strftime('%Y-%m-%d %H:%M:%S')}.")
+            
     except Exception as e:
         status = 'Erro na Verificação'
         print(f"ERRO INESPERADO ao checar a tabela '{table_name}': {e}")
@@ -124,21 +139,23 @@ def main():
                 print(f"ERRO: Não foi possível conectar ao banco '{conn_key}'. Pulando esta checagem.")
                 continue
 
-            # Alteração 2: Obtém a tolerância de dias do config
+            # Alteração: Obtém a tolerância de dias e a nova hora de tolerância
             update_tolerance_days = tabela.get('dias_tolerancia', 0) 
+            time_tolerance = tabela.get('hora_tolerancia', '00:00') # <-- MODIFICAÇÃO: Nova tolerância de hora
             
             if not isinstance(update_tolerance_days, int) or update_tolerance_days < 0:
                 print(f"AVISO: 'dias_tolerancia' inválido ou ausente para '{tabela['nome']}'. Usando padrão D-0.")
                 update_tolerance_days = 0
 
-            # Alteração 3: Passa o novo parâmetro para a função
+            # Alteração: Passa o novo parâmetro para a função
             log = check_table_status(
                 conn_data, 
                 tabela['nome'], 
                 tabela['tipo'], 
                 tabela['coluna'],
                 tabela['workspace_log'],
-                update_tolerance_days
+                update_tolerance_days,
+                time_tolerance # <-- MODIFICAÇÃO
             )
             all_logs.append(log)
             print("-" * 20)
