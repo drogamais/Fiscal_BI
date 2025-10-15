@@ -17,16 +17,18 @@ def load_table_config(config_file='config_tables.json'):
         print(f"Erro ao carregar config: {e}")
         return None
 
-def check_table_status(conn, table_name, asset_type, date_column, workspace_log):
+# Alteração 1: Adicionado o parâmetro 'update_tolerance_days'
+def check_table_status(conn, table_name, asset_type, date_column, workspace_log, update_tolerance_days):
     """
     Verifica a data da última inserção, calcula os dias sem atualização
-    e retorna um dicionário com os dados para o log, usando o workspace_log.
+    e retorna um dicionário com os dados para o log, aplicando a lógica de tolerância.
     
-    LÓGICA CUSTOMIZADA PARA 'tb_atendimentos':
-    - Deve estar atualizada no dia anterior (Hoje - 1 dia).
-    - Falha se estiver com 2 ou mais dias de atraso (data_ref < Hoje - 1 dia).
+    A tabela é considerada ATUALIZADA se a última data for maior ou igual a
+    (Hoje - update_tolerance_days).
     """
     print(f"---> Verificando a tabela ({workspace_log}): '{table_name}' (usando coluna '{date_column}')...")
+    print(f"     Tolerância de atraso definida: D-{update_tolerance_days} (Aceita data até: {date.today() - timedelta(days=update_tolerance_days)})")
+    
     status = "Não Definido"
     data_ref = None
     dias_sem_atualizar = None
@@ -51,26 +53,18 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log)
             # --- LÓGICA DE CÁLCULO DE DIAS ---
             dias_sem_atualizar = (hoje - max_date_from_db.date()).days
             
-            # --- LÓGICA CUSTOMIZADA PARA TB_ATENDIMENTOS ---
-            if table_name == 'tb_atendimentos':
-                data_limite = hoje - timedelta(days=1)
-                
-                if max_date_from_db.date() >= data_limite:
-                    status = 'Atualizada'
-                    print(f"SUCESSO: Tabela '{table_name}' no prazo (Hoje - 1). Última data: {max_date_from_db.date()}")
-                else:
-                    status = 'Desatualizada'
-                    dias_atraso = (data_limite - max_date_from_db.date()).days
-                    print(f"ATENCAO: Tabela '{table_name}' DESATUALIZADA. Atraso de {dias_atraso} dias. Última data: {max_date_from_db.date()}")
+            # --- LÓGICA DE TOLERÂNCIA PERSONALIZADA ---
+            # A data limite é (Hoje - dias_tolerancia). 
+            data_limite = hoje - timedelta(days=update_tolerance_days)
             
-            # --- LÓGICA GERAL (PARA OUTRAS TABELAS) ---
+            if max_date_from_db.date() >= data_limite:
+                status = 'Atualizada'
+                print(f"SUCESSO: Tabela '{table_name}' no prazo. Última data: {max_date_from_db.date()} ({dias_sem_atualizar} dias atrás).")
             else:
-                if dias_sem_atualizar == 0:
-                    status = 'Atualizada'
-                    print(f"SUCESSO: Tabela atualizada. (Dias sem atualizar: {dias_sem_atualizar})")
-                else:
-                    status = 'Desatualizada'
-                    print(f"ATENCAO: Tabela DESATUALIZADA. (Dias sem atualizar: {dias_sem_atualizar})")
+                status = 'Desatualizada'
+                # O atraso é em relação ao dia limite.
+                dias_atraso = (data_limite - max_date_from_db.date()).days 
+                print(f"ATENCAO: Tabela '{table_name}' DESATUALIZADA. Atraso de {dias_atraso} dias. Última data: {max_date_from_db.date()}.")
 
     except Exception as e:
         status = 'Erro na Verificação'
@@ -78,7 +72,7 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log)
     
     # Adiciona a nova métrica ao log
     log_entry = {
-        'nome_workspace': workspace_log, # Usa o nome do workspace dinamicamente
+        'nome_workspace': workspace_log, 
         'nome_ativo': table_name,
         'tipo_ativo': asset_type,
         'status_atualizacao': status,
@@ -95,7 +89,7 @@ def main():
     e insere os logs no banco de dados.
     """
     print("="*50)
-    print("--- INICIANDO VERIFICAÇÃO DE ATUALIDADE DAS TABELAS (UNIFICADO) ---")
+    print("--- INICIANDO VERIFICAÇÃO DE ATUALIDADE DAS TABELAS (UNIFICADO COM TOLERÂNCIA) ---")
     print("="*50)
 
     config = load_table_config()
@@ -130,12 +124,21 @@ def main():
                 print(f"ERRO: Não foi possível conectar ao banco '{conn_key}'. Pulando esta checagem.")
                 continue
 
+            # Alteração 2: Obtém a tolerância de dias do config
+            update_tolerance_days = tabela.get('dias_tolerancia', 0) 
+            
+            if not isinstance(update_tolerance_days, int) or update_tolerance_days < 0:
+                print(f"AVISO: 'dias_tolerancia' inválido ou ausente para '{tabela['nome']}'. Usando padrão D-0.")
+                update_tolerance_days = 0
+
+            # Alteração 3: Passa o novo parâmetro para a função
             log = check_table_status(
                 conn_data, 
                 tabela['nome'], 
                 tabela['tipo'], 
                 tabela['coluna'],
-                tabela['workspace_log']
+                tabela['workspace_log'],
+                update_tolerance_days
             )
             all_logs.append(log)
             print("-" * 20)
@@ -173,7 +176,7 @@ def main():
             'Atualizada': 'OK',
             'Sincronizado': 'OK',
             'Sincronizada': 'OK',
-            'Desatualizada': 'Failed'
+            'Desatualizada': 'Failed' # Mapeia Desatualizada para Failed
         }
         # Aplica o mapeamento e define qualquer outro valor como 'Failed'
         df_para_inserir['status_atualizacao'] = df_para_inserir['status_atualizacao'].apply(
