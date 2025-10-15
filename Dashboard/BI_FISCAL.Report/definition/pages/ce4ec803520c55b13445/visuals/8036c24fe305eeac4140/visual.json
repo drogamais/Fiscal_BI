@@ -51,31 +51,21 @@
             }
           }
         }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "45D"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "8056c5d670ea0a0c1699",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "fat_fiscal"
-                  }
-                },
-                "Property": "tipo_atualizacao"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

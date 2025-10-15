@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "2db3eaaca980e101e86c",
+  "name": "335eb9b0a3ab00ed5997",
   "position": {
-    "x": 0.7142857142857082,
-    "y": 1.7857142857142776,
-    "z": 12500,
-    "height": 497.5,
-    "width": 862.5,
-    "tabOrder": 10000
+    "x": 0,
+    "y": 0,
+    "z": 13000,
+    "height": 498.57142857142861,
+    "width": 862.85714285714289,
+    "tabOrder": 10002
   },
   "visual": {
     "visualType": "pivotTable",
@@ -716,7 +716,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Matriz Outro'"
+                  "Value": "'Matriz Hoje'"
                 }
               }
             }
@@ -833,7 +833,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "d0b6eb533b1580910e55",
+        "name": "a1e47aa3c74a5135162c",
         "field": {
           "Column": {
             "Expression": {
@@ -847,7 +847,7 @@
         "type": "Categorical"
       },
       {
-        "name": "748a7319cce2b2c466db",
+        "name": "bc11e00b005ae4e80dab",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -866,7 +866,7 @@
         "type": "Advanced"
       },
       {
-        "name": "48510c4700107ea54200",
+        "name": "27b70b2bb44bb2b6260b",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -885,7 +885,7 @@
         "type": "Advanced"
       },
       {
-        "name": "6f8b90d5b2875024bad7",
+        "name": "dcd4e4715c08a6b3de69",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -904,7 +904,7 @@
         "type": "Advanced"
       },
       {
-        "name": "63aabc420a4493557138",
+        "name": "a81d4de6d7e102393870",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -923,7 +923,7 @@
         "type": "Advanced"
       },
       {
-        "name": "93273d50e049550041c5",
+        "name": "e404311843861c8c09ed",
         "field": {
           "Aggregation": {
             "Expression": {
@@ -940,7 +940,23 @@
           }
         },
         "type": "Advanced"
+      },
+      {
+        "name": "012daf3a73645bac6b66",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fat_fiscal"
+              }
+            },
+            "Property": "data_insercao"
+          }
+        },
+        "type": "RelativeDate",
+        "howCreated": "User"
       }
     ]
-  }
+  },
+  "isHidden": true
 }

@@ -1,97 +1,53 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "d96520a1c0b548500c58",
+  "name": "0df67a1903558930e768",
   "position": {
-    "x": 985.71428571428567,
-    "y": 586.07142857142844,
-    "z": 6000,
-    "height": 86.25,
-    "width": 271.25,
-    "tabOrder": 5000
+    "x": 2.2737367544323206E-13,
+    "y": 0,
+    "z": 12000,
+    "height": 44.285714285714292,
+    "width": 127.14285714285715,
+    "tabOrder": 1000
   },
   "visual": {
-    "visualType": "slicer",
-    "query": {
-      "queryState": {
-        "Values": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "fat_fiscal"
-                    }
-                  },
-                  "Property": "tipo_atualizacao"
-                }
-              },
-              "queryRef": "fat_fiscal.tipo_atualizacao",
-              "nativeQueryRef": "TIPO ATUALIZAÇÃO",
-              "active": true,
-              "displayName": "TIPO ATUALIZAÇÃO"
-            }
-          ]
-        }
-      }
-    },
+    "visualType": "actionButton",
     "objects": {
-      "data": [
+      "icon": [
         {
           "properties": {
-            "mode": {
+            "shapeType": {
               "expr": {
                 "Literal": {
-                  "Value": "'Dropdown'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "header": [
-        {
-          "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'TIPO ATUALIZAÇÃO'"
+                  "Value": "'bookmarks'"
                 }
               }
             },
-            "fontFamily": {
+            "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Lucida Sans Unicode'''"
+                  "Value": "'left'"
                 }
               }
             },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
+            "image": {
+              "image": {
+                "name": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "''"
+                    }
+                  }
+                },
+                "url": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "''"
                     }
                   }
                 }
               }
-            }
-          }
-        }
-      ],
-      "general": [
-        {
-          "properties": {
-            "outlineColor": {
+            },
+            "lineColor": {
               "solid": {
                 "color": {
                   "expr": {
@@ -102,69 +58,69 @@
                   }
                 }
               }
-            },
-            "outlineWeight": {
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "outline": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "weight": {
               "expr": {
                 "Literal": {
                   "Value": "1D"
                 }
               }
             }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ],
-      "selection": [
+      "text": [
         {
           "properties": {
-            "selectAllCheckboxEnabled": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "true"
                 }
               }
-            },
-            "singleSelect": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "strictSingleSelect": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
             }
           }
-        }
-      ],
-      "pendingChangesIcon": [
+        },
         {
           "properties": {
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
-      "items": [
-        {
-          "properties": {
-            "fontFamily": {
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Lucida Sans Unicode'''"
+                  "Value": "'HOJE'"
                 }
               }
             },
@@ -175,10 +131,10 @@
                 }
               }
             },
-            "italic": {
+            "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "'center'"
                 }
               }
             },
@@ -194,30 +150,55 @@
                 }
               }
             },
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "15D"
                 }
               }
             },
-            "outlineStyle": {
+            "leftMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "25L"
                 }
               }
             }
+          },
+          "selector": {
+            "id": "default"
           }
         }
       ]
     },
     "visualContainerObjects": {
+      "visualLink": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bookmark'"
+                }
+              }
+            },
+            "bookmark": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ],
       "title": [
         {
           "properties": {
@@ -225,6 +206,20 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Hoje Ativado'"
                 }
               }
             }
@@ -246,8 +241,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
-                      "Percent": -0.1
+                      "ColorId": 1,
+                      "Percent": 0.1
                     }
                   }
                 }
@@ -299,6 +294,18 @@
                   "Value": "'Outer'"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -310,10 +317,25 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#000000'"
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
                     }
                   }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }
@@ -322,5 +344,8 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  }
+  },
+  "parentGroupName": "fe23d9b463894d6450ed",
+  "isHidden": true,
+  "howCreated": "InsertVisualButton"
 }

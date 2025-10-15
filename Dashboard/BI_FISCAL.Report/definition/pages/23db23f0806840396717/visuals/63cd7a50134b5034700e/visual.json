@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "63cd7a50134b5034700e",
+  "position": {
+    "x": 984.28571428571433,
+    "y": 14.107142857143323,
+    "z": 8000,
+    "height": 87.5,
+    "width": 271.42857142857144,
+    "tabOrder": 8000
+  },
+  "visualGroup": {
+    "displayName": "Filtro Dia Fiscalizado",
+    "groupMode": "ScaleMode"
+  }
+}

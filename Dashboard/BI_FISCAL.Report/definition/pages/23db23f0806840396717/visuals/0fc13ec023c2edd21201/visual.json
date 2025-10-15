@@ -2,9 +2,9 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "0fc13ec023c2edd21201",
   "position": {
-    "x": 990,
-    "y": 591.25,
-    "z": 9000,
+    "x": 0,
+    "y": 0,
+    "z": 500,
     "height": 87.5,
     "width": 271.25,
     "tabOrder": 8000
@@ -334,6 +334,13 @@
                   "Value": "true"
                 }
               }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Hoje'"
+                }
+              }
             }
           }
         }
@@ -341,6 +348,7 @@
     },
     "drillFilterOtherVisuals": true
   },
+  "parentGroupName": "63cd7a50134b5034700e",
   "filterConfig": {
     "filters": [
       {
@@ -392,8 +400,11 @@
               }
             }
           ]
-        }
+        },
+        "isHiddenInViewMode": true,
+        "isLockedInViewMode": true
       }
     ]
-  }
+  },
+  "isHidden": true
 }

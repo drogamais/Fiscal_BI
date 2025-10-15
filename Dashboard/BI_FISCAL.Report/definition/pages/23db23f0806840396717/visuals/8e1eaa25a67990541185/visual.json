@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "d96520a1c0b548500c58",
+  "name": "8e1eaa25a67990541185",
   "position": {
-    "x": 985.71428571428567,
-    "y": 586.07142857142844,
-    "z": 6000,
-    "height": 86.25,
-    "width": 271.25,
-    "tabOrder": 5000
+    "x": 1.1368683772161603E-13,
+    "y": 0.17857142857144481,
+    "z": 1000,
+    "height": 87.142857142857153,
+    "width": 271.42857142857144,
+    "tabOrder": 10001
   },
   "visual": {
     "visualType": "slicer",
@@ -23,71 +23,37 @@
                       "Entity": "fat_fiscal"
                     }
                   },
-                  "Property": "tipo_atualizacao"
+                  "Property": "data_insercao"
                 }
               },
-              "queryRef": "fat_fiscal.tipo_atualizacao",
-              "nativeQueryRef": "TIPO ATUALIZAÇÃO",
+              "queryRef": "fat_fiscal.data_insercao",
+              "nativeQueryRef": "DATA INSERÇÃO",
               "active": true,
-              "displayName": "TIPO ATUALIZAÇÃO"
+              "displayName": "DATA INSERÇÃO"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fat_fiscal"
+                  }
+                },
+                "Property": "data_insercao"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {
-      "data": [
-        {
-          "properties": {
-            "mode": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Dropdown'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "header": [
-        {
-          "properties": {
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'TIPO ATUALIZAÇÃO'"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Lucida Sans Unicode'''"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
       "general": [
         {
           "properties": {
@@ -107,51 +73,6 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "selection": [
-        {
-          "properties": {
-            "selectAllCheckboxEnabled": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "singleSelect": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "strictSingleSelect": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "pendingChangesIcon": [
-        {
-          "properties": {
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
                 }
               }
             }
@@ -215,22 +136,106 @@
             }
           }
         }
-      ]
-    },
-    "visualContainerObjects": {
-      "title": [
+      ],
+      "header": [
         {
           "properties": {
-            "titleWrap": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'DIA FISCALIZADO'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Lucida Sans Unicode'''"
+                }
+              }
+            },
+            "bold": {
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
                 }
               }
             }
           }
         }
       ],
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "selection": [
+        {
+          "properties": {
+            "selectAllCheckboxEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "strictSingleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "pendingChangesIcon": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
       "background": [
         {
           "properties": {
@@ -263,26 +268,6 @@
           }
         }
       ],
-      "border": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "width": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            }
-          }
-        }
-      ],
       "dropShadow": [
         {
           "properties": {
@@ -297,6 +282,26 @@
               "expr": {
                 "Literal": {
                   "Value": "'Outer'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }
@@ -319,8 +324,29 @@
             }
           }
         }
+      ],
+      "title": [
+        {
+          "properties": {
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outras Datas'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
-  }
+  },
+  "parentGroupName": "63cd7a50134b5034700e"
 }
