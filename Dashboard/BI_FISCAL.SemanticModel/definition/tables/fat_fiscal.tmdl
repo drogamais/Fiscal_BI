@@ -104,6 +104,25 @@ table fat_fiscal
 
 		annotation UnderlyingDateTimeDataType = Time
 
+	column hora_insercao
+		dataType: dateTime
+		formatString: Short Time
+		lineageTag: 10dc55b6-7e52-4836-8fa0-021c15c6c971
+		summarizeBy: none
+		sourceColumn: hora_insercao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column hora_insercao_hh
+		dataType: string
+		lineageTag: 306b2e92-fa92-47ab-b4ab-06ee7ca444a3
+		summarizeBy: none
+		sourceColumn: hora_insercao_hh
+
+		annotation SummarizationSetBy = Automatic
+
 	partition fat_fiscal = m
 		mode: import
 		source =

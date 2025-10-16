@@ -191,7 +191,7 @@
             "bookmark": {
               "expr": {
                 "Literal": {
-                  "Value": "'b09eb2d270656a90dccd'"
+                  "Value": "'e7c6ca210ad03111a29a'"
                 }
               }
             }
@@ -345,5 +345,6 @@
     "drillFilterOtherVisuals": true
   },
   "parentGroupName": "fe23d9b463894d6450ed",
+  "isHidden": true,
   "howCreated": "InsertVisualButton"
 }

@@ -346,5 +346,6 @@
     "drillFilterOtherVisuals": true
   },
   "parentGroupName": "a130bbfc4cc332983c53",
+  "isHidden": true,
   "howCreated": "InsertVisualButton"
 }

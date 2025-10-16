@@ -17,3 +17,8 @@ relationship daab171d-a818-de40-00c0-b322b85a0d90
 	fromColumn: fat_fiscal.data_atualizacao
 	toColumn: dimCalendario.Date
 
+relationship fdb33d7c-ed80-4f38-aec1-43236d4ab569
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Atualizacao.'Última Atualização'
+	toColumn: LocalDateTable_c1332a40-9717-4d9d-a36e-8da51bb92b6e.Date
+

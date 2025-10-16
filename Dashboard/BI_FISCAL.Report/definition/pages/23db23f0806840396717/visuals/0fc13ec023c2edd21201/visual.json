@@ -4,7 +4,7 @@
   "position": {
     "x": 0,
     "y": 0,
-    "z": 500,
+    "z": 1500,
     "height": 87.5,
     "width": 271.25,
     "tabOrder": 8000
@@ -405,6 +405,5 @@
         "isLockedInViewMode": true
       }
     ]
-  },
-  "isHidden": true
+  }
 }

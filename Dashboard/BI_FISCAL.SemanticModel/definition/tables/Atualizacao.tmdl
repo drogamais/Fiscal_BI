@@ -1,0 +1,35 @@
+table Atualizacao
+	lineageTag: 30f64c9c-a85c-4d65-a763-bba2bd7da63b
+
+	measure 'Texto Última Att' = "ATUALIZADO EM: " & SELECTEDVALUE('Atualizacao'[Última Atualização])
+		lineageTag: 8a2fdc08-5f0b-40b4-b7eb-7032f53e4181
+
+	column 'Última Atualização'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7c74a454-5bbe-4c2b-9fee-d4c7bda6e7ec
+		summarizeBy: none
+		sourceColumn: Última Atualização
+
+		variation Variation
+			isDefault
+			relationship: fdb33d7c-ed80-4f38-aec1-43236d4ab569
+			defaultHierarchy: LocalDateTable_c1332a40-9717-4d9d-a36e-8da51bb92b6e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Atualizacao = m
+		mode: import
+		source =
+				let
+				    Fonte = DateTimeZone.LocalNow(),
+				    #"Convertido para Tabela" = #table(1, {{Fonte}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Convertido para Tabela",{{"Column1", "Última Atualização"}}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Última Atualização", type datetimezone}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

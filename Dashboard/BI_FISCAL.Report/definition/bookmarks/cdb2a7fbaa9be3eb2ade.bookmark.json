@@ -1,11 +1,9 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
-  "displayName": "HOJE",
-  "name": "b09eb2d270656a90dccd",
+  "displayName": "Outro",
+  "name": "cdb2a7fbaa9be3eb2ade",
   "options": {
-    "targetVisualNames": [
-      "335eb9b0a3ab00ed5997"
-    ]
+    "targetVisualNames": []
   },
   "explorationState": {
     "version": "1.3",
@@ -130,6 +128,9 @@
                     }
                   }
                 ]
+              },
+              "display": {
+                "mode": "hidden"
               }
             }
           },
@@ -137,7 +138,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "2d021f2db6045be866cd",
+                  "name": "4637c8f20dbb55972655",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -213,9 +214,6 @@
                     }
                   }
                 ]
-              },
-              "display": {
-                "mode": "hidden"
               }
             }
           },
@@ -223,7 +221,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "bc5a48e022795e63b890",
+                  "name": "b45843d0306b2d0d8bc8",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -355,7 +353,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "ad0913e7a5ada4912e49",
+                  "name": "bf291a7dcabd7d939c41",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -423,7 +421,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "0ebc56b889247456c422",
+                  "name": "5df9c052400903a078e6",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -503,7 +501,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "322db047c4029940c46b",
+                  "name": "6e0fe5a3905bc5524a3d",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -571,7 +569,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "710f86070006eaa47adb",
+                  "name": "e0f3e3e203741a2ba709",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -639,7 +637,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "40b5022a379baa260b28",
+                  "name": "60a4053a120d05bb40d0",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -706,31 +704,31 @@
           "c10ccf055040344422ed": {
             "singleVisual": {
               "visualType": "actionButton",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
+              "objects": {}
             }
           },
           "0df67a1903558930e768": {
             "singleVisual": {
               "visualType": "actionButton",
-              "objects": {}
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
             }
           },
           "044c97f5c81721d594a6": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "a1dde91fda825907d47b": {
             "singleVisual": {
               "visualType": "actionButton",
               "objects": {},
               "display": {
                 "mode": "hidden"
               }
+            }
+          },
+          "a1dde91fda825907d47b": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
             }
           },
           "2db3eaaca980e101e86c": {
@@ -920,14 +918,65 @@
                     "identityValues": []
                   }
                 }
-              ],
-              "display": {
-                "mode": "hidden"
-              }
+              ]
             }
           },
           "335eb9b0a3ab00ed5997": {
             "filters": {
+              "byName": {
+                "012daf3a73645bac6b66": {
+                  "name": "012daf3a73645bac6b66",
+                  "type": "RelativeDate",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fat_fiscal",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "f"
+                                  }
+                                },
+                                "Property": "data_insercao"
+                              }
+                            },
+                            "Right": {
+                              "DateSpan": {
+                                "Expression": {
+                                  "Now": {}
+                                },
+                                "TimeUnit": 0
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fat_fiscal"
+                        }
+                      },
+                      "Property": "data_insercao"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              },
               "byExpr": [
                 {
                   "name": "a1e47aa3c74a5135162c",
@@ -1043,58 +1092,6 @@
                     }
                   },
                   "howCreated": 0
-                },
-                {
-                  "name": "012daf3a73645bac6b66",
-                  "type": "RelativeDate",
-                  "filter": {
-                    "Version": 2,
-                    "From": [
-                      {
-                        "Name": "f",
-                        "Entity": "fat_fiscal",
-                        "Type": 0
-                      }
-                    ],
-                    "Where": [
-                      {
-                        "Condition": {
-                          "Comparison": {
-                            "ComparisonKind": 0,
-                            "Left": {
-                              "Column": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Source": "f"
-                                  }
-                                },
-                                "Property": "data_insercao"
-                              }
-                            },
-                            "Right": {
-                              "DateSpan": {
-                                "Expression": {
-                                  "Now": {}
-                                },
-                                "TimeUnit": 0
-                              }
-                            }
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "fat_fiscal"
-                        }
-                      },
-                      "Property": "data_insercao"
-                    }
-                  },
-                  "howCreated": 1
                 }
               ]
             },
@@ -1165,7 +1162,232 @@
                     "identityValues": []
                   }
                 }
+              ],
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "1c8047008c63913042b5": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e00cb16a9622dc1696b6",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fat_fiscal"
+                        }
+                      },
+                      "Property": "data_insercao"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "0dc275e66e5285b35703",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fat_fiscal"
+                        }
+                      },
+                      "Property": "hora_insercao_hh"
+                    }
+                  },
+                  "howCreated": 0
+                }
               ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fat_fiscal"
+                        }
+                      },
+                      "Property": "hora_insercao_hh"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "d665315b0d9398129069": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c9596056a76b8416bd90",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Atualizacao"
+                        }
+                      },
+                      "Property": "Texto Última Att"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "367c8285be6137eb0878": {
+            "filters": {
+              "byName": {
+                "7609e2b807d3199bd601": {
+                  "name": "7609e2b807d3199bd601",
+                  "type": "RelativeDate",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fat_fiscal",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "f"
+                                  }
+                                },
+                                "Property": "hora_insercao"
+                              }
+                            },
+                            "Right": {
+                              "DateSpan": {
+                                "Expression": {
+                                  "Now": {}
+                                },
+                                "TimeUnit": 0
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fat_fiscal"
+                        }
+                      },
+                      "Property": "hora_insercao"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              },
+              "byExpr": [
+                {
+                  "name": "e00cb16a9622dc1696b6",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fat_fiscal"
+                        }
+                      },
+                      "Property": "data_insercao"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "ca49ec479ab61356b101",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fat_fiscal"
+                        }
+                      },
+                      "Property": "hora_insercao_hh"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fat_fiscal"
+                        }
+                      },
+                      "Property": "hora_insercao_hh"
+                    }
+                  }
+                ]
+              },
+              "display": {
+                "mode": "hidden"
+              }
             }
           }
         },

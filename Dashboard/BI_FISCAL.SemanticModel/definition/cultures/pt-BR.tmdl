@@ -2371,141 +2371,72 @@ cultureInfo pt-BR
 			        }
 			      ],
 			      "SemanticType": "Time"
+			    },
+			    "fat_fiscal.hora_insercao": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fat_fiscal",
+			          "ConceptualProperty": "hora_insercao"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hora insercao": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hora_insercao": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "time": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "fat_fiscal.hora_insercao_hh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "fat_fiscal",
+			          "ConceptualProperty": "hora_insercao_hh"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hora insercao hh": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hora_insercao_hh": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "HORA FISCALIZADA": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
-			    "fat_fiscal_data_insercao_mê_has_fat_fiscal_data_insercao_dia": {
-			      "Binding": {
-			        "ConceptualEntity": "fat_fiscal"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "fat_fiscal.data_insercao.mê": {
-			          "Target": {
-			            "Entity": "fat_fiscal.data_insercao.mê"
-			          }
-			        },
-			        "fat_fiscal.data_insercao.dia": {
-			          "Target": {
-			            "Entity": "fat_fiscal.data_insercao.dia"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fat_fiscal.data_insercao.mê"
-			            },
-			            "Object": {
-			              "Role": "fat_fiscal.data_insercao.dia"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "mê_have_dias"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fat_fiscal.data_insercao.dia"
-			            },
-			            "Object": {
-			              "Role": "fat_fiscal.data_insercao.mê"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dias_have_mê"
-			        },
-			        {
-			          "Preposition": {
-			            "Subject": {
-			              "Role": "fat_fiscal.data_insercao.dia"
-			            },
-			            "Prepositions": [
-			              {
-			                "in": {
-			                  "State": "Generated"
-			                }
-			              }
-			            ],
-			            "Object": {
-			              "Role": "fat_fiscal.data_insercao.mê"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dias_are_in_mê2"
-			        }
-			      ]
-			    },
-			    "fat_fiscal_data_insercao_trimestre_has_fat_fiscal_data_insercao_mê": {
-			      "Binding": {
-			        "ConceptualEntity": "fat_fiscal"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "fat_fiscal.data_insercao.trimestre": {
-			          "Target": {
-			            "Entity": "fat_fiscal.data_insercao.trimestre"
-			          }
-			        },
-			        "fat_fiscal.data_insercao.mê": {
-			          "Target": {
-			            "Entity": "fat_fiscal.data_insercao.mê"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fat_fiscal.data_insercao.trimestre"
-			            },
-			            "Object": {
-			              "Role": "fat_fiscal.data_insercao.mê"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "trimestres_have_mê"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fat_fiscal.data_insercao.mê"
-			            },
-			            "Object": {
-			              "Role": "fat_fiscal.data_insercao.trimestre"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "mê_have_trimestres"
-			        },
-			        {
-			          "Preposition": {
-			            "Subject": {
-			              "Role": "fat_fiscal.data_insercao.mê"
-			            },
-			            "Prepositions": [
-			              {
-			                "in": {
-			                  "State": "Generated"
-			                }
-			              }
-			            ],
-			            "Object": {
-			              "Role": "fat_fiscal.data_insercao.trimestre"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "mê_are_in_trimestres2"
-			        }
-			      ]
-			    },
 			    "fat_fiscal_data_insercao_ano_has_fat_fiscal_data_insercao_trimestre": {
 			      "Binding": {
 			        "ConceptualEntity": "fat_fiscal"
@@ -2766,7 +2697,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_have_dias1"
+			          "ID": "mê_have_dias"
 			        },
 			        {
 			          "Attribute": {
@@ -2779,7 +2710,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "dias_have_mê1"
+			          "ID": "dias_have_mê"
 			        },
 			        {
 			          "Preposition": {
@@ -2832,7 +2763,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_mê1"
+			          "ID": "trimestres_have_mê"
 			        },
 			        {
 			          "Attribute": {
@@ -2845,7 +2776,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_have_trimestres1"
+			          "ID": "mê_have_trimestres"
 			        },
 			        {
 			          "Preposition": {
@@ -3129,7 +3060,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_have_dias2"
+			          "ID": "mê_have_dias1"
 			        },
 			        {
 			          "Attribute": {
@@ -3142,7 +3073,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "dias_have_mê2"
+			          "ID": "dias_have_mê1"
 			        },
 			        {
 			          "Preposition": {
@@ -3195,7 +3126,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_mê2"
+			          "ID": "trimestres_have_mê1"
 			        },
 			        {
 			          "Attribute": {
@@ -3208,7 +3139,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_have_trimestres2"
+			          "ID": "mê_have_trimestres1"
 			        },
 			        {
 			          "Preposition": {
@@ -3506,6 +3437,72 @@ cultureInfo pt-BR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_calendarios_have_fat_fiscals"
+			        }
+			      ]
+			    },
+			    "fat_fiscal_has_hora_insercao_hh": {
+			      "Binding": {
+			        "ConceptualEntity": "fat_fiscal"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_fiscal": {
+			          "Target": {
+			            "Entity": "fat_fiscal"
+			          }
+			        },
+			        "fat_fiscal.hora_insercao_hh": {
+			          "Target": {
+			            "Entity": "fat_fiscal.hora_insercao_hh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_fiscal"
+			            },
+			            "Object": {
+			              "Role": "fat_fiscal.hora_insercao_hh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_fiscals_have_hora_insercao_hhs"
+			        }
+			      ]
+			    },
+			    "fat_fiscal_has_hora_insercao": {
+			      "Binding": {
+			        "ConceptualEntity": "fat_fiscal"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_fiscal": {
+			          "Target": {
+			            "Entity": "fat_fiscal"
+			          }
+			        },
+			        "fat_fiscal.hora_insercao": {
+			          "Target": {
+			            "Entity": "fat_fiscal.hora_insercao"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_fiscal"
+			            },
+			            "Object": {
+			              "Role": "fat_fiscal.hora_insercao"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_fiscals_have_hora_insercaos"
 			        }
 			      ]
 			    },
@@ -4547,6 +4544,138 @@ cultureInfo pt-BR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_calendarios_have_dates"
+			        }
+			      ]
+			    },
+			    "fat_fiscal_data_insercao_trimestre_has_fat_fiscal_data_insercao_mê": {
+			      "Binding": {
+			        "ConceptualEntity": "fat_fiscal"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_fiscal.data_insercao.trimestre": {
+			          "Target": {
+			            "Entity": "fat_fiscal.data_insercao.trimestre"
+			          }
+			        },
+			        "fat_fiscal.data_insercao.mê": {
+			          "Target": {
+			            "Entity": "fat_fiscal.data_insercao.mê"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_fiscal.data_insercao.trimestre"
+			            },
+			            "Object": {
+			              "Role": "fat_fiscal.data_insercao.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_mê2"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_fiscal.data_insercao.mê"
+			            },
+			            "Object": {
+			              "Role": "fat_fiscal.data_insercao.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_trimestres2"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "fat_fiscal.data_insercao.mê"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "fat_fiscal.data_insercao.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_are_in_trimestres2"
+			        }
+			      ]
+			    },
+			    "fat_fiscal_data_insercao_mê_has_fat_fiscal_data_insercao_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "fat_fiscal"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_fiscal.data_insercao.mê": {
+			          "Target": {
+			            "Entity": "fat_fiscal.data_insercao.mê"
+			          }
+			        },
+			        "fat_fiscal.data_insercao.dia": {
+			          "Target": {
+			            "Entity": "fat_fiscal.data_insercao.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_fiscal.data_insercao.mê"
+			            },
+			            "Object": {
+			              "Role": "fat_fiscal.data_insercao.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_dias2"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_fiscal.data_insercao.dia"
+			            },
+			            "Object": {
+			              "Role": "fat_fiscal.data_insercao.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_have_mê2"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "fat_fiscal.data_insercao.dia"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "fat_fiscal.data_insercao.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_are_in_mê2"
 			        }
 			      ]
 			    }

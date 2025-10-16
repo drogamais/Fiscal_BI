@@ -315,5 +315,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e0f3e3e203741a2ba709",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fat_fiscal"
+              }
+            },
+            "Property": "status_atualizacao"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

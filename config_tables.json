@@ -28,7 +28,7 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0,
+      "dias_tolerancia": 1,
       "hora_tolerancia": "00:00"
     },
     {
@@ -38,8 +38,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "09:00"
     },
     {
       "nome": "gold_acode_vendas_distribuidorMES",
@@ -48,8 +48,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "09:00"
     },
     {
       "nome": "gold_acode_vendas_distribuidorTRI",
@@ -59,7 +59,7 @@
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "hora_tolerancia": "09:00"
     },
     {
       "nome": "gold_closeUp_estoque_vendas_analise_de_mercado",
