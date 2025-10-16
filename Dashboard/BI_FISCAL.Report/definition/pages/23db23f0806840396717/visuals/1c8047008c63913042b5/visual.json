@@ -352,21 +352,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "e00cb16a9622dc1696b6",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fat_fiscal"
-              }
-            },
-            "Property": "data_insercao"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "User"
-      },
-      {
         "name": "0dc275e66e5285b35703",
         "field": {
           "Column": {

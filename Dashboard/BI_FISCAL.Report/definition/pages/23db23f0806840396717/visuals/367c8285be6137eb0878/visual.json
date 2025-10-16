@@ -363,8 +363,46 @@
             "Property": "data_insercao"
           }
         },
-        "type": "Categorical",
-        "howCreated": "User"
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "fat_fiscal",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "f"
+                        }
+                      },
+                      "Property": "data_insercao"
+                    }
+                  },
+                  "Right": {
+                    "DateSpan": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isLockedInViewMode": true
       },
       {
         "name": "ca49ec479ab61356b101",
@@ -379,21 +417,6 @@
           }
         },
         "type": "Categorical"
-      },
-      {
-        "name": "0d2122d080882b5c1c73",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fat_fiscal"
-              }
-            },
-            "Property": "data_insercao"
-          }
-        },
-        "type": "RelativeDate",
-        "howCreated": "User"
       }
     ]
   }

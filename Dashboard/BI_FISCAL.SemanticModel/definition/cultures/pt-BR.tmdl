@@ -2434,9 +2434,676 @@ cultureInfo pt-BR
 			          }
 			        }
 			      ]
+			    },
+			    "atualizacao": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Atualizacao"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "atualizacao": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "atualizacao.última_atualização": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Atualizacao",
+			          "ConceptualProperty": "Última Atualização"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "última atualização": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "atualizacao.última_atualização.hierarquia_de_data": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Atualizacao",
+			          "VariationSource": "Última Atualização",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "hierarquia de data": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "hierarquia de information": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de fact": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de info": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de statistic": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.762
+			          }
+			        },
+			        {
+			          "hierarquia de document": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "hierarquia de figure": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        },
+			        {
+			          "hierarquia de record": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.739
+			          }
+			        }
+			      ]
+			    },
+			    "atualizacao.última_atualização.ano": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Atualizacao",
+			          "VariationSource": "Última Atualização",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Ano"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ano": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "última atualização ano": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "atualizacao.última_atualização.trimestre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Atualizacao",
+			          "VariationSource": "Última Atualização",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Trimestre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "última atualização trimestre": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "atualizacao.última_atualização.mê": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Atualizacao",
+			          "VariationSource": "Última Atualização",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Mês"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mê": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "última atualização mê": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "atualizacao.última_atualização.dia": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Atualizacao",
+			          "VariationSource": "Última Atualização",
+			          "VariationSet": "Variation",
+			          "Hierarchy": "Hierarquia de datas",
+			          "HierarchyLevel": "Dia"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dia": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "última atualização dia": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "atualizacao.texto_última_att": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Atualizacao",
+			          "ConceptualProperty": "Texto Última Att"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "texto última att": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
+			    "atualizacao_última_atualização_trimestre_has_atualizacao_última_atualização_mê": {
+			      "Binding": {
+			        "ConceptualEntity": "Atualizacao"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "atualizacao.última_atualização.trimestre": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.trimestre"
+			          }
+			        },
+			        "atualizacao.última_atualização.mê": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.mê"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "atualizacao.última_atualização.trimestre"
+			            },
+			            "Object": {
+			              "Role": "atualizacao.última_atualização.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_mê"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "atualizacao.última_atualização.mê"
+			            },
+			            "Object": {
+			              "Role": "atualizacao.última_atualização.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_trimestres"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "atualizacao.última_atualização.mê"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "atualizacao.última_atualização.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_are_in_trimestres3"
+			        }
+			      ]
+			    },
+			    "atualizacao_última_atualização_ano_has_atualizacao_última_atualização_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Atualizacao"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "atualizacao.última_atualização.ano": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.ano"
+			          }
+			        },
+			        "atualizacao.última_atualização.trimestre": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "atualizacao.última_atualização.ano"
+			            },
+			            "Object": {
+			              "Role": "atualizacao.última_atualização.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "anos_have_trimestres"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "atualizacao.última_atualização.trimestre"
+			            },
+			            "Object": {
+			              "Role": "atualizacao.última_atualização.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_anos"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "atualizacao.última_atualização.trimestre"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "atualizacao.última_atualização.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_are_in_anos3"
+			        }
+			      ]
+			    },
+			    "atualizacao_última_atualização_hierarquia_de_data_has_atualizacao_última_atualização_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "Atualizacao"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "atualizacao.última_atualização.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.hierarquia_de_data"
+			          }
+			        },
+			        "atualizacao.última_atualização.dia": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "atualizacao.última_atualização.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "atualizacao.última_atualização.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_dias"
+			        }
+			      ]
+			    },
+			    "atualizacao_última_atualização_hierarquia_de_data_has_atualizacao_última_atualização_mê": {
+			      "Binding": {
+			        "ConceptualEntity": "Atualizacao"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "atualizacao.última_atualização.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.hierarquia_de_data"
+			          }
+			        },
+			        "atualizacao.última_atualização.mê": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.mê"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "atualizacao.última_atualização.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "atualizacao.última_atualização.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_mê"
+			        }
+			      ]
+			    },
+			    "atualizacao_última_atualização_hierarquia_de_data_has_atualizacao_última_atualização_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Atualizacao"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "atualizacao.última_atualização.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.hierarquia_de_data"
+			          }
+			        },
+			        "atualizacao.última_atualização.trimestre": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "atualizacao.última_atualização.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "atualizacao.última_atualização.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_trimestres"
+			        }
+			      ]
+			    },
+			    "atualizacao_última_atualização_hierarquia_de_data_has_atualizacao_última_atualização_ano": {
+			      "Binding": {
+			        "ConceptualEntity": "Atualizacao"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "atualizacao.última_atualização.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.hierarquia_de_data"
+			          }
+			        },
+			        "atualizacao.última_atualização.ano": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.ano"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "atualizacao.última_atualização.hierarquia_de_data"
+			            },
+			            "Object": {
+			              "Role": "atualizacao.última_atualização.ano"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "hierarquia_de_data_have_anos"
+			        }
+			      ]
+			    },
+			    "atualizacao_última_atualização_has_hierarquia_de_data": {
+			      "Binding": {
+			        "ConceptualEntity": "Atualizacao"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "atualizacao.última_atualização": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização"
+			          }
+			        },
+			        "atualizacao.última_atualização.hierarquia_de_data": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização.hierarquia_de_data"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "atualizacao.última_atualização"
+			            },
+			            "Object": {
+			              "Role": "atualizacao.última_atualização.hierarquia_de_data"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "última_atualizaçãos_have_hierarquia_de_data"
+			        }
+			      ]
+			    },
+			    "fat_fiscal_data_insercao_mê_has_fat_fiscal_data_insercao_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "fat_fiscal"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_fiscal.data_insercao.mê": {
+			          "Target": {
+			            "Entity": "fat_fiscal.data_insercao.mê"
+			          }
+			        },
+			        "fat_fiscal.data_insercao.dia": {
+			          "Target": {
+			            "Entity": "fat_fiscal.data_insercao.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_fiscal.data_insercao.mê"
+			            },
+			            "Object": {
+			              "Role": "fat_fiscal.data_insercao.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_dias"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_fiscal.data_insercao.dia"
+			            },
+			            "Object": {
+			              "Role": "fat_fiscal.data_insercao.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_have_mê"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "fat_fiscal.data_insercao.dia"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "fat_fiscal.data_insercao.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dias_are_in_mê2"
+			        }
+			      ]
+			    },
+			    "fat_fiscal_data_insercao_trimestre_has_fat_fiscal_data_insercao_mê": {
+			      "Binding": {
+			        "ConceptualEntity": "fat_fiscal"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_fiscal.data_insercao.trimestre": {
+			          "Target": {
+			            "Entity": "fat_fiscal.data_insercao.trimestre"
+			          }
+			        },
+			        "fat_fiscal.data_insercao.mê": {
+			          "Target": {
+			            "Entity": "fat_fiscal.data_insercao.mê"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_fiscal.data_insercao.trimestre"
+			            },
+			            "Object": {
+			              "Role": "fat_fiscal.data_insercao.mê"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "trimestres_have_mê1"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_fiscal.data_insercao.mê"
+			            },
+			            "Object": {
+			              "Role": "fat_fiscal.data_insercao.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_have_trimestres1"
+			        },
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "fat_fiscal.data_insercao.mê"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "fat_fiscal.data_insercao.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "mê_are_in_trimestres2"
+			        }
+			      ]
+			    },
 			    "fat_fiscal_data_insercao_ano_has_fat_fiscal_data_insercao_trimestre": {
 			      "Binding": {
 			        "ConceptualEntity": "fat_fiscal"
@@ -2466,7 +3133,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "anos_have_trimestres"
+			          "ID": "anos_have_trimestres1"
 			        },
 			        {
 			          "Attribute": {
@@ -2479,7 +3146,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_anos"
+			          "ID": "trimestres_have_anos1"
 			        },
 			        {
 			          "Preposition": {
@@ -2532,7 +3199,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_dias"
+			          "ID": "hierarquia_de_data_have_dias1"
 			        }
 			      ]
 			    },
@@ -2565,7 +3232,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_mê"
+			          "ID": "hierarquia_de_data_have_mê1"
 			        }
 			      ]
 			    },
@@ -2598,7 +3265,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_trimestres"
+			          "ID": "hierarquia_de_data_have_trimestres1"
 			        }
 			      ]
 			    },
@@ -2631,7 +3298,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos"
+			          "ID": "hierarquia_de_data_have_anos1"
 			        }
 			      ]
 			    },
@@ -2697,7 +3364,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_have_dias"
+			          "ID": "mê_have_dias1"
 			        },
 			        {
 			          "Attribute": {
@@ -2710,7 +3377,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "dias_have_mê"
+			          "ID": "dias_have_mê1"
 			        },
 			        {
 			          "Preposition": {
@@ -2763,7 +3430,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_mê"
+			          "ID": "trimestres_have_mê2"
 			        },
 			        {
 			          "Attribute": {
@@ -2776,7 +3443,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_have_trimestres"
+			          "ID": "mê_have_trimestres2"
 			        },
 			        {
 			          "Preposition": {
@@ -2829,7 +3496,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "anos_have_trimestres1"
+			          "ID": "anos_have_trimestres2"
 			        },
 			        {
 			          "Attribute": {
@@ -2842,7 +3509,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_anos1"
+			          "ID": "trimestres_have_anos2"
 			        },
 			        {
 			          "Preposition": {
@@ -2895,7 +3562,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_dias1"
+			          "ID": "hierarquia_de_data_have_dias2"
 			        }
 			      ]
 			    },
@@ -2928,7 +3595,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_mê1"
+			          "ID": "hierarquia_de_data_have_mê2"
 			        }
 			      ]
 			    },
@@ -2961,7 +3628,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_trimestres1"
+			          "ID": "hierarquia_de_data_have_trimestres2"
 			        }
 			      ]
 			    },
@@ -2994,7 +3661,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos1"
+			          "ID": "hierarquia_de_data_have_anos2"
 			        }
 			      ]
 			    },
@@ -3060,7 +3727,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_have_dias1"
+			          "ID": "mê_have_dias2"
 			        },
 			        {
 			          "Attribute": {
@@ -3073,7 +3740,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "dias_have_mê1"
+			          "ID": "dias_have_mê2"
 			        },
 			        {
 			          "Preposition": {
@@ -3126,7 +3793,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_mê1"
+			          "ID": "trimestres_have_mê3"
 			        },
 			        {
 			          "Attribute": {
@@ -3139,7 +3806,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_have_trimestres1"
+			          "ID": "mê_have_trimestres3"
 			        },
 			        {
 			          "Preposition": {
@@ -3192,7 +3859,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "anos_have_trimestres2"
+			          "ID": "anos_have_trimestres3"
 			        },
 			        {
 			          "Attribute": {
@@ -3205,7 +3872,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_anos2"
+			          "ID": "trimestres_have_anos3"
 			        },
 			        {
 			          "Preposition": {
@@ -3258,7 +3925,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_dias2"
+			          "ID": "hierarquia_de_data_have_dias3"
 			        }
 			      ]
 			    },
@@ -3291,7 +3958,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_mê2"
+			          "ID": "hierarquia_de_data_have_mê3"
 			        }
 			      ]
 			    },
@@ -3324,7 +3991,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_trimestres2"
+			          "ID": "hierarquia_de_data_have_trimestres3"
 			        }
 			      ]
 			    },
@@ -3357,7 +4024,7 @@ cultureInfo pt-BR
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "hierarquia_de_data_have_anos2"
+			          "ID": "hierarquia_de_data_have_anos3"
 			        }
 			      ]
 			    },
@@ -3437,6 +4104,72 @@ cultureInfo pt-BR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_calendarios_have_fat_fiscals"
+			        }
+			      ]
+			    },
+			    "atualizacao_has_texto_última_att": {
+			      "Binding": {
+			        "ConceptualEntity": "Atualizacao"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "atualizacao": {
+			          "Target": {
+			            "Entity": "atualizacao"
+			          }
+			        },
+			        "atualizacao.texto_última_att": {
+			          "Target": {
+			            "Entity": "atualizacao.texto_última_att"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "atualizacao"
+			            },
+			            "Object": {
+			              "Role": "atualizacao.texto_última_att"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "atualizacaos_have_texto_última_att"
+			        }
+			      ]
+			    },
+			    "atualizacao_has_última_atualização": {
+			      "Binding": {
+			        "ConceptualEntity": "Atualizacao"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "atualizacao": {
+			          "Target": {
+			            "Entity": "atualizacao"
+			          }
+			        },
+			        "atualizacao.última_atualização": {
+			          "Target": {
+			            "Entity": "atualizacao.última_atualização"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "atualizacao"
+			            },
+			            "Object": {
+			              "Role": "atualizacao.última_atualização"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "atualizacaos_have_última_atualizaçãos"
 			        }
 			      ]
 			    },
@@ -4547,20 +5280,20 @@ cultureInfo pt-BR
 			        }
 			      ]
 			    },
-			    "fat_fiscal_data_insercao_trimestre_has_fat_fiscal_data_insercao_mê": {
+			    "atualizacao_última_atualização_mê_has_atualizacao_última_atualização_dia": {
 			      "Binding": {
-			        "ConceptualEntity": "fat_fiscal"
+			        "ConceptualEntity": "Atualizacao"
 			      },
 			      "State": "Generated",
 			      "Roles": {
-			        "fat_fiscal.data_insercao.trimestre": {
+			        "atualizacao.última_atualização.mê": {
 			          "Target": {
-			            "Entity": "fat_fiscal.data_insercao.trimestre"
+			            "Entity": "atualizacao.última_atualização.mê"
 			          }
 			        },
-			        "fat_fiscal.data_insercao.mê": {
+			        "atualizacao.última_atualização.dia": {
 			          "Target": {
-			            "Entity": "fat_fiscal.data_insercao.mê"
+			            "Entity": "atualizacao.última_atualização.dia"
 			          }
 			        }
 			      },
@@ -4568,33 +5301,33 @@ cultureInfo pt-BR
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "fat_fiscal.data_insercao.trimestre"
+			              "Role": "atualizacao.última_atualização.mê"
 			            },
 			            "Object": {
-			              "Role": "fat_fiscal.data_insercao.mê"
+			              "Role": "atualizacao.última_atualização.dia"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "trimestres_have_mê2"
+			          "ID": "mê_have_dias3"
 			        },
 			        {
 			          "Attribute": {
 			            "Subject": {
-			              "Role": "fat_fiscal.data_insercao.mê"
+			              "Role": "atualizacao.última_atualização.dia"
 			            },
 			            "Object": {
-			              "Role": "fat_fiscal.data_insercao.trimestre"
+			              "Role": "atualizacao.última_atualização.mê"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_have_trimestres2"
+			          "ID": "dias_have_mê3"
 			        },
 			        {
 			          "Preposition": {
 			            "Subject": {
-			              "Role": "fat_fiscal.data_insercao.mê"
+			              "Role": "atualizacao.última_atualização.dia"
 			            },
 			            "Prepositions": [
 			              {
@@ -4604,78 +5337,12 @@ cultureInfo pt-BR
 			              }
 			            ],
 			            "Object": {
-			              "Role": "fat_fiscal.data_insercao.trimestre"
+			              "Role": "atualizacao.última_atualização.mê"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "mê_are_in_trimestres2"
-			        }
-			      ]
-			    },
-			    "fat_fiscal_data_insercao_mê_has_fat_fiscal_data_insercao_dia": {
-			      "Binding": {
-			        "ConceptualEntity": "fat_fiscal"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "fat_fiscal.data_insercao.mê": {
-			          "Target": {
-			            "Entity": "fat_fiscal.data_insercao.mê"
-			          }
-			        },
-			        "fat_fiscal.data_insercao.dia": {
-			          "Target": {
-			            "Entity": "fat_fiscal.data_insercao.dia"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fat_fiscal.data_insercao.mê"
-			            },
-			            "Object": {
-			              "Role": "fat_fiscal.data_insercao.dia"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "mê_have_dias2"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fat_fiscal.data_insercao.dia"
-			            },
-			            "Object": {
-			              "Role": "fat_fiscal.data_insercao.mê"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dias_have_mê2"
-			        },
-			        {
-			          "Preposition": {
-			            "Subject": {
-			              "Role": "fat_fiscal.data_insercao.dia"
-			            },
-			            "Prepositions": [
-			              {
-			                "in": {
-			                  "State": "Generated"
-			                }
-			              }
-			            ],
-			            "Object": {
-			              "Role": "fat_fiscal.data_insercao.mê"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dias_are_in_mê2"
+			          "ID": "dias_are_in_mê3"
 			        }
 			      ]
 			    }

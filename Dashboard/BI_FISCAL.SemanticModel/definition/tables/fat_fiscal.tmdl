@@ -131,9 +131,10 @@ table fat_fiscal
 				    dbDrogamais_Database = Fonte{[Name="dbDrogamais",Kind="Database"]}[Data],
 				    fat_fiscal_Table = dbDrogamais_Database{[Name="fat_fiscal",Kind="Table"]}[Data],
 				    #"Linhas Filtradas" = Table.SelectRows(fat_fiscal_Table, each true),
-				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Linhas Filtradas",{{"data_insercao", type date}})
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Linhas Filtradas",{{"data_insercao", type date}}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Tipo Alterado", each ([nome_ativo] <> "Indica+" and [nome_ativo] <> "Painel de Acompanhamento - LIQUIDA"))
 				in
-				    #"Tipo Alterado"
+				    #"Linhas Filtradas1"
 
 	annotation PBI_NavigationStepName = Navegação
 

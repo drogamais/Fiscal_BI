@@ -72,8 +72,8 @@
                 }
               },
               "queryRef": "Min(fat_fiscal.data_atualizacao)",
-              "nativeQueryRef": "DATA",
-              "displayName": "DATA"
+              "nativeQueryRef": "DATA REFRESH",
+              "displayName": "DATA REFRESH"
             },
             {
               "field": {
@@ -92,8 +92,8 @@
                 }
               },
               "queryRef": "Min(fat_fiscal.hora_atualizacao)",
-              "nativeQueryRef": "HORA",
-              "displayName": "HORA"
+              "nativeQueryRef": "HORA REFRESH",
+              "displayName": "HORA REFRESH"
             },
             {
               "field": {
