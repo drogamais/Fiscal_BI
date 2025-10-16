@@ -5,10 +5,10 @@ import mariadb
 import sys
 import pandas as pd
 
-def get_db_connection(config_key='databaseDrogamais'): 
+def get_db_connection(config_key='dbDrogamais'): 
     """
     Lê o config.json e estabelece uma conexão com o banco de dados MariaDB
-    usando a chave de configuração especificada ('databaseDrogamais' ou 'databaseSults').
+    usando a chave de configuração especificada ('dbDrogamais' ou 'dbSults').
     Os timeouts (read_timeout e write_timeout) são lidos diretamente do arquivo de configuração,
     com valor padrão de 300s se não definidos.
     """

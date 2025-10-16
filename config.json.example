@@ -6,7 +6,7 @@
     "client_secret": "secret"
   },
   
-  "databaseDrogamais": 
+  "dbDrogamais": 
   {
     "user": "usuario",
     "password": "senha",
@@ -17,13 +17,24 @@
     "write_timeout": 300 
   },
 
-  "databaseSults": 
+  "dbSults": 
   {
     "user": "usuario",
     "password": "senha",
     "host": "host",
     "port": 3306,
     "database": "dbSults",
+    "read_timeout": 300,
+    "write_timeout": 300
+  },
+
+  "drogamais": 
+  {
+    "user": "usuario",
+    "password": "senha",
+    "host": "host",
+    "port": 3306,
+    "database": "drogamais",
     "read_timeout": 300,
     "write_timeout": 300
   }

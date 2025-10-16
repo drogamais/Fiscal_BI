@@ -6,7 +6,7 @@
       "tipo": "TABELA BRONZE",
       "coluna": "data_insercao",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 60,
       "hora_tolerancia": "00:10"
@@ -16,7 +16,7 @@
       "tipo": "TABELA BRONZE",
       "coluna": "data_insercao",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 60,
       "hora_tolerancia": "00:00"
@@ -26,7 +26,7 @@
       "tipo": "TABELA BRONZE",
       "coluna": "Ultima_Atualizacao",
       "enabled": true,
-      "conn_key": "bancoDrogamais",
+      "conn_key": "drogamais",
       "workspace_log": "drogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "07:10"
@@ -36,7 +36,7 @@
       "tipo": "TABELA BRONZE",
       "coluna": "data_insercao",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "08:00"
@@ -46,7 +46,7 @@
       "tipo": "TABELA BRONZE",
       "coluna": "data_insercao",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "08:00"
@@ -56,7 +56,7 @@
       "tipo": "TABELA GOLD",
       "coluna": "DATA_ATUALIZACAO",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "09:00"
@@ -66,7 +66,7 @@
       "tipo": "TABELA GOLD",
       "coluna": "DATA_ATUALIZACAO",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "09:00"
@@ -76,7 +76,7 @@
       "tipo": "TABELA GOLD",
       "coluna": "DATA_ATUALIZACAO",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "09:00"
@@ -86,7 +86,7 @@
       "tipo": "TABELA GOLD",
       "coluna": "data_insercao",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "08:00"
@@ -96,7 +96,7 @@
       "tipo": "TABELA GOLD",
       "coluna": "data_insercao",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "08:00"
@@ -106,7 +106,7 @@
       "tipo": "TABELA SILVER",
       "coluna": "data_atualizacao",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "09:00"
@@ -116,7 +116,7 @@
       "tipo": "TABELA SILVER",
       "coluna": "data_insercao",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "08:00"
@@ -126,7 +126,7 @@
       "tipo": "TABELA SILVER",
       "coluna": "data_insercao",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "08:00"
@@ -136,7 +136,7 @@
       "tipo": "TABELA SILVER",
       "coluna": "data_atualização",
       "enabled": true,
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "08:00"
@@ -146,7 +146,7 @@
       "tipo": "TABELA BRONZE",
       "coluna": "data_atualizacao",
       "enabled": true,
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
       "hora_tolerancia": "20:00"
@@ -156,7 +156,7 @@
       "tipo": "TABELA BRONZE",
       "coluna": "data_atualizacao",
       "enabled": true,
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
       "hora_tolerancia": "20:00"
@@ -166,7 +166,7 @@
       "tipo": "TABELA BRONZE",
       "coluna": "data_atualizacao",
       "enabled": true,
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
       "hora_tolerancia": "20:00"
@@ -176,7 +176,7 @@
       "tipo": "TABELA",
       "coluna": "data_atualizacao",
       "enabled": true,
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
       "hora_tolerancia": "20:00"
@@ -186,7 +186,7 @@
       "tipo": "TABELA",
       "coluna": "data_atualizacao",
       "enabled": true,
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
       "hora_tolerancia": "08:00"
@@ -196,7 +196,7 @@
       "tipo": "TABELA",
       "coluna": "data_atualizacao",
       "enabled": true,
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
       "hora_tolerancia": "08:00"
@@ -206,7 +206,7 @@
       "tipo": "TABELA",
       "coluna": "data_atualizacao",
       "enabled": true,
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
       "hora_tolerancia": "00:10"
@@ -216,7 +216,7 @@
       "tipo": "TABELA",
       "coluna": "data_atualizacao",
       "enabled": true,
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
       "hora_tolerancia": "00:10"
@@ -226,7 +226,7 @@
       "tipo": "TABELA",
       "coluna": "data_atualizacao",
       "enabled": true,
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
       "hora_tolerancia": "00:10"
@@ -236,7 +236,7 @@
       "tipo": "TABELA",
       "coluna": "data_atualizacao",
       "enabled": true,
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
       "hora_tolerancia": "00:10"
@@ -248,7 +248,7 @@
       "nome_silver": "silver_close_up",
       "coluna": "data_insercao",
       "workspace_log": "dbDrogamais",
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "enabled": true
     },
     {
@@ -256,7 +256,7 @@
       "nome_silver": "silver_iqvia",
       "coluna": "data_insercao",
       "workspace_log": "dbDrogamais",
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "enabled": true
     },
     {
@@ -264,7 +264,7 @@
       "nome_silver": "silver_movidesk_chamados",
       "coluna": "data_atualizacao",
       "workspace_log": "dbSults",
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "enabled": true
     },
     {
@@ -272,7 +272,7 @@
       "nome_silver": "silver_sults_chamados",
       "coluna": "data_atualizacao",
       "workspace_log": "dbSults",
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "enabled": true
     },
     {
@@ -280,7 +280,7 @@
       "nome_silver": "silver_sults_implantacao",
       "coluna": "data_atualizacao",
       "workspace_log": "dbSults",
-      "conn_key": "databaseSults",
+      "conn_key": "dbSults",
       "enabled": true
     }
   ],
@@ -290,7 +290,7 @@
       "nome_gold": "gold_closeUp_estoque_vendas_analise_de_mercado",
       "coluna": "data_insercao",
       "workspace_log": "dbDrogamais",
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "enabled": false
     },
     {
@@ -298,7 +298,7 @@
       "nome_gold": "gold_iqvia_estoque_vendas_analise_de_mercado",
       "coluna": "data_insercao",
       "workspace_log": "dbDrogamais",
-      "conn_key": "databaseDrogamais",
+      "conn_key": "dbDrogamais",
       "enabled": false
     }
   ]

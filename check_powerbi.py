@@ -229,7 +229,7 @@ def main():
     conn = None
     try:
         # Usa 'databaseDrogamais' explicitamente para o log
-        conn = get_db_connection(config_key='databaseDrogamais')
+        conn = get_db_connection(config_key='dbDrogamais')
         if conn is None:
             sys.exit(1)
         

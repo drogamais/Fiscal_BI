@@ -179,7 +179,7 @@ def main():
         print("="*50 + "\n")
         
         # Conexão para o banco de logs (dbDrogamais) para o INSERT
-        conn_log = get_db_connection(config_key='databaseDrogamais')
+        conn_log = get_db_connection(config_key='dbDrogamais')
         
         if conn_log is None:
              print("ERRO CRÍTICO: Não foi possível conectar ao banco de LOGS (dbDrogamais). Logs não inseridos.")
