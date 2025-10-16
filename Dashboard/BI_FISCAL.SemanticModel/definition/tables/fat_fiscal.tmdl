@@ -127,9 +127,9 @@ table fat_fiscal
 		mode: import
 		source =
 				let
-				    Fonte = Odbc.DataSource("dsn=dbDrogamais", [HierarchicalNavigation=true]),
+				    Fonte = MariaDB.Contents("10.48.12.20:3306;dbDrogamais", null, null),
 				    dbDrogamais_Database = Fonte{[Name="dbDrogamais",Kind="Database"]}[Data],
-				    fat_fiscal_Table = dbDrogamais_Database{[Name="fat_fiscal",Kind="Table"]}[Data],
+				    fat_fiscal_Table = Fonte{[Name="fat_fiscal",Kind="Table"]}[Data],
 				    #"Linhas Filtradas" = Table.SelectRows(fat_fiscal_Table, each true),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Linhas Filtradas",{{"data_insercao", type date}}),
 				    #"Linhas Filtradas1" = Table.SelectRows(#"Tipo Alterado", each ([nome_ativo] <> "Indica+" and [nome_ativo] <> "Painel de Acompanhamento - LIQUIDA"))
