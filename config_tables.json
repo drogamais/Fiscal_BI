@@ -8,8 +8,8 @@
       "enabled": true,
       "conn_key": "bancoDrogamais",
       "workspace_log": "drogamais",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "07:10"
     },
     {
       "nome": "bronze_plugpharma_estoque",
@@ -18,8 +18,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
     },
     {
       "nome": "bronze_plugpharma_vendas",
@@ -29,7 +29,7 @@
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
-      "hora_tolerancia": "00:00"
+      "hora_tolerancia": "08:00"
     },
     {
       "nome": "gold_acode_vendas_distribuidorMAT",
@@ -58,7 +58,7 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0,
+      "dias_tolerancia": 1,
       "hora_tolerancia": "09:00"
     },
     {
@@ -88,8 +88,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "09:00"
     },
     {
       "nome": "silver_plugpharma_estoque",
@@ -168,8 +168,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
     },
     {
       "nome": "tb_tarefas",
@@ -178,8 +178,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
     },
     {
       "nome": "tb_reports_embedded",
