@@ -80,6 +80,11 @@ Para iniciar a fiscalização:
 python main.py
 ```
 
+
+```bash
+./exec_main.bat
+```
+
 ## 📂 Estrutura do Projeto
 
 A estrutura de pastas principal é composta pelos seguintes arquivos de código e configuração:
