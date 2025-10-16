@@ -240,8 +240,19 @@
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
       "hora_tolerancia": "00:10"
+    },
+    {
+      "nome": "silver_produtos_life",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:30"
     }
   ],
+
   "silver_sync_checks": [
     {
       "nome_bronze": "bronze_close_up",
