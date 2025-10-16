@@ -1,16 +1,16 @@
 {
   "powerbi_api": 
   {
-    "tenant_id": "tenant",
-    "client_id": "client",
-    "client_secret": "secret"
+    "tenant_id": "SEU_TENANT_ID_AQUI",
+    "client_id": "SEU_CLIENT_ID_AQUI",
+    "client_secret": "SEU_CLIENT_SECRET_AQUI"
   },
-  
+
   "dbDrogamais": 
   {
-    "user": "usuario",
-    "password": "senha",
-    "host": "host",
+    "user": "SEU_USUARIO_DB_DROGAMAIS",
+    "password": "SUA_SENHA_DB_DROGAMAIS",
+    "host": "SEU_HOST_DB_DROGAMAIS",
     "port": 3306,
     "database": "dbDrogamais",
     "read_timeout": 300,
@@ -19,9 +19,9 @@
 
   "dbSults": 
   {
-    "user": "usuario",
-    "password": "senha",
-    "host": "host",
+    "user": "SEU_USUARIO_DB_SULTS",
+    "password": "SUA_SENHA_DB_SULTS",
+    "host": "SEU_HOST_DB_SULTS",
     "port": 3306,
     "database": "dbSults",
     "read_timeout": 300,
@@ -30,9 +30,9 @@
 
   "drogamais": 
   {
-    "user": "usuario",
-    "password": "senha",
-    "host": "host",
+    "user": "SEU_USUARIO_DROGAMAIS",
+    "password": "SUA_SENHA_DROGAMAIS",
+    "host": "SEU_HOST_DROGAMAIS",
     "port": 3306,
     "database": "drogamais",
     "read_timeout": 300,
