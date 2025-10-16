@@ -2,6 +2,26 @@
   "_comment": "Este arquivo configura TODAS as tabelas que devem ser verificadas. A chave 'conn_key' deve espelhar o config.json.",
   "freshness_checks": [
     {
+      "nome": "bronze_close_up",
+      "tipo": "TABELA BRONZE",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 60,
+      "hora_tolerancia": "00:10"
+    },
+    {
+      "nome": "bronze_iqvia_cpp",
+      "tipo": "TABELA BRONZE",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "databaseDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 60,
+      "hora_tolerancia": "00:00"
+    },
+    {
       "nome": "dw_tb_acode_temp",
       "tipo": "TABELA BRONZE",
       "coluna": "Ultima_Atualizacao",
@@ -68,8 +88,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
     },
     {
       "nome": "gold_iqvia_estoque_vendas_analise_de_mercado",
@@ -78,8 +98,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
     },
     {
       "nome": "silver_acode_vendas_parceiros",
@@ -98,8 +118,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
     },
     {
       "nome": "silver_plugpharma_vendas",
@@ -108,8 +128,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
     },
     {
       "nome": "silver_plugpharma_vendas_campanhaPrincipia",
@@ -118,8 +138,8 @@
       "enabled": true,
       "conn_key": "databaseDrogamais",
       "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
     },
     {
       "nome": "bronze_movidesk_chamados",
@@ -159,7 +179,7 @@
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
-      "hora_tolerancia": "00:00"
+      "hora_tolerancia": "20:00"
     },
     {
       "nome": "tb_projetos",
@@ -188,8 +208,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "00:10"
     },
     {
       "nome": "tb_report_auditoria_embedded",
@@ -198,8 +218,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "00:10"
     },
     {
       "nome": "tb_users_embedded",
@@ -208,8 +228,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "00:10"
     },
     {
       "nome": "tb_workspaces_embedded",
@@ -218,8 +238,8 @@
       "enabled": true,
       "conn_key": "databaseSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 0,
-      "hora_tolerancia": "00:00"
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "00:10"
     }
   ],
   "silver_sync_checks": [

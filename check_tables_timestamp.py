@@ -31,29 +31,28 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log,
     time_part = datetime.min.time() 
     if time_tolerance and isinstance(time_tolerance, str):
         try:
-            # Processa o string 'HH:MM' para um objeto datetime.time
             time_part = datetime.strptime(time_tolerance, '%H:%M').time()
         except ValueError:
             print(f"AVISO: 'hora_tolerancia' inválida ('{time_tolerance}') para '{table_name}'. Usando padrão 00:00:00.")
             
     # 3. Determina o PONTO DE CORTE REQUERIDO (data_limite)
     
-    # A data base do ponto de corte é HOJE - dias_tolerancia
+    # CÁLCULO BASE: Determina a data que o último update *deveria ter ocorrido*
+    # Ex: Hoje 16/10. dias_tolerancia=1. expected_date = 15/10.
+    # Ex: Hoje 16/10. dias_tolerancia=0. expected_date = 16/10.
     expected_cutoff_date = now.date() - timedelta(days=update_tolerance_days)
+    
+    # PONTO DE CORTE INICIAL: expected_date combinada com hora_tolerancia
     data_limite = datetime.combine(expected_cutoff_date, time_part)
     
-    # --- LÓGICA DE CORREÇÃO PARA CICLOS RÍGIDOS (dias_tolerancia = 1) ---
-    if update_tolerance_days == 1:
-        data_limite = datetime.combine(now.date(), time_part)
-        if now.time() < time_part:
-            data_limite = data_limite - timedelta(days=1)
-            
-    elif update_tolerance_days == 0:
-        if now.time() < time_part:
-            data_limite = data_limite - timedelta(days=1)
-    else:
-        pass 
-    
+    # --- LÓGICA DE AJUSTE DE CORTE ---
+    # Se a checagem está ocorrendo ANTES da hora de corte (Ex: 07:00 < 08:00), 
+    # E a tolerância é D-0 (corte é hoje), o corte real é D-1 na hora do corte, 
+    # pois o ativo ainda tem tempo até o horário de corte.
+    if update_tolerance_days == 0 and now.time() < time_part:
+        data_limite = data_limite - timedelta(days=1)
+
+
     print(f"---> Verificando a tabela ({workspace_log}): '{table_name}' (usando coluna '{date_column}')...")
     print(f"     PONTO DE CORTE REQUERIDO: {data_limite.strftime('%Y-%m-%d %H:%M:%S')} (Última atualização deve ser >= este valor)")
     
@@ -70,50 +69,44 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log,
             warnings.simplefilter("ignore", UserWarning)
             df_result = pd.read_sql(query, conn)
         
-        # Converte para datetime (já que a coluna de origem é TIMESTAMP/DATETIME)
         max_dt_from_db = pd.to_datetime(df_result.iloc[0, 0])
         
-        # Armazena a data/hora original lida do DB para o log final
+        # Armazena a data/hora original lida do DB (será ajustada se necessário)
         data_ref = max_dt_from_db 
         
         if pd.isna(max_dt_from_db):
             status = 'Sem Histórico'
         else:
-            # Removendo TimeZone caso a coluna venha com ele (para comparação com now())
+            # Remove TimeZone para evitar comparações complexas
             max_dt_local = max_dt_from_db.tz_localize(None) 
             
-            # --- INÍCIO DA CORREÇÃO: Aumenta a hora se for 00:00:00 e houver tolerância de hora ---
-            # A hora padrão do DB é 00:00:00 e foi definida uma hora de corte (e.g., 09:00),
-            # o script assume que a hora é a hora de corte para a comparação.
+            # --- CORREÇÃO DE HORA PARA CAMPOS SEM HORA (e atualização do log) ---
+            # Se a hora lida do DB é 00:00:00 (o padrão quando só há data) e há uma hora de corte definida, 
+            # ajustamos o valor local e o valor de log (data_ref) para a hora de corte.
             if max_dt_local.time() == datetime.min.time() and time_tolerance != '00:00':
                 
-                # Cria um objeto datetime com a data do DB e a hora de tolerância
                 custom_time = datetime.strptime(time_tolerance, '%H:%M').time()
+                
+                # Cria um objeto datetime AJUSTADO para a comparação e o log
                 max_dt_local = datetime.combine(max_dt_local.date(), custom_time)
-
-                # AQUI ESTÁ A MUDANÇA: Atualiza data_ref (variável usada no log) com a hora ajustada
+                
+                # AQUI ESTÁ A CORREÇÃO: Atualiza data_ref (log) com a hora ajustada
                 data_ref = max_dt_local
                 
-                print(f"     DEBUG: Hora da última atualização ajustada de 00:00:00 para {time_tolerance} para a comparação.")
-            # --- FIM DA CORREÇÃO ---
+                print(f"     DEBUG: Hora da última atualização ajustada de 00:00:00 para {time_tolerance} para a comparação E o log.")
+            # --- FIM CORREÇÃO DE HORA ---
 
             # --- CÁLCULO DE DIAS E HORAS SEM ATUALIZAR ---
-            
-            # 1. dias_sem_atualizar (dias de CALENDÁRIO)
             dias_sem_atualizar = (now.date() - max_dt_local.date()).days
-            
-            # 2. horas_sem_atualizar (duração total)
             time_diff = now - max_dt_local
             horas_sem_atualizar = round(time_diff.total_seconds() / 3600.0, 2)
             
-            # --- LÓGICA DE COMPARAÇÃO CORRIGIDA ---
-            # Compara a última atualização (possivelmente ajustada) com o PONTO DE CORTE REQUERIDO
+            # --- LÓGICA DE COMPARAÇÃO FINAL ---
             if max_dt_local >= data_limite:
                 status = 'Atualizada'
                 print(f"SUCESSO: Tabela '{table_name}' no prazo. Última data/hora (Ajustada): {max_dt_local.strftime('%Y-%m-%d %H:%M:%S')}. Horas sem atualizar: {horas_sem_atualizar:.2f}h.")
             else:
                 status = 'Desatualizada'
-                # Calcula o atraso em relação ao ponto de corte (para exibição)
                 diff_atraso = data_limite - max_dt_local
                 horas_atraso = round(diff_atraso.total_seconds() / 3600.0, 2)
                 print(f"ATENCAO: Tabela '{table_name}' DESATUALIZADA. Atraso de {horas_atraso:.2f}h. Última data/hora (Ajustada): {max_dt_local.strftime('%Y-%m-%d %H:%M:%S')}.")
@@ -128,13 +121,12 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log,
         'nome_ativo': table_name,
         'tipo_ativo': asset_type,
         'status_atualizacao': status,
-        'data_atualizacao': data_ref, # Usa a data/hora original do DB para o log
+        'data_atualizacao': data_ref, # Agora usa data_ref (ajustado ou original)
         'tipo_atualizacao': 'Scheduled',
         'dias_sem_atualizar': dias_sem_atualizar,
         'horas_sem_atualizar': horas_sem_atualizar 
     }
     return log_entry
-
 def main():
     """
     Função principal que orquestra a verificação de todas as tabelas
@@ -230,7 +222,7 @@ def main():
             'Atualizada': 'OK',
             'Sincronizado': 'OK',
             'Sincronizada': 'OK',
-            'Desatualizada': 'Failed' # Mapeia Desatualizada para Failed
+            'Desatualizada': 'Failed'
         }
         # Aplica o mapeamento e define qualquer outro valor como 'Failed'
         df_para_inserir['status_atualizacao'] = df_para_inserir['status_atualizacao'].apply(
