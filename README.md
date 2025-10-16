@@ -79,3 +79,20 @@ Para iniciar a fiscalização:
 ```bash
 python main.py
 ```
+
+## 📂 Estrutura do Projeto
+
+A estrutura de pastas principal é composta pelos seguintes arquivos de código e configuração:
+
+```bash
+├── Dashboard/                 # Contém o projeto Power BI (BI_FISCAL.pbip e pastas de artefatos)
+├── check_powerbi.py           # Script para fiscalizar Datasets do Power BI
+├── check_tables_timestamp.py  # Script para fiscalizar latência de tabelas base
+├── check_tables_silver.py     # Script para fiscalizar sincronia Bronze/Silver
+├── check_tables_gold.py       # Script para fiscalizar sincronia Bronze/Gold
+├── config.json.example        # Modelo de arquivo para credenciais
+├── config_tables.json         # Regras de latência e sincronia
+├── database.py                # Funções de conexão e inserção no MariaDB
+├── main.py                    # Orquestrador de execução
+└── requirements.txt           # Dependências Python
+```
