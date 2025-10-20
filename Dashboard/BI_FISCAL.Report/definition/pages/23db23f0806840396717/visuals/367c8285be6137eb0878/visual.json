@@ -1,13 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "367c8285be6137eb0878",
   "position": {
-    "x": 0.129870129870028,
-    "y": 0.25974025974025849,
+    "x": 0.13006244865765018,
+    "y": 0.23377696732763434,
     "z": 14000,
-    "height": 97.272727272727266,
-    "width": 232.72727272727272,
-    "tabOrder": 10005
+    "height": 87.549474264199461,
+    "width": 233.07190799469197
   },
   "visual": {
     "visualType": "slicer",
@@ -73,13 +72,62 @@
                   "Value": "1D"
                 }
               }
+            },
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "f",
+                    "Entity": "fat_fiscal",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "f"
+                                }
+                              },
+                              "Property": "hora_insercao_hh"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'17'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
             }
           }
         }
       ],
       "selection": [
         {
-          "properties": {}
+          "properties": {
+            "strictSingleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
         }
       ],
       "header": [
@@ -403,20 +451,6 @@
         },
         "howCreated": "User",
         "isLockedInViewMode": true
-      },
-      {
-        "name": "ca49ec479ab61356b101",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fat_fiscal"
-              }
-            },
-            "Property": "hora_insercao_hh"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

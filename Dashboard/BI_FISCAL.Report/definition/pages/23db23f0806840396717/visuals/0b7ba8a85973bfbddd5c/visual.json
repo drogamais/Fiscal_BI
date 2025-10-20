@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
-  "name": "d665315b0d9398129069",
+  "name": "0b7ba8a85973bfbddd5c",
   "position": {
-    "x": 937.27272727272725,
-    "y": 686.36363636363626,
-    "z": 7000,
-    "height": 25.454545454545453,
-    "width": 320,
-    "tabOrder": 11000
+    "x": 46.995073891625623,
+    "y": 1.7733990147783061,
+    "z": 15000,
+    "height": 44.334975369458128,
+    "width": 64.729064039408868,
+    "tabOrder": 15000
   },
   "visual": {
     "visualType": "card",
@@ -20,66 +20,23 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Atualizacao"
+                      "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Texto Última Att"
+                  "Property": "Denominador Qtd"
                 }
               },
-              "queryRef": "Atualizacao.Texto Última Att",
-              "nativeQueryRef": "Texto Última Att1"
+              "queryRef": "_Medidas.Denominador Qtd",
+              "nativeQueryRef": "Denominador Qtd"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
       }
     },
     "objects": {
-      "labels": [
-        {
-          "properties": {
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            },
-            "italic": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
       "categoryLabels": [
         {
           "properties": {
@@ -87,6 +44,26 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -114,7 +91,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Atualização'"
+                  "Value": "'denominador'"
                 }
               }
             }
@@ -123,5 +100,6 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  }
+  },
+  "parentGroupName": "06ba1d9312daefafb872"
 }

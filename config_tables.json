@@ -134,7 +134,7 @@
     {
       "nome": "silver_plugpharma_vendas_campanhaPrincipia",
       "tipo": "TABELA SILVER",
-      "coluna": "data_atualização",
+      "coluna": "data_atualizacao",
       "enabled": true,
       "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "335eb9b0a3ab00ed5997",
   "position": {
     "x": 0,
@@ -7,7 +7,7 @@
     "z": 13000,
     "height": 498.57142857142861,
     "width": 862.85714285714289,
-    "tabOrder": 10002
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -290,13 +290,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "102.90913013738239D"
+                  "Value": "129.40092829431478D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Sum(fat_fiscal.dias_sem_atualizar)"
+            "metadata": "Min(fat_fiscal.tipo_ativo)"
           }
         },
         {
@@ -304,13 +304,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "130.28571369256417D"
+                  "Value": "100.93104867962555D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "Min(fat_fiscal.tipo_ativo)"
+            "metadata": "Sum(fat_fiscal.dias_sem_atualizar)"
           }
         }
       ],
@@ -584,7 +584,7 @@
             "titleAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'Center'"
+                  "Value": "'Left'"
                 }
               }
             },
@@ -648,20 +648,6 @@
             }
           },
           "selector": {
-            "metadata": "Sum(fat_fiscal.dias_sem_atualizar)"
-          }
-        },
-        {
-          "properties": {
-            "alignment": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Center'"
-                }
-              }
-            }
-          },
-          "selector": {
             "metadata": "Min(fat_fiscal.hora_atualizacao)"
           }
         },
@@ -698,6 +684,20 @@
           },
           "selector": {
             "metadata": "Min(fat_fiscal.tipo_ativo)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(fat_fiscal.dias_sem_atualizar)"
           }
         }
       ]
@@ -860,101 +860,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "bc11e00b005ae4e80dab",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "fat_fiscal"
-                  }
-                },
-                "Property": "status_atualizacao"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "27b70b2bb44bb2b6260b",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "fat_fiscal"
-                  }
-                },
-                "Property": "data_atualizacao"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "dcd4e4715c08a6b3de69",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "fat_fiscal"
-                  }
-                },
-                "Property": "hora_atualizacao"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a81d4de6d7e102393870",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "fat_fiscal"
-                  }
-                },
-                "Property": "tipo_ativo"
-              }
-            },
-            "Function": 3
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "e404311843861c8c09ed",
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "fat_fiscal"
-                  }
-                },
-                "Property": "dias_sem_atualizar"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced"
       },
       {
         "name": "012daf3a73645bac6b66",

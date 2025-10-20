@@ -1,13 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "a130bbfc4cc332983c53",
   "position": {
-    "x": 819.99999999999977,
-    "y": 75.714285714285722,
-    "z": 9000,
-    "height": 44.285714285714292,
-    "width": 127.14285714285734,
-    "tabOrder": 9000
+    "x": 818.423645320197,
+    "y": 35.467980295566505,
+    "z": 10000,
+    "height": 44.334975369458128,
+    "width": 126.79802955665025
   },
   "visualGroup": {
     "displayName": "Botão Outro",

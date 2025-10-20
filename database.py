@@ -1,11 +1,13 @@
-# database.py
+# database.py (com debug aprimorado na inserção)
 
 import json
 import mariadb
 import sys
 import pandas as pd
+import logging # <-- Adicionado para usar o logger configurado no main.py
 
-def get_db_connection(config_key='dbDrogamais'): 
+# (Função get_db_connection permanece a mesma)
+def get_db_connection(config_key='dbDrogamais'):
     """
     Lê o config.json e estabelece uma conexão com o banco de dados MariaDB
     usando a chave de configuração especificada ('dbDrogamais' ou 'dbSults').
@@ -16,77 +18,99 @@ def get_db_connection(config_key='dbDrogamais'):
         with open('config.json', 'r') as f:
             config = json.load(f)
             db_config = config[config_key]
-        
+
         # O .get() garante que o código não quebre se as chaves estiverem faltando no config.json
         db_config['read_timeout'] = db_config.get('read_timeout', 300)
         db_config['write_timeout'] = db_config.get('write_timeout', 300)
-        
-        print(f"INFO: Conectando ao banco de dados MariaDB (Chave: '{config_key}')...")
+
+        logging.info(f"INFO: Conectando ao banco de dados MariaDB (Chave: '{config_key}')...") # Log
         conn = mariadb.connect(**db_config)
-        print("INFO: Conexão bem-sucedida.")
+        logging.info("INFO: Conexão bem-sucedida.") # Log
         return conn
 
     except FileNotFoundError:
-        print("ERRO CRÍTICO: Arquivo 'config.json' não encontrado.")
+        logging.error("ERRO CRÍTICO: Arquivo 'config.json' não encontrado.") # Log
         return None
     except KeyError:
-        print(f"ERRO CRÍTICO: A chave '{config_key}' não foi encontrada no 'config.json'.")
+        logging.error(f"ERRO CRÍTICO: A chave '{config_key}' não foi encontrada no 'config.json'.") # Log
         return None
     except mariadb.Error as ex:
-        print(f"ERRO CRÍTICO: Falha ao conectar ao MariaDB. (Erro nº {ex.errno}) {ex.errmsg}")
+        logging.error(f"ERRO CRÍTICO: Falha ao conectar ao MariaDB. (Erro nº {ex.errno}) {ex.errmsg}") # Log
         return None
     except Exception as e:
-        print(f"ERRO CRÍTICO: Ocorreu um erro inesperado ao conectar. Detalhe: {e}")
+        logging.error(f"ERRO CRÍTICO: Ocorreu um erro inesperado ao conectar. Detalhe: {e}") # Log
         return None
+
 
 def insert_dataframe(conn, df, table_name):
     """
-    Insere um DataFrame do Pandas em uma tabela do MariaDB de forma eficiente.
-    Adicionado log de debug para capturar a query e os dados em caso de falha.
+    Insere um DataFrame do Pandas em uma tabela do MariaDB.
+    Tenta inserir em lote (executemany). Se falhar, tenta linha por linha
+    para identificar e logar a linha/dado problemático.
     """
     if df.empty:
-        print(f"AVISO: O DataFrame está vazio. Nenhuma inserção foi realizada na tabela '{table_name}'.")
+        logging.warning(f"AVISO: O DataFrame está vazio. Nenhuma inserção foi realizada na tabela '{table_name}'.") # Log
         return True
 
-    print(f"INFO: Iniciando a inserção de {len(df)} linhas na tabela '{table_name}'...")
-    
+    logging.info(f"INFO: Iniciando a inserção de {len(df)} linhas na tabela '{table_name}'...") # Log
+
     cursor = None
-    query = None # Inicializa query para ser acessível no bloco except
     try:
         cursor = conn.cursor()
-        
+
         cols = ", ".join([f"`{c}`" for c in df.columns])
         placeholders = ", ".join(["?"] * len(df.columns))
-        query = f"INSERT INTO {table_name} ({cols}) VALUES ({placeholders})"
-        
+        query = f"INSERT INTO `{table_name}` ({cols}) VALUES ({placeholders})" # Corrigido para usar backticks
+
         data_tuples = list(df.itertuples(index=False, name=None))
-        
-        # --- DEBUG LOGGING PRÉ-EXECUÇÃO ---
-        print(f"DEBUG: Query de Inserção: {query}")
-        print(f"DEBUG: Número de tuplas a inserir: {len(data_tuples)}")
-        
-        cursor.executemany(query, data_tuples)
-        conn.commit()
-        
-        print(f"INFO: Inserção de {cursor.rowcount} linhas concluída com sucesso na tabela '{table_name}'.")
-        return True
 
-    except mariadb.Error as ex:
-        print(f"ERRO: Falha ao inserir dados na tabela '{table_name}'. (Erro nº {ex.errno}) {ex.errmsg}")
-        print(f"INFO: Revertendo a transação (rollback)...")
-        
-        # --- DEBUG LOGGING DE ERRO ---
-        print("\n" + "="*50)
-        print("--- DEBUG: DADOS E QUERY QUE CAUSARAM O ERRO ---")
-        print(f"DEBUG: Query que falhou: {query}")
-        
-        # Loga as primeiras e últimas linhas do DataFrame para inspeção
-        print("DEBUG: Primeiras 5 linhas do DataFrame (df.head()):")
-        print(df.head().to_string())
-        print("\nDEBUG: Últimas 5 linhas do DataFrame (df.tail()):")
-        print(df.tail().to_string())
-        print("="*50 + "\n")
+        # --- Tenta inserir em lote primeiro ---
+        try:
+            logging.info(f"DEBUG: Tentando inserção em lote (executemany) para {len(data_tuples)} linhas...")
+            cursor.executemany(query, data_tuples)
+            conn.commit()
+            logging.info(f"INFO: Inserção em lote de {cursor.rowcount} linhas concluída com sucesso na tabela '{table_name}'.")
+            return True
+        except mariadb.Error as batch_ex:
+            logging.warning(f"AVISO: Falha na inserção em lote na tabela '{table_name}'. Tentando inserir linha por linha para identificar o erro. Detalhe do erro em lote: (Erro nº {batch_ex.errno}) {batch_ex.errmsg}")
+            conn.rollback() # Desfaz a tentativa de lote antes de tentar individualmente
 
+            # --- Tenta inserir linha por linha ---
+            linhas_com_erro = 0
+            linhas_inseridas = 0
+            for i, row_tuple in enumerate(data_tuples):
+                try:
+                    cursor.execute(query, row_tuple)
+                    linhas_inseridas += 1
+                except mariadb.Error as row_ex:
+                    linhas_com_erro += 1
+                    logging.error(f"ERRO: Falha ao inserir linha {i+1} na tabela '{table_name}'. (Erro nº {row_ex.errno}) {row_ex.errmsg}")
+                    # Loga os dados da linha que falhou
+                    logging.error(f"DEBUG: Dados da linha com erro: {row_tuple}")
+                    # Loga o nome das colunas para referência
+                    if linhas_com_erro == 1: # Loga as colunas apenas no primeiro erro
+                        logging.error(f"DEBUG: Nomes das colunas: {list(df.columns)}")
+                    conn.rollback() # Desfaz a tentativa da linha atual
+                except Exception as general_ex:
+                     linhas_com_erro += 1
+                     logging.error(f"ERRO INESPERADO ao inserir linha {i+1} na tabela '{table_name}': {general_ex}")
+                     logging.error(f"DEBUG: Dados da linha com erro: {row_tuple}")
+                     if linhas_com_erro == 1:
+                         logging.error(f"DEBUG: Nomes das colunas: {list(df.columns)}")
+                     conn.rollback()
+
+            if linhas_com_erro > 0:
+                conn.commit() # Commita as linhas que foram inseridas com sucesso
+                logging.warning(f"INFO: Inserção individual concluída na tabela '{table_name}'. {linhas_inseridas} linhas inseridas, {linhas_com_erro} linhas falharam (ver logs de erro acima).")
+                return False # Retorna False porque houve erros
+            else:
+                 # Se chegou aqui sem erros individuais (improvável depois de falha no lote, mas por segurança)
+                conn.commit()
+                logging.info(f"INFO: Inserção individual concluída com sucesso para todas as {linhas_inseridas} linhas na tabela '{table_name}'.")
+                return True
+
+    except Exception as e: # Captura outros erros inesperados (ex: erro ao criar cursor)
+        logging.error(f"ERRO CRÍTICO inesperado durante o processo de inserção na tabela '{table_name}': {e}")
         if conn:
             conn.rollback()
         return False

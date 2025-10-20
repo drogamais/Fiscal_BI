@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "8be9034da9aca03d5637",
   "position": {
     "x": 74.285714285714292,
     "y": 155.71428571428572,
-    "z": 11000,
+    "z": 12000,
     "height": 499.28571428571428,
     "width": 863.21428571428567,
-    "tabOrder": 10003
+    "tabOrder": 10000
   },
   "visualGroup": {
     "displayName": "Matriz",

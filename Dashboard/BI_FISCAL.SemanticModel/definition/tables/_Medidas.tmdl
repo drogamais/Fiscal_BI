@@ -1,6 +1,34 @@
 table _Medidas
 	lineageTag: 2b71c345-dddf-4f0e-9980-9d693ac1ef94
 
+	measure 'Qtd Nome Ativo Text' = ```
+			
+			VAR TodosNomesAtivoDistintos =
+			    VALUES(fat_fiscal[nome_ativo])
+			VAR NomesAtivoApenasComData =
+			    FILTER(
+			        TodosNomesAtivoDistintos,
+			        CALCULATE(
+			            -- Conta quantas linhas têm data_atualizacao BLANK para o nome_ativo atual
+			            COUNTROWS(
+			                FILTER(fat_fiscal, ISBLANK(fat_fiscal[data_atualizacao]))
+			            )
+			        ) = 0 -- Mantém apenas os nome_ativo onde a contagem de BLANKs é zero
+			    )
+			VAR Numerador = COUNTROWS(NomesAtivoApenasComData)
+			
+			RETURN
+			    Numerador & " / " 
+			```
+		lineageTag: b4285958-5b00-4ff7-b8ad-a48701b2911e
+
+	measure 'Denominador Qtd' =
+			CALCULATE(
+			    DISTINCTCOUNT(fat_fiscal[nome_ativo]), ALL(fat_fiscal)
+			)
+		formatString: 0
+		lineageTag: f512a2e0-6f99-4402-ac4a-89dca196b40e
+
 	column Column
 		formatString: 0
 		lineageTag: 1e41f2f3-6d77-4651-8ed0-d01695ccc30e

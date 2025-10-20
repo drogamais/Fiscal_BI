@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
-  "name": "d665315b0d9398129069",
+  "name": "f9396ae2731f9c598727",
   "position": {
-    "x": 937.27272727272725,
-    "y": 686.36363636363626,
-    "z": 7000,
-    "height": 25.454545454545453,
-    "width": 320,
-    "tabOrder": 11000
+    "x": 0,
+    "y": 0,
+    "z": 14000,
+    "height": 47.881773399014776,
+    "width": 82.463054187192114,
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "card",
@@ -20,17 +20,20 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Atualizacao"
+                      "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Texto Última Att"
+                  "Property": "Qtd Nome Ativo Text"
                 }
               },
-              "queryRef": "Atualizacao.Texto Última Att",
-              "nativeQueryRef": "Texto Última Att1"
+              "queryRef": "_Medidas.Qtd Nome Ativo",
+              "nativeQueryRef": "Qtd Nome Ativo Text"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
       }
     },
     "objects": {
@@ -40,37 +43,11 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
+                  "Value": "20D"
                 }
               }
             },
             "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
-                    }
-                  }
-                }
-              }
-            },
-            "italic": {
               "expr": {
                 "Literal": {
                   "Value": "true"
@@ -95,6 +72,19 @@
       ]
     },
     "visualContainerObjects": {
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
       "background": [
         {
           "properties": {
@@ -114,7 +104,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Atualização'"
+                  "Value": "'numerador'"
                 }
               }
             }
@@ -123,5 +113,6 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  }
+  },
+  "parentGroupName": "06ba1d9312daefafb872"
 }

@@ -1,12 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "c10ccf055040344422ed",
   "position": {
     "x": 0,
     "y": 0,
     "z": 11000,
     "height": 44.285714285714292,
-    "width": 127.14285714285715
+    "width": 127.14285714285715,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "actionButton",
@@ -191,7 +192,7 @@
             "bookmark": {
               "expr": {
                 "Literal": {
-                  "Value": "'ddf077e0b70612270e6b'"
+                  "Value": "'aaf2dd24a0dfbf402bc9'"
                 }
               }
             }
