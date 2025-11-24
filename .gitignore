@@ -6,3 +6,4 @@ orchestrator2.py
 venv
 fiscal_bi.log
 deploy.ps1
+.pbi/
