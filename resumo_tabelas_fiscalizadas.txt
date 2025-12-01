@@ -1,0 +1,38 @@
+===================================================
+RESUMO DE TABELAS FISCALIZADAS
+Gerado em: 01/12/2025 15:12:38
+Total de tabelas únicas ativas: 32
+===================================================
+
+- bronze_close_up
+- bronze_iqvia_cpp
+- bronze_menorPreco_notas
+- bronze_menorPreco_produtos
+- bronze_plugpharma_compras
+- bronze_plugpharma_estoque
+- bronze_plugpharma_vendas
+- bronze_sults_chamados
+- bronze_sults_implantacao
+- dw_tb_acode_temp
+- gold_acode_vendas_distribuidorMAT
+- gold_acode_vendas_distribuidorMES
+- gold_acode_vendas_distribuidorTRI
+- gold_closeUp_estoque_vendas_analise_de_mercado
+- gold_iqvia_estoque_vendas_analise_de_mercado
+- silver_acode_vendas_parceiros
+- silver_close_up
+- silver_iqvia
+- silver_menorPreco_notas
+- silver_plugpharma_estoque
+- silver_plugpharma_vendas
+- silver_plugpharma_vendas_campanhaPrincipia
+- silver_produtos_life
+- silver_sults_chamados
+- silver_sults_implantacao
+- tb_atendimentos
+- tb_projetos
+- tb_report_auditoria_embedded
+- tb_reports_embedded
+- tb_tarefas
+- tb_users_embedded
+- tb_workspaces_embedded

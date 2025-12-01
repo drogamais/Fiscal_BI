@@ -4,6 +4,5 @@ config.ini
 orchestrator2.py
 .pbi
 venv
-fiscal_bi.log
 deploy.ps1
 .pbi/

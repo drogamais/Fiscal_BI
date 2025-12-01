@@ -49,10 +49,10 @@ def insert_dataframe(conn, df, table_name):
     para identificar e logar a linha/dado problemático.
     """
     if df.empty:
-        logging.warning(f"AVISO: O DataFrame está vazio. Nenhuma inserção foi realizada na tabela '{table_name}'.") # Log
+        logging.warning(f"AVISO: O DataFrame está vazio. Nenhuma insercao foi realizada na tabela '{table_name}'.") # Log
         return True
 
-    logging.info(f"INFO: Iniciando a inserção de {len(df)} linhas na tabela '{table_name}'...") # Log
+    logging.info(f"INFO: Iniciando a insercao de {len(df)} linhas na tabela '{table_name}'...") # Log
 
     cursor = None
     try:
@@ -66,13 +66,13 @@ def insert_dataframe(conn, df, table_name):
 
         # --- Tenta inserir em lote primeiro ---
         try:
-            logging.info(f"DEBUG: Tentando inserção em lote (executemany) para {len(data_tuples)} linhas...")
+            logging.info(f"DEBUG: Tentando insercao em lote (executemany) para {len(data_tuples)} linhas...")
             cursor.executemany(query, data_tuples)
             conn.commit()
             logging.info(f"INFO: Inserção em lote de {cursor.rowcount} linhas concluída com sucesso na tabela '{table_name}'.")
             return True
         except mariadb.Error as batch_ex:
-            logging.warning(f"AVISO: Falha na inserção em lote na tabela '{table_name}'. Tentando inserir linha por linha para identificar o erro. Detalhe do erro em lote: (Erro nº {batch_ex.errno}) {batch_ex.errmsg}")
+            logging.warning(f"AVISO: Falha na insercao em lote na tabela '{table_name}'. Tentando inserir linha por linha para identificar o erro. Detalhe do erro em lote: (Erro nº {batch_ex.errno}) {batch_ex.errmsg}")
             conn.rollback() # Desfaz a tentativa de lote antes de tentar individualmente
 
             # --- Tenta inserir linha por linha ---
@@ -101,16 +101,16 @@ def insert_dataframe(conn, df, table_name):
 
             if linhas_com_erro > 0:
                 conn.commit() # Commita as linhas que foram inseridas com sucesso
-                logging.warning(f"INFO: Inserção individual concluída na tabela '{table_name}'. {linhas_inseridas} linhas inseridas, {linhas_com_erro} linhas falharam (ver logs de erro acima).")
+                logging.warning(f"INFO: Insercao individual concluida na tabela '{table_name}'. {linhas_inseridas} linhas inseridas, {linhas_com_erro} linhas falharam (ver logs de erro acima).")
                 return False # Retorna False porque houve erros
             else:
                  # Se chegou aqui sem erros individuais (improvável depois de falha no lote, mas por segurança)
                 conn.commit()
-                logging.info(f"INFO: Inserção individual concluída com sucesso para todas as {linhas_inseridas} linhas na tabela '{table_name}'.")
+                logging.info(f"INFO: Insercao individual concluida com sucesso para todas as {linhas_inseridas} linhas na tabela '{table_name}'.")
                 return True
 
     except Exception as e: # Captura outros erros inesperados (ex: erro ao criar cursor)
-        logging.error(f"ERRO CRÍTICO inesperado durante o processo de inserção na tabela '{table_name}': {e}")
+        logging.error(f"ERRO CRiTICO inesperado durante o processo de inserção na tabela '{table_name}': {e}")
         if conn:
             conn.rollback()
         return False

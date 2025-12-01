@@ -4,6 +4,7 @@ import subprocess
 import sys
 import platform
 import logging
+from get_tabelas_fiscalizadas import gerar_resumo_txt
 # Removido import datetime pois não será mais usado para o nome do log
 
 # --- Configuração do Logging ---
@@ -40,20 +41,20 @@ def run_script(script_name):
         )
         # Loga a saída padrão do script executado
         if result.stdout:
-            logging.info(f"--- SAÍDA {script_name} ---:\n{result.stdout}")
+            logging.info(f"--- SAIDA {script_name} ---:\n{result.stdout}")
         if result.stderr: # Loga também a saída de erro, caso haja alguma mesmo sem exceção
-             logging.warning(f"--- SAÍDA DE ERRO (stderr) {script_name} ---:\n{result.stderr}")
+             logging.warning(f"--- SAIDA DE ERRO (stderr) {script_name} ---:\n{result.stderr}")
         logging.info(f"--- SUCESSO: {script_name} finalizado sem erros. ---")
         return True
     except subprocess.CalledProcessError as e:
         logging.error(f"!!! ERRO AO EXECUTAR {script_name} !!!")
         if e.stdout:
-             logging.error(f"\n--- SAÍDA PADRÃO (stdout) {script_name} ---:\n{e.stdout}")
+             logging.error(f"\n--- SAIDA PADRÃO (stdout) {script_name} ---:\n{e.stdout}")
         if e.stderr:
-             logging.error(f"\n--- SAÍDA DE ERRO (stderr) {script_name} ---:\n{e.stderr}")
+             logging.error(f"\n--- SAIDA DE ERRO (stderr) {script_name} ---:\n{e.stderr}")
         return False
     except FileNotFoundError:
-        logging.error(f"!!! ERRO CRÍTICO: O arquivo '{script_name}' não foi encontrado. !!!")
+        logging.error(f"!!! ERRO CRITICO: O arquivo '{script_name}' nao foi encontrado. !!!")
         return False
     except Exception as e:
         logging.error(f"!!! ERRO INESPERADO ao executar {script_name}: {e} !!!")
@@ -75,10 +76,14 @@ def main():
     logging.info("### INICIANDO ORQUESTRADOR DE VERIFICAÇÃO DE DADOS ###")
     logging.info("############################################################\n")
 
+    # Gera o resumo das tabelas antes de começar as checagens
+    logging.info("--- Gerando arquivo de resumo de tabelas (.txt) ---")
+    gerar_resumo_txt()
+
     all_success = True # Flag para verificar se todos os scripts rodaram com sucesso
     for script in scripts_para_executar:
         if not run_script(script):
-            logging.error(f"\nA orquestração foi interrompida devido a um erro no script: {script}")
+            logging.error(f"\nA orquestracao foi interrompida devido a um erro no script: {script}")
             all_success = False
             break # Interrompe a execução se um script falhar
 

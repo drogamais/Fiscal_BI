@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 import pytz # <-- NOVO IMPORT para gerenciar fusos horários
 
 # Importa as funções do nosso módulo de banco de dados
-from database import get_db_connection, insert_dataframe
+from src.database import get_db_connection, insert_dataframe
 
 # --- 1. CARREGAR CONFIGURAÇÕES ---
 try:
@@ -109,7 +109,7 @@ def main():
     # ... (A parte de coleta de dados permanece a mesma) ...
     for dataset in datasets_para_monitorar:
         nome_bi = dataset['nome_bi']
-        print(f"INFO: Puxando histórico para o BI: '{nome_bi}' no workspace '{dataset['workspace_name']}'...")
+        print(f"INFO: Puxando historico para o BI: '{nome_bi}' no workspace '{dataset['workspace_name']}'...")
         url = f"https://api.powerbi.com/v1.0/myorg/groups/{dataset['workspace_id']}/datasets/{dataset['dataset_id']}/refreshes?$top=1"
         try:
             response = requests.get(url, headers=headers)
@@ -242,7 +242,7 @@ def main():
     finally:
         if conn:
             conn.close()
-            print("\nINFO: Processo finalizado. Conexão com o banco de dados fechada.")
+            print("\nINFO: Processo finalizado. Conexao com o banco de dados fechada.")
 
 if __name__ == "__main__":
     main()

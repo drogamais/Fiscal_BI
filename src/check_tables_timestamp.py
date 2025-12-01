@@ -7,9 +7,9 @@ import json
 import sys
 
 # Importa as funções do seu arquivo database.py
-from database import get_db_connection, insert_dataframe
+from src.database import get_db_connection, insert_dataframe
 
-def load_table_config(config_file='config_tables.json'):
+def load_table_config(config_file='..config/config_tables.json'):
     try:
         with open(config_file, 'r', encoding='utf-8') as f:
             return json.load(f)
@@ -54,7 +54,7 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log,
 
 
     print(f"---> Verificando a tabela ({workspace_log}): '{table_name}' (usando coluna '{date_column}')...")
-    print(f"     PONTO DE CORTE REQUERIDO: {data_limite.strftime('%Y-%m-%d %H:%M:%S')} (Última atualização deve ser >= este valor)")
+    print(f"     PONTO DE CORTE REQUERIDO: {data_limite.strftime('%Y-%m-%d %H:%M:%S')} (Ultima atualizacao deve ser >= este valor)")
     
     status = "Não Definido"
     data_ref = None
@@ -93,7 +93,7 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log,
                 # AQUI ESTÁ A CORREÇÃO: Atualiza data_ref (log) com a hora ajustada
                 data_ref = max_dt_local
                 
-                print(f"     DEBUG: Hora da última atualização ajustada de 00:00:00 para {time_tolerance} para a comparação E o log.")
+                print(f"     DEBUG: Hora da Ultima atualizacao ajustada de 00:00:00 para {time_tolerance} para a comparação E o log.")
             # --- FIM CORREÇÃO DE HORA ---
 
             # --- CÁLCULO DE DIAS E HORAS SEM ATUALIZAR ---
@@ -104,12 +104,12 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log,
             # --- LÓGICA DE COMPARAÇÃO FINAL ---
             if max_dt_local >= data_limite:
                 status = 'Atualizada'
-                print(f"SUCESSO: Tabela '{table_name}' no prazo. Última data/hora (Ajustada): {max_dt_local.strftime('%Y-%m-%d %H:%M:%S')}. Horas sem atualizar: {horas_sem_atualizar:.2f}h.")
+                print(f"SUCESSO: Tabela '{table_name}' no prazo. Ultima data/hora (Ajustada): {max_dt_local.strftime('%Y-%m-%d %H:%M:%S')}. Horas sem atualizar: {horas_sem_atualizar:.2f}h.")
             else:
                 status = 'Desatualizada'
                 diff_atraso = data_limite - max_dt_local
                 horas_atraso = round(diff_atraso.total_seconds() / 3600.0, 2)
-                print(f"ATENCAO: Tabela '{table_name}' DESATUALIZADA. Atraso de {horas_atraso:.2f}h. Última data/hora (Ajustada): {max_dt_local.strftime('%Y-%m-%d %H:%M:%S')}.")
+                print(f"ATENCAO: Tabela '{table_name}' DESATUALIZADA. Atraso de {horas_atraso:.2f}h. Ultima data/hora (Ajustada): {max_dt_local.strftime('%Y-%m-%d %H:%M:%S')}.")
             
     except Exception as e:
         status = 'Erro na Verificação'
@@ -133,7 +133,7 @@ def main():
     e insere os logs no banco de dados.
     """
     print("="*50)
-    print("--- INICIANDO VERIFICAÇÃO DE ATUALIDADE DAS TABELAS (UNIFICADO COM TOLERÂNCIA) ---")
+    print("--- INICIANDO VERIFICACAO DE ATUALIDADE DAS TABELAS (UNIFICADO COM TOLERANCIA) ---")
     print("="*50)
 
     config = load_table_config()
@@ -262,7 +262,7 @@ def main():
         if conn_log:
             conn_log.close()
             print("\n" + "="*50)
-            print("INFO: Processo finalizado. Conexões fechadas.")
+            print("INFO: Processo finalizado. Conexoes fechadas.")
             print("="*50)
 
 
