@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 # Importa as funções do seu arquivo database.py
-from src.database import get_db_connection, insert_dataframe
+from database import get_db_connection, insert_dataframe
 
 def load_table_config():
     # 1. Pega a pasta onde ESTE script está (src/)
