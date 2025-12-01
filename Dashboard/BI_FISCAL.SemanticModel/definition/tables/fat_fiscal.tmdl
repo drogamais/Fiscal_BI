@@ -1,10 +1,11 @@
 table fat_fiscal
-	lineageTag: 0ed91e4f-c7bb-426e-913f-173997a3fc74
+	lineageTag: a9d274b4-b7b9-4944-af6b-e7df0a76bb16
 
 	column id_log
 		dataType: int64
 		formatString: 0
-		lineageTag: ae63926b-9b31-46f8-ac70-27eec4e75dd4
+		sourceProviderType: int
+		lineageTag: a74eede0-1f34-421a-ab01-cedc8ff3a7b3
 		summarizeBy: sum
 		sourceColumn: id_log
 
@@ -12,7 +13,8 @@ table fat_fiscal
 
 	column nome_workspace
 		dataType: string
-		lineageTag: bbe7df0f-c7f1-4a8f-9775-49369e6f11ed
+		sourceProviderType: nvarchar(255)
+		lineageTag: 0f238e71-db4b-43c2-aded-5a9c8a2ec9f2
 		summarizeBy: none
 		sourceColumn: nome_workspace
 
@@ -20,18 +22,17 @@ table fat_fiscal
 
 	column nome_ativo
 		dataType: string
-		lineageTag: ef7a1133-3e48-4259-a9eb-b22bdf795e9e
+		sourceProviderType: nvarchar(255)
+		lineageTag: 0eb97f29-46cd-41bf-861a-bb82fb32dc6d
 		summarizeBy: none
 		sourceColumn: nome_ativo
-		sortByColumn: data_atualizacao
-
-		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
 	column tipo_ativo
 		dataType: string
-		lineageTag: 30ef486f-7341-430e-946b-d651e2c07fba
+		sourceProviderType: nvarchar(30)
+		lineageTag: 98c00774-385d-404d-ba5c-14cb28cbb082
 		summarizeBy: none
 		sourceColumn: tipo_ativo
 
@@ -40,7 +41,8 @@ table fat_fiscal
 	column dias_sem_atualizar
 		dataType: int64
 		formatString: 0
-		lineageTag: c33f6ac1-7677-4f54-b4a9-582d1a8612c9
+		sourceProviderType: int
+		lineageTag: 61530ec6-6a34-4764-8c52-4be9e335f399
 		summarizeBy: sum
 		sourceColumn: dias_sem_atualizar
 
@@ -48,7 +50,8 @@ table fat_fiscal
 
 	column status_atualizacao
 		dataType: string
-		lineageTag: 0a24b501-1b2a-4368-9b9a-ecc5aaf4f70f
+		sourceProviderType: nvarchar(50)
+		lineageTag: 1de843ab-5236-4395-ab89-f79312e8a7f5
 		summarizeBy: none
 		sourceColumn: status_atualizacao
 
@@ -57,35 +60,10 @@ table fat_fiscal
 	column data_atualizacao
 		dataType: dateTime
 		formatString: dd/mm/yyyy
-		lineageTag: 54af48be-d071-42d7-8cc4-ad00acf04d4a
+		sourceProviderType: date
+		lineageTag: d4219f8e-47b3-414b-91a0-694f5df41f67
 		summarizeBy: none
 		sourceColumn: data_atualizacao
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-		annotation PBI_FormatHint = {"isDateTimeCustom":true}
-
-	column tipo_atualizacao
-		dataType: string
-		lineageTag: 95f85418-5ed7-42d7-bbe7-a42fa4b112d3
-		summarizeBy: none
-		sourceColumn: tipo_atualizacao
-
-		annotation SummarizationSetBy = Automatic
-
-	column data_insercao
-		dataType: dateTime
-		formatString: dd/mm/yyyy
-		lineageTag: e91e3e84-d4ee-481a-8bd0-3970fb6c416d
-		summarizeBy: none
-		sourceColumn: data_insercao
-
-		variation Variation
-			isDefault
-			relationship: 909ff067-ee77-47a5-989b-e0458d7c41a8
-			defaultHierarchy: LocalDateTable_913ffa8c-2dea-4cf2-9d34-d0c70afb0614.'Hierarquia de datas'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -96,7 +74,8 @@ table fat_fiscal
 	column hora_atualizacao
 		dataType: dateTime
 		formatString: Long Time
-		lineageTag: 21c4fcdb-a8bb-4ab6-a91b-8496a23e54c1
+		sourceProviderType: time
+		lineageTag: 20b9ea7d-2413-4535-89a4-6a78f64ab01f
 		summarizeBy: none
 		sourceColumn: hora_atualizacao
 
@@ -104,10 +83,34 @@ table fat_fiscal
 
 		annotation UnderlyingDateTimeDataType = Time
 
+	column tipo_atualizacao
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: b10ee450-b3be-4f5b-9a9d-bd35646f8fa4
+		summarizeBy: none
+		sourceColumn: tipo_atualizacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_insercao
+		dataType: dateTime
+		isNullable: false
+		formatString: dd/mm/yyyy
+		sourceProviderType: date
+		lineageTag: bfc55e42-930b-4c67-8b1b-97c0b92c95da
+		summarizeBy: none
+		sourceColumn: data_insercao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
 	column hora_insercao
 		dataType: dateTime
-		formatString: Short Time
-		lineageTag: 10dc55b6-7e52-4836-8fa0-021c15c6c971
+		isNullable: false
+		formatString: Long Time
+		sourceProviderType: time
+		lineageTag: 4fa5b1c4-4491-4fd5-bf5e-c1e9687e3693
 		summarizeBy: none
 		sourceColumn: hora_insercao
 
@@ -115,23 +118,24 @@ table fat_fiscal
 
 		annotation UnderlyingDateTimeDataType = Time
 
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
 	column hora_insercao_hh
 		dataType: string
-		lineageTag: 306b2e92-fa92-47ab-b4ab-06ee7ca444a3
+		sourceProviderType: nvarchar(2)
+		lineageTag: 9e8b8685-b0ed-45ec-b6e3-5dd3bc7bc366
 		summarizeBy: none
 		sourceColumn: hora_insercao_hh
 
 		annotation SummarizationSetBy = Automatic
 
 	partition fat_fiscal = m
-		mode: import
+		mode: directQuery
 		source =
 				let
-				    Fonte = MariaDB.Contents("10.48.12.20:3306;dbDrogamais", null, null),
-				    dbDrogamais_Database = Fonte{[Name="dbDrogamais",Kind="Database"]}[Data],
+				    Fonte = MariaDB.Contents("10.48.12.20:3306;dbDrogamais", null, null),
 				    fat_fiscal_Table = Fonte{[Name="fat_fiscal",Kind="Table"]}[Data],
-				    #"Linhas Filtradas" = Table.SelectRows(fat_fiscal_Table, each true),
-				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Linhas Filtradas",{{"data_insercao", type date}})
+				    #"Tipo Alterado" = Table.TransformColumnTypes(fat_fiscal_Table,{{"data_insercao", type date}})
 				in
 				    #"Tipo Alterado"
 

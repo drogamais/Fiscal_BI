@@ -1,8 +1,3 @@
-relationship 909ff067-ee77-47a5-989b-e0458d7c41a8
-	joinOnDateBehavior: datePartOnly
-	fromColumn: fat_fiscal.data_insercao
-	toColumn: LocalDateTable_913ffa8c-2dea-4cf2-9d34-d0c70afb0614.Date
-
 relationship f0195ee3-b593-43a6-9e37-66f56051c067
 	joinOnDateBehavior: datePartOnly
 	fromColumn: dimCalendario.Date
@@ -12,10 +7,6 @@ relationship 573ca214-aecd-4cb2-8838-c16f1866be11
 	joinOnDateBehavior: datePartOnly
 	fromColumn: dimCalendario.'Início da semana'
 	toColumn: LocalDateTable_3c50fb53-303e-4a24-8439-833643d31719.Date
-
-relationship daab171d-a818-de40-00c0-b322b85a0d90
-	fromColumn: fat_fiscal.data_atualizacao
-	toColumn: dimCalendario.Date
 
 relationship fdb33d7c-ed80-4f38-aec1-43236d4ab569
 	joinOnDateBehavior: datePartOnly

@@ -36,11 +36,11 @@
         },
         {
           "location": {
-            "x": 646,
+            "x": 492,
             "y": 0
           },
           "nodeIndex": "fat_fiscal",
-          "nodeLineageTag": "0ed91e4f-c7bb-426e-913f-173997a3fc74",
+          "nodeLineageTag": "a9d274b4-b7b9-4944-af6b-e7df0a76bb16",
           "size": {
             "height": 296,
             "width": 234

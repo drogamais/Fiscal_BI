@@ -23,8 +23,10 @@ table _Medidas
 		lineageTag: b4285958-5b00-4ff7-b8ad-a48701b2911e
 
 	measure 'Denominador Qtd' =
+			
 			CALCULATE(
-			    DISTINCTCOUNT(fat_fiscal[nome_ativo]), ALL(fat_fiscal)
+			    DISTINCTCOUNT(fat_fiscal[nome_ativo]),
+			    ALLEXCEPT(fat_fiscal, fat_fiscal[data_insercao])
 			)
 		formatString: 0
 		lineageTag: f512a2e0-6f99-4402-ac4a-89dca196b40e

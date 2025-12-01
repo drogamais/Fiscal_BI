@@ -8,19 +8,18 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["fat_fiscal","Atualizacao"]
+annotation PBI_QueryOrder = ["Atualizacao","fat_fiscal"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
 ref table dimCalendario
 ref table DateTableTemplate_bd3d94fe-41f9-46d1-a073-2f16a5db9563
 ref table _Medidas
-ref table fat_fiscal
-ref table LocalDateTable_913ffa8c-2dea-4cf2-9d34-d0c70afb0614
 ref table LocalDateTable_164f561c-61e0-443e-82f8-e3aa49f847fd
 ref table LocalDateTable_3c50fb53-303e-4a24-8439-833643d31719
 ref table Atualizacao
 ref table LocalDateTable_c1332a40-9717-4d9d-a36e-8da51bb92b6e
+ref table fat_fiscal
 
 ref cultureInfo pt-BR
 
