@@ -18,7 +18,7 @@ config_path = src_dir.parent / 'config' / 'config.json'
 
 # --- 1. CARREGAR CONFIGURAÇÕES ---
 try:
-    with open('config.json', 'r') as f:
+    with open('config.json', 'r', encoding='utf-8') as f:
         config = json.load(f)
         pbi_config = config['powerbi_api']
 except FileNotFoundError:
