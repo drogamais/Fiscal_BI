@@ -100,7 +100,7 @@ def main():
             all_success = False
             break 
 
-    logging.info("\n############################################################")
+    logging.info("############################################################")
     if all_success:
         logging.info("### ORQUESTRAÇÃO FINALIZADA COM SUCESSO ###")
     else:

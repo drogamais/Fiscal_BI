@@ -1,19 +1,276 @@
-2025-12-01 16:27:55,672 - INFO - ############################################################
-2025-12-01 16:27:55,672 - INFO - ### INICIANDO ORQUESTRADOR DE VERIFICAÇÃO DE DADOS ###
-2025-12-01 16:27:55,673 - INFO - ############################################################
+2025-12-01 16:32:31,496 - INFO - ############################################################
+2025-12-01 16:32:31,496 - INFO - ### INICIANDO ORQUESTRADOR DE VERIFICAÇÃO DE DADOS ###
+2025-12-01 16:32:31,497 - INFO - ############################################################
 
-2025-12-01 16:27:55,673 - INFO - --- Gerando arquivo de resumo de tabelas (.txt) ---
-2025-12-01 16:27:55,674 - INFO - ============================================================
-2025-12-01 16:27:55,675 - INFO - --- EXECUTANDO SCRIPT: check_powerbi.py ---
-2025-12-01 16:27:55,675 - INFO - ============================================================
-2025-12-01 16:27:56,263 - ERROR - !!! ERRO AO EXECUTAR check_powerbi.py !!!
-2025-12-01 16:27:56,263 - ERROR - 
---- SAÍDA PADRÃO (stdout) check_powerbi.py ---:
-ERRO CR�TICO: Arquivo 'config.json' n�o encontrado.
+2025-12-01 16:32:31,497 - INFO - --- Gerando arquivo de resumo de tabelas (.txt) ---
+2025-12-01 16:32:31,498 - INFO - ============================================================
+2025-12-01 16:32:31,498 - INFO - --- EXECUTANDO SCRIPT: check_powerbi.py ---
+2025-12-01 16:32:31,498 - INFO - ============================================================
+2025-12-01 16:32:50,065 - INFO - --- SAÍDA check_powerbi.py ---:
+INFO: Token de acesso obtido com sucesso.
+INFO: Descobrindo datasets em todos os workspaces...
+INFO: Encontrados 3 workspaces.
+INFO: Descoberta finalizada. Total de 19 datasets encontrados.
+--------------------------------------------------
+INFO: Puxando historico para o BI: 'Fluxo de Caixa' no workspace 'Indica+'...
+INFO: Puxando historico para o BI: 'PAINEL DE ACESSOS' no workspace 'Indica+'...
+INFO: Puxando historico para o BI: 'PAINEL DE ATENDIMENTOS' no workspace 'Indica+'...
+INFO: Puxando historico para o BI: 'REDE DROGAMAIS' no workspace 'Indica+'...
+INFO: Puxando historico para o BI: 'Produtos Life' no workspace 'Indica+'...
+INFO: Puxando historico para o BI: 'BI_FISCAL' no workspace 'Indica+'...
+INFO: Puxando historico para o BI: 'Principia - Relat�rio' no workspace 'Indica+'...
+INFO: Puxando historico para o BI: 'Painel da Black Friday' no workspace 'Indica+'...
+INFO: Puxando historico para o BI: 'PAINEL DE PERFORMANCE' no workspace 'Indica+'...
+INFO: Puxando historico para o BI: 'Indica+' no workspace 'Indica+'...
+INFO: Puxando historico para o BI: 'COMERCIAL' no workspace 'Comercial'...
+INFO: Puxando historico para o BI: 'PAINEL CAMPANHAS' no workspace 'Comercial'...
+INFO: Puxando historico para o BI: 'PAINEL CAMPANHAS  - PARCEIROS' no workspace 'Comercial'...
+INFO: Puxando historico para o BI: 'Comercial - Distribuidor' no workspace 'Comercial'...
+INFO: Puxando historico para o BI: 'PAINEL TABLOIDES' no workspace 'Comercial'...
+INFO: Puxando historico para o BI: 'Comercial - Ind�stria' no workspace 'Comercial'...
+INFO: Puxando historico para o BI: 'Painel de Acompanhamento - SUPRAVIGOR' no workspace 'Campanhas'...
+INFO: Puxando historico para o BI: 'Painel de Acompanhamento - LIFE EM FOCO' no workspace 'Campanhas'...
+INFO: Puxando historico para o BI: 'Painel de Acompanhamento - PRINCIPIA EM FOCO' no workspace 'Campanhas'...
+--------------------------------------------------
+--- Visualizando as �ltimas Atualiza��es (Todos os BIs Descobertos) ---
+   nome_workspace                                    nome_ativo tipo_ativo status_atualizacao data_atualizacao hora_atualizacao tipo_atualizacao  dias_sem_atualizar
+0         Indica+                                Fluxo de Caixa   POWER BI                 OK       2025-12-01         09:13:05        Scheduled                   0
+1         Indica+                             PAINEL DE ACESSOS   POWER BI                 OK       2025-12-01         07:09:38        Scheduled                   0
+2         Indica+                        PAINEL DE ATENDIMENTOS   POWER BI                 OK       2025-12-01         12:37:58        Scheduled                   0
+3         Indica+                                REDE DROGAMAIS   POWER BI                 OK       2025-12-01         10:11:50        Scheduled                   0
+4         Indica+                                 Produtos Life   POWER BI                 OK       2025-12-01         09:12:17        Scheduled                   0
+5         Indica+                                     BI_FISCAL   POWER BI                 OK       2025-12-01         14:10:56        Scheduled                   0
+6         Indica+                         Principia - Relat�rio   POWER BI                 OK       2025-12-01         16:32:49              N/A                   0
+7         Indica+                        Painel da Black Friday   POWER BI                 OK       2025-12-01         09:11:48        Scheduled                   0
+8         Indica+                         PAINEL DE PERFORMANCE   POWER BI                 OK       2025-12-01         16:32:49              N/A                   0
+9         Indica+                                       Indica+   POWER BI                 OK       2025-12-01         16:32:49              N/A                   0
+10      Comercial                                     COMERCIAL   POWER BI                 OK       2025-12-01         10:40:05         OnDemand                   0
+11      Comercial                              PAINEL CAMPANHAS   POWER BI                 OK       2025-12-01         10:36:23        Scheduled                   0
+12      Comercial                 PAINEL CAMPANHAS  - PARCEIROS   POWER BI                 OK       2025-12-01         10:37:40        Scheduled                   0
+13      Comercial                      Comercial - Distribuidor   POWER BI                 OK       2025-12-01         10:19:52        Scheduled                   0
+14      Comercial                              PAINEL TABLOIDES   POWER BI                 OK       2025-12-01         07:39:02        Scheduled                   0
+15      Comercial                         Comercial - Ind�stria   POWER BI                 OK       2025-12-01         16:32:49              N/A                   0
+16      Campanhas         Painel de Acompanhamento - SUPRAVIGOR   POWER BI                 OK       2025-12-01         13:09:47        Scheduled                   0
+17      Campanhas       Painel de Acompanhamento - LIFE EM FOCO   POWER BI                 OK       2025-12-01         13:09:13        Scheduled                   0
+18      Campanhas  Painel de Acompanhamento - PRINCIPIA EM FOCO   POWER BI                 OK       2025-12-01         09:37:32        Scheduled                   0
 
-2025-12-01 16:27:56,263 - ERROR - 
-A orquestração foi interrompida devido a um erro no script: check_powerbi.py
-2025-12-01 16:27:56,263 - INFO - 
+==================================================
+--- INICIANDO PROCESSO DE GRAVA��O NO BANCO DE DADOS ---
+==================================================
+
+INFO: Processo finalizado. Conexao com o banco de dados fechada.
+
+2025-12-01 16:32:50,066 - INFO - --- SUCESSO: check_powerbi.py finalizado sem erros. ---
+2025-12-01 16:32:50,066 - INFO - ============================================================
+2025-12-01 16:32:50,067 - INFO - --- EXECUTANDO SCRIPT: check_tables_timestamp.py ---
+2025-12-01 16:32:50,067 - INFO - ============================================================
+2025-12-01 16:34:51,265 - INFO - --- SAÍDA check_tables_timestamp.py ---:
+==================================================
+--- INICIANDO VERIFICACAO DE ATUALIDADE DAS TABELAS (UNIFICADO COM TOLERANCIA) ---
+==================================================
+---> Verificando a tabela (dbDrogamais): 'bronze_close_up' (usando coluna 'data_insercao')...
+     PONTO DE CORTE REQUERIDO: 2025-10-02 00:10:00 (Ultima atualizacao deve ser >= este valor)
+ATENCAO: Tabela 'bronze_close_up' DESATUALIZADA. Atraso de 468.40h. Ultima data/hora (Ajustada): 2025-09-12 11:45:49.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'silver_close_up' (usando coluna 'data_insercao')...
+     PONTO DE CORTE REQUERIDO: 2025-10-02 00:10:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'silver_close_up' no prazo. Ultima data/hora (Ajustada): 2025-10-15 15:45:19. Horas sem atualizar: 1128.79h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'bronze_iqvia_cpp' (usando coluna 'data_insercao')...
+     PONTO DE CORTE REQUERIDO: 2025-10-02 00:00:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'bronze_iqvia_cpp' no prazo. Ultima data/hora (Ajustada): 2025-11-28 12:00:46. Horas sem atualizar: 76.54h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'silver_iqvia' (usando coluna 'data_insercao')...
+     PONTO DE CORTE REQUERIDO: 2025-10-02 00:00:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'silver_iqvia' no prazo. Ultima data/hora (Ajustada): 2025-10-10 15:01:02. Horas sem atualizar: 1249.54h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'bronze_menorPreco_produtos' (usando coluna 'data_insercao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-01 08:00:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'bronze_menorPreco_produtos' no prazo. Ultima data/hora (Ajustada): 2025-11-28 08:45:10. Horas sem atualizar: 79.80h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'bronze_menorPreco_notas' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 08:00:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'bronze_menorPreco_notas' no prazo. Ultima data/hora (Ajustada): 2025-12-01 10:06:59. Horas sem atualizar: 6.44h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'silver_menorPreco_notas' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 08:00:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'silver_menorPreco_notas' no prazo. Ultima data/hora (Ajustada): 2025-12-01 10:06:59. Horas sem atualizar: 6.44h.
+--------------------
+---> Verificando a tabela (drogamais): 'dw_tb_acode_temp' (usando coluna 'Ultima_Atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 07:10:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'dw_tb_acode_temp' no prazo. Ultima data/hora (Ajustada): 2025-12-01 07:01:06. Horas sem atualizar: 9.54h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'bronze_plugpharma_compras' (usando coluna 'data_insercao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 10:00:00 (Ultima atualizacao deve ser >= este valor)
+ATENCAO: Tabela 'bronze_plugpharma_compras' DESATUALIZADA. Atraso de 96.43h. Ultima data/hora (Ajustada): 2025-11-26 09:34:15.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'bronze_plugpharma_estoque' (usando coluna 'data_insercao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 08:00:00 (Ultima atualizacao deve ser >= este valor)
+ATENCAO: Tabela 'bronze_plugpharma_estoque' DESATUALIZADA. Atraso de 1478.08h. Ultima data/hora (Ajustada): 2025-09-29 17:55:07.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'bronze_plugpharma_vendas' (usando coluna 'data_insercao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 08:00:00 (Ultima atualizacao deve ser >= este valor)
+ATENCAO: Tabela 'bronze_plugpharma_vendas' DESATUALIZADA. Atraso de 47.43h. Ultima data/hora (Ajustada): 2025-11-28 08:34:03.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'gold_acode_vendas_distribuidorMAT' (usando coluna 'DATA_ATUALIZACAO')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 09:00:00 (Ultima atualizacao deve ser >= este valor)
+     DEBUG: Hora da Ultima atualizacao ajustada de 00:00:00 para 09:00 para a compara��o E o log.
+SUCESSO: Tabela 'gold_acode_vendas_distribuidorMAT' no prazo. Ultima data/hora (Ajustada): 2025-12-01 09:00:00. Horas sem atualizar: 7.57h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'gold_acode_vendas_distribuidorMES' (usando coluna 'DATA_ATUALIZACAO')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 09:00:00 (Ultima atualizacao deve ser >= este valor)
+     DEBUG: Hora da Ultima atualizacao ajustada de 00:00:00 para 09:00 para a compara��o E o log.
+SUCESSO: Tabela 'gold_acode_vendas_distribuidorMES' no prazo. Ultima data/hora (Ajustada): 2025-12-01 09:00:00. Horas sem atualizar: 7.57h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'gold_acode_vendas_distribuidorTRI' (usando coluna 'DATA_ATUALIZACAO')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 09:00:00 (Ultima atualizacao deve ser >= este valor)
+     DEBUG: Hora da Ultima atualizacao ajustada de 00:00:00 para 09:00 para a compara��o E o log.
+SUCESSO: Tabela 'gold_acode_vendas_distribuidorTRI' no prazo. Ultima data/hora (Ajustada): 2025-12-01 09:00:00. Horas sem atualizar: 7.57h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'gold_closeUp_estoque_vendas_analise_de_mercado' (usando coluna 'data_insercao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 08:00:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'gold_closeUp_estoque_vendas_analise_de_mercado' no prazo. Ultima data/hora (Ajustada): 2025-12-01 07:40:00. Horas sem atualizar: 8.91h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'gold_iqvia_estoque_vendas_analise_de_mercado' (usando coluna 'data_insercao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 08:00:00 (Ultima atualizacao deve ser >= este valor)
+ATENCAO: Tabela 'gold_iqvia_estoque_vendas_analise_de_mercado' DESATUALIZADA. Atraso de 1216.98h. Ultima data/hora (Ajustada): 2025-10-10 15:01:02.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'silver_acode_vendas_parceiros' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 09:00:00 (Ultima atualizacao deve ser >= este valor)
+     DEBUG: Hora da Ultima atualizacao ajustada de 00:00:00 para 09:00 para a compara��o E o log.
+SUCESSO: Tabela 'silver_acode_vendas_parceiros' no prazo. Ultima data/hora (Ajustada): 2025-12-01 09:00:00. Horas sem atualizar: 7.58h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'silver_plugpharma_estoque' (usando coluna 'data_insercao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 08:00:00 (Ultima atualizacao deve ser >= este valor)
+ATENCAO: Tabela 'silver_plugpharma_estoque' DESATUALIZADA. Atraso de 1216.42h. Ultima data/hora (Ajustada): 2025-10-10 15:35:04.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'silver_plugpharma_vendas' (usando coluna 'data_insercao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 08:00:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'silver_plugpharma_vendas' no prazo. Ultima data/hora (Ajustada): 2025-12-01 07:29:22. Horas sem atualizar: 9.09h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'silver_plugpharma_vendas_campanhaPrincipia' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 08:00:00 (Ultima atualizacao deve ser >= este valor)
+     DEBUG: Hora da Ultima atualizacao ajustada de 00:00:00 para 08:00 para a compara��o E o log.
+ATENCAO: Tabela 'silver_plugpharma_vendas_campanhaPrincipia' DESATUALIZADA. Atraso de 48.00h. Ultima data/hora (Ajustada): 2025-11-28 08:00:00.
+--------------------
+---> Pulando a tabela desativada: 'bronze_movidesk_chamados'
+---> Verificando a tabela (dbSults): 'bronze_sults_chamados' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 20:00:00 (Ultima atualizacao deve ser >= este valor)
+ATENCAO: Tabela 'bronze_sults_chamados' DESATUALIZADA. Atraso de 47.96h. Ultima data/hora (Ajustada): 2025-11-28 20:02:07.
+--------------------
+---> Verificando a tabela (dbSults): 'silver_sults_chamados' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 20:00:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'silver_sults_chamados' no prazo. Ultima data/hora (Ajustada): 2025-11-30 20:02:13. Horas sem atualizar: 20.54h.
+--------------------
+---> Verificando a tabela (dbSults): 'bronze_sults_implantacao' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 20:00:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'bronze_sults_implantacao' no prazo. Ultima data/hora (Ajustada): 2025-11-30 20:01:33. Horas sem atualizar: 20.55h.
+--------------------
+---> Verificando a tabela (dbSults): 'silver_sults_implantacao' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 20:00:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'silver_sults_implantacao' no prazo. Ultima data/hora (Ajustada): 2025-11-30 20:01:34. Horas sem atualizar: 20.55h.
+--------------------
+---> Verificando a tabela (dbSults): 'tb_atendimentos' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 20:00:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'tb_atendimentos' no prazo. Ultima data/hora (Ajustada): 2025-12-01 15:07:01. Horas sem atualizar: 1.46h.
+--------------------
+---> Verificando a tabela (dbSults): 'tb_projetos' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 08:00:00 (Ultima atualizacao deve ser >= este valor)
+ATENCAO: Tabela 'tb_projetos' DESATUALIZADA. Atraso de 132.98h. Ultima data/hora (Ajustada): 2025-11-24 19:00:56.
+--------------------
+---> Verificando a tabela (dbSults): 'tb_tarefas' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 08:00:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'tb_tarefas' no prazo. Ultima data/hora (Ajustada): 2025-12-01 12:49:30. Horas sem atualizar: 3.76h.
+--------------------
+---> Verificando a tabela (dbSults): 'tb_reports_embedded' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 00:10:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'tb_reports_embedded' no prazo. Ultima data/hora (Ajustada): 2025-12-01 00:00:59. Horas sem atualizar: 16.56h.
+--------------------
+---> Verificando a tabela (dbSults): 'tb_report_auditoria_embedded' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 00:10:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'tb_report_auditoria_embedded' no prazo. Ultima data/hora (Ajustada): 2025-12-01 00:00:54. Horas sem atualizar: 16.57h.
+--------------------
+---> Verificando a tabela (dbSults): 'tb_users_embedded' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 00:10:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'tb_users_embedded' no prazo. Ultima data/hora (Ajustada): 2025-12-01 00:01:14. Horas sem atualizar: 16.56h.
+--------------------
+---> Verificando a tabela (dbSults): 'tb_workspaces_embedded' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 00:10:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'tb_workspaces_embedded' no prazo. Ultima data/hora (Ajustada): 2025-12-01 00:01:05. Horas sem atualizar: 16.56h.
+--------------------
+---> Verificando a tabela (dbDrogamais): 'silver_produtos_life' (usando coluna 'data_atualizacao')...
+     PONTO DE CORTE REQUERIDO: 2025-11-30 08:30:00 (Ultima atualizacao deve ser >= este valor)
+SUCESSO: Tabela 'silver_produtos_life' no prazo. Ultima data/hora (Ajustada): 2025-12-01 07:28:39. Horas sem atualizar: 9.10h.
+--------------------
+
+==================================================
+--- DADOS A SEREM INSERIDOS NO LOG ---
+   nome_workspace                                      nome_ativo     tipo_ativo status_atualizacao data_atualizacao hora_atualizacao tipo_atualizacao  dias_sem_atualizar
+0     dbDrogamais                                 bronze_close_up  TABELA BRONZE             Failed       2025-09-12         11:45:49        Scheduled                  80
+1     dbDrogamais                                 silver_close_up  TABELA SILVER                 OK       2025-10-15         15:45:19        Scheduled                  47
+2     dbDrogamais                                bronze_iqvia_cpp  TABELA BRONZE                 OK       2025-11-28         12:00:46        Scheduled                   3
+3     dbDrogamais                                    silver_iqvia  TABELA SILVER                 OK       2025-10-10         15:01:02        Scheduled                  52
+4     dbDrogamais                      bronze_menorPreco_produtos  TABELA BRONZE                 OK       2025-11-28         08:45:10        Scheduled                   3
+5     dbDrogamais                         bronze_menorPreco_notas  TABELA BRONZE                 OK       2025-12-01         10:06:59        Scheduled                   0
+6     dbDrogamais                         silver_menorPreco_notas  TABELA SILVER                 OK       2025-12-01         10:06:59        Scheduled                   0
+7       drogamais                                dw_tb_acode_temp  TABELA BRONZE                 OK       2025-12-01         07:01:06        Scheduled                   0
+8     dbDrogamais                       bronze_plugpharma_compras  TABELA BRONZE             Failed       2025-11-26         09:34:15        Scheduled                   5
+9     dbDrogamais                       bronze_plugpharma_estoque  TABELA BRONZE             Failed       2025-09-29         17:55:07        Scheduled                  63
+10    dbDrogamais                        bronze_plugpharma_vendas  TABELA BRONZE             Failed       2025-11-28         08:34:03        Scheduled                   3
+11    dbDrogamais               gold_acode_vendas_distribuidorMAT    TABELA GOLD                 OK       2025-12-01         09:00:00        Scheduled                   0
+12    dbDrogamais               gold_acode_vendas_distribuidorMES    TABELA GOLD                 OK       2025-12-01         09:00:00        Scheduled                   0
+13    dbDrogamais               gold_acode_vendas_distribuidorTRI    TABELA GOLD                 OK       2025-12-01         09:00:00        Scheduled                   0
+14    dbDrogamais  gold_closeUp_estoque_vendas_analise_de_mercado    TABELA GOLD                 OK       2025-12-01         07:40:00        Scheduled                   0
+15    dbDrogamais    gold_iqvia_estoque_vendas_analise_de_mercado    TABELA GOLD             Failed       2025-10-10         15:01:02        Scheduled                  52
+16    dbDrogamais                   silver_acode_vendas_parceiros  TABELA SILVER                 OK       2025-12-01         09:00:00        Scheduled                   0
+17    dbDrogamais                       silver_plugpharma_estoque  TABELA SILVER             Failed       2025-10-10         15:35:04        Scheduled                  52
+18    dbDrogamais                        silver_plugpharma_vendas  TABELA SILVER                 OK       2025-12-01         07:29:22        Scheduled                   0
+19    dbDrogamais      silver_plugpharma_vendas_campanhaPrincipia  TABELA SILVER             Failed       2025-11-28         08:00:00        Scheduled                   3
+20        dbSults                           bronze_sults_chamados  TABELA BRONZE             Failed       2025-11-28         20:02:07        Scheduled                   3
+21        dbSults                           silver_sults_chamados  TABELA SILVER                 OK       2025-11-30         20:02:13        Scheduled                   1
+22        dbSults                        bronze_sults_implantacao  TABELA BRONZE                 OK       2025-11-30         20:01:33        Scheduled                   1
+23        dbSults                        silver_sults_implantacao  TABELA SILVER                 OK       2025-11-30         20:01:34        Scheduled                   1
+24        dbSults                                 tb_atendimentos         TABELA                 OK       2025-12-01         15:07:01        Scheduled                   0
+25        dbSults                                     tb_projetos         TABELA             Failed       2025-11-24         19:00:56        Scheduled                   7
+26        dbSults                                      tb_tarefas         TABELA                 OK       2025-12-01         12:49:30        Scheduled                   0
+27        dbSults                             tb_reports_embedded         TABELA                 OK       2025-12-01         00:00:59        Scheduled                   0
+28        dbSults                    tb_report_auditoria_embedded         TABELA                 OK       2025-12-01         00:00:54        Scheduled                   0
+29        dbSults                               tb_users_embedded         TABELA                 OK       2025-12-01         00:01:14        Scheduled                   0
+30        dbSults                          tb_workspaces_embedded         TABELA                 OK       2025-12-01         00:01:05        Scheduled                   0
+31    dbDrogamais                            silver_produtos_life  TABELA SILVER                 OK       2025-12-01         07:28:39        Scheduled                   0
+==================================================
+
+
+==================================================
+INFO: Processo finalizado. Conexoes fechadas.
+==================================================
+
+2025-12-01 16:34:51,268 - INFO - --- SUCESSO: check_tables_timestamp.py finalizado sem erros. ---
+2025-12-01 16:34:51,268 - INFO - ============================================================
+2025-12-01 16:34:51,268 - INFO - --- EXECUTANDO SCRIPT: check_tables_silver.py ---
+2025-12-01 16:34:51,268 - INFO - ============================================================
+2025-12-01 16:34:51,939 - INFO - --- SAÍDA check_tables_silver.py ---:
+==================================================
+--- INICIANDO VERIFICACAO DE SINCRONIA 'BRONZE/SILVER' ---
+==================================================
+---> Pulando a sincronia desativada: silver_exemplo1
+---> Pulando a sincronia desativada: silver_exemplo2
+AVISO: Nenhum log foi gerado.
+
+2025-12-01 16:34:51,939 - INFO - --- SUCESSO: check_tables_silver.py finalizado sem erros. ---
+2025-12-01 16:34:51,939 - INFO - ============================================================
+2025-12-01 16:34:51,939 - INFO - --- EXECUTANDO SCRIPT: check_tables_gold.py ---
+2025-12-01 16:34:51,940 - INFO - ============================================================
+2025-12-01 16:34:52,637 - INFO - --- SAÍDA check_tables_gold.py ---:
+==================================================
+--- INICIANDO VERIFICACAO DE SINCRONIA 'BRONZE/GOLD' ---
+==================================================
+---> Pulando a sincronia desativada: gold_exemplo1
+---> Pulando a sincronia desativada: gold_exemplo2
+AVISO: Nenhum log foi gerado.
+
+2025-12-01 16:34:52,638 - INFO - --- SUCESSO: check_tables_gold.py finalizado sem erros. ---
+2025-12-01 16:34:52,638 - INFO - 
 ############################################################
-2025-12-01 16:27:56,264 - INFO - ### ORQUESTRAÇÃO FINALIZADA COM ERROS ###
-2025-12-01 16:27:56,264 - INFO - ############################################################
+2025-12-01 16:34:52,639 - INFO - ### ORQUESTRAÇÃO FINALIZADA COM SUCESSO ###
+2025-12-01 16:34:52,639 - INFO - ############################################################
