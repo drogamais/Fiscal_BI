@@ -12,6 +12,16 @@
       "hora_tolerancia": "00:10"
     },
     {
+      "nome": "silver_close_up",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 60,
+      "hora_tolerancia": "00:10"
+    },
+    {
       "nome": "bronze_iqvia_cpp",
       "tipo": "TABELA BRONZE",
       "coluna": "data_insercao",
@@ -22,6 +32,46 @@
       "hora_tolerancia": "00:00"
     },
     {
+      "nome": "silver_iqvia",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 60,
+      "hora_tolerancia": "00:00"
+    },
+    {
+      "nome": "bronze_menorPreco_produtos",
+      "tipo": "TABELA BRONZE",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 30,
+      "hora_tolerancia": "08:00"
+    },
+    {
+      "nome": "bronze_menorPreco_notas",
+      "tipo": "TABELA BRONZE",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
+    },
+    {
+      "nome": "silver_menorPreco_notas",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
+    },
+    {
       "nome": "dw_tb_acode_temp",
       "tipo": "TABELA BRONZE",
       "coluna": "Ultima_Atualizacao",
@@ -30,6 +80,16 @@
       "workspace_log": "drogamais",
       "dias_tolerancia": 1,
       "hora_tolerancia": "07:10"
+    },
+    {
+      "nome": "bronze_plugpharma_compras",
+      "tipo": "TABELA BRONZE",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "10:00"
     },
     {
       "nome": "bronze_plugpharma_estoque",
@@ -145,7 +205,7 @@
       "nome": "bronze_movidesk_chamados",
       "tipo": "TABELA BRONZE",
       "coluna": "data_atualizacao",
-      "enabled": true,
+      "enabled": false,
       "conn_key": "dbSults",
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
@@ -162,8 +222,28 @@
       "hora_tolerancia": "20:00"
     },
     {
+      "nome": "silver_sults_chamados",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "dbSults",
+      "workspace_log": "dbSults",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "20:00"
+    },
+    {
       "nome": "bronze_sults_implantacao",
       "tipo": "TABELA BRONZE",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "dbSults",
+      "workspace_log": "dbSults",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "20:00"
+    },
+    {
+      "nome": "silver_sults_implantacao",
+      "tipo": "TABELA SILVER",
       "coluna": "data_atualizacao",
       "enabled": true,
       "conn_key": "dbSults",
@@ -251,62 +331,39 @@
       "dias_tolerancia": 1,
       "hora_tolerancia": "08:30"
     }
+    
   ],
 
   "silver_sync_checks": [
     {
-      "nome_bronze": "bronze_close_up",
-      "nome_silver": "silver_close_up",
-      "coluna": "data_insercao",
-      "workspace_log": "dbDrogamais",
-      "conn_key": "dbDrogamais",
-      "enabled": true
-    },
-    {
-      "nome_bronze": "bronze_iqvia_cpp",
-      "nome_silver": "silver_iqvia",
-      "coluna": "data_insercao",
-      "workspace_log": "dbDrogamais",
-      "conn_key": "dbDrogamais",
-      "enabled": true
-    },
-    {
-      "nome_bronze": "bronze_movidesk_chamados",
-      "nome_silver": "silver_movidesk_chamados",
-      "coluna": "data_atualizacao",
-      "workspace_log": "dbSults",
-      "conn_key": "dbSults",
-      "enabled": true
-    },
-    {
-      "nome_bronze": "bronze_sults_chamados",
-      "nome_silver": "silver_sults_chamados",
-      "coluna": "data_atualizacao",
-      "workspace_log": "dbSults",
-      "conn_key": "dbSults",
-      "enabled": true
-    },
-    {
-      "nome_bronze": "bronze_sults_implantacao",
-      "nome_silver": "silver_sults_implantacao",
-      "coluna": "data_atualizacao",
-      "workspace_log": "dbSults",
-      "conn_key": "dbSults",
-      "enabled": true
-    }
-  ],
-  "gold_sync_checks": [
-    {
-      "nome_bronze": "bronze_close_up",
-      "nome_gold": "gold_closeUp_estoque_vendas_analise_de_mercado",
+      "nome_bronze": "bronze_exemplo1",
+      "nome_silver": "silver_exemplo1",
       "coluna": "data_insercao",
       "workspace_log": "dbDrogamais",
       "conn_key": "dbDrogamais",
       "enabled": false
     },
     {
-      "nome_bronze": "bronze_iqvia_cpp",
-      "nome_gold": "gold_iqvia_estoque_vendas_analise_de_mercado",
+      "nome_bronze": "bronze_exemplo2",
+      "nome_silver": "silver_exemplo2",
+      "coluna": "data_insercao",
+      "workspace_log": "dbDrogamais",
+      "conn_key": "dbDrogamais",
+      "enabled": false
+    }
+  ],
+  "gold_sync_checks": [
+    {
+      "nome_bronze": "bronze_exemplo1",
+      "nome_gold": "gold_exemplo1",
+      "coluna": "data_insercao",
+      "workspace_log": "dbDrogamais",
+      "conn_key": "dbDrogamais",
+      "enabled": false
+    },
+    {
+      "nome_bronze": "bronze_exemplo2",
+      "nome_gold": "gold_exemplo2",
       "coluna": "data_insercao",
       "workspace_log": "dbDrogamais",
       "conn_key": "dbDrogamais",
