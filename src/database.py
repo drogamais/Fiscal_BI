@@ -4,7 +4,8 @@ import json
 import mariadb
 import sys
 import pandas as pd
-import logging # <-- Adicionado para usar o logger configurado no main.py
+import logging
+from pathlib import Path
 
 # (Função get_db_connection permanece a mesma)
 def get_db_connection(config_key='dbDrogamais'):
@@ -14,8 +15,11 @@ def get_db_connection(config_key='dbDrogamais'):
     Os timeouts (read_timeout e write_timeout) são lidos diretamente do arquivo de configuração,
     com valor padrão de 300s se não definidos.
     """
+    src_dir = Path(__file__).resolve().parent
+    config_path = src_dir.parent / 'config' / 'config.json'
+
     try:
-        with open('config.json', 'r') as f:
+        with open(config_path, 'r', encoding='utf-8') as f:
             config = json.load(f)
             db_config = config[config_key]
 

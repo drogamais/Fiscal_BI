@@ -5,16 +5,23 @@ from datetime import date, datetime, timedelta
 import warnings
 import json
 import sys
+from pathlib import Path
 
 # Importa as funções do seu arquivo database.py
 from src.database import get_db_connection, insert_dataframe
 
-def load_table_config(config_file='..config/config_tables.json'):
+def load_table_config():
+    # 1. Pega a pasta onde ESTE script está (src/)
+    current_dir = Path(__file__).resolve().parent
+    
+    # 2. Sobe um nível para a raiz e entra na pasta config
+    config_file = current_dir.parent / 'config' / 'config_tables.json'
+
     try:
         with open(config_file, 'r', encoding='utf-8') as f:
             return json.load(f)
     except Exception as e:
-        print(f"Erro ao carregar config: {e}")
+        print(f"Erro ao carregar config: {config_file}. Detalhe: {e}")
         return None
 
 # Alteração: Adicionado o parâmetro 'time_tolerance'

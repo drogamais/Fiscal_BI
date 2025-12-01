@@ -6,10 +6,15 @@ import requests
 import pandas as pd
 import sys
 from datetime import datetime, timezone 
-import pytz # <-- NOVO IMPORT para gerenciar fusos horários
+import pytz
+from pathlib import Path
 
 # Importa as funções do nosso módulo de banco de dados
-from src.database import get_db_connection, insert_dataframe
+from database import get_db_connection, insert_dataframe
+
+# Pega a pasta src, sobe um nivel, entra em config e pega o arquivo
+src_dir = Path(__file__).resolve().parent
+config_path = src_dir.parent / 'config' / 'config.json'
 
 # --- 1. CARREGAR CONFIGURAÇÕES ---
 try:

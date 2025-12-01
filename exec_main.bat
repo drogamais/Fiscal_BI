@@ -15,7 +15,7 @@ echo Ambiente ativado. Iniciando a aplicacao...
 echo.
 
 REM Executa o script principal do Python
-python main.py
+python src/main.py
 
 echo.
 echo A aplicacao foi fechada.
