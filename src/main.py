@@ -1,9 +1,7 @@
 import subprocess
 import sys
 import logging
-import os
 from pathlib import Path
-from get_tabelas_fiscalizadas import gerar_resumo_txt
 
 # --- Configuração Simplificada de Caminhos e Logs ---
 # 1. Define a pasta src (onde este script está) e a raiz
@@ -86,10 +84,6 @@ def main():
     logging.info("############################################################")
     logging.info("### INICIANDO ORQUESTRADOR DE VERIFICAÇÃO DE DADOS ###")
     logging.info("############################################################\n")
-
-    # Gera o resumo das tabelas antes de começar as checagens
-    logging.info("--- Gerando arquivo de resumo de tabelas (.txt) ---")
-    gerar_resumo_txt()
 
     all_success = True 
     for script in scripts_para_executar:

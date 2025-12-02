@@ -10,7 +10,6 @@ from pathlib import Path
 # Importa as funções do seu arquivo database.py
 from database import get_db_connection, insert_dataframe
 
-# --- CORREÇÃO 1: Função para ler do BANCO usando Cursor (sem pd.read_sql) ---
 def load_config_from_db():
     try:
         # Usa a conexão padrão para ler as configurações
@@ -28,7 +27,7 @@ def load_config_from_db():
                 workspace_log,
                 dias_tolerancia,
                 TIME_FORMAT(hora_tolerancia, '%H:%i') as hora_tolerancia
-            FROM dim_tabelas_fiscalizadas
+            FROM dim_tabelas_fiscal
             WHERE ativo = 1
         """
         
@@ -91,7 +90,7 @@ def check_table_status(conn, table_name, asset_type, date_column, workspace_log,
     try:
         query = f"SELECT MAX(`{date_column}`) FROM `{table_name}`"
         
-        # --- CORREÇÃO 2: Busca da Data Máxima usando Cursor ---
+        # --- CORREÇÃO: Usar cursor para buscar a data máxima (Remove pd.read_sql) ---
         cursor = conn.cursor()
         cursor.execute(query)
         result = cursor.fetchone()
