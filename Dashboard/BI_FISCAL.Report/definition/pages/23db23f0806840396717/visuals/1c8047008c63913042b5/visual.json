@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "1c8047008c63913042b5",
   "position": {
     "x": 0,
@@ -78,7 +78,22 @@
       ],
       "selection": [
         {
-          "properties": {}
+          "properties": {
+            "selectAllCheckboxEnabled": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "singleSelect": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
         }
       ],
       "header": [
@@ -348,5 +363,23 @@
     "drillFilterOtherVisuals": true
   },
   "parentGroupName": "221eab0285940707de80",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "50ec83b37d34ca599c10",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fat_fiscal"
+              }
+            },
+            "Property": "hora_insercao_hh"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  },
   "isHidden": true
 }

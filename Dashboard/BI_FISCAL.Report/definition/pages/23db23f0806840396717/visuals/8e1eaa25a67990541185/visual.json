@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "8e1eaa25a67990541185",
   "position": {
     "x": 1.1368683772161603E-13,
@@ -202,7 +202,7 @@
             "singleSelect": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -349,5 +349,23 @@
     "drillFilterOtherVisuals": true
   },
   "parentGroupName": "63cd7a50134b5034700e",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b4b37ff04cea28c6d503",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fat_fiscal"
+              }
+            },
+            "Property": "data_insercao"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  },
   "isHidden": true
 }

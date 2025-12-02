@@ -1,13 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "f9396ae2731f9c598727",
   "position": {
     "x": 0,
     "y": 0,
     "z": 14000,
-    "height": 47.881773399014776,
-    "width": 82.463054187192114,
-    "tabOrder": 14000
+    "height": 47.557312252964429,
+    "width": 87.019762845849812
   },
   "visual": {
     "visualType": "card",
@@ -23,11 +22,11 @@
                       "Entity": "_Medidas"
                     }
                   },
-                  "Property": "Qtd Nome Ativo Text"
+                  "Property": "Qtd Nome Ativo Text OK"
                 }
               },
-              "queryRef": "_Medidas.Qtd Nome Ativo",
-              "nativeQueryRef": "Qtd Nome Ativo Text"
+              "queryRef": "_Medidas.Qtd Nome Ativo Text OK",
+              "nativeQueryRef": "Qtd Nome Ativo Text OK"
             }
           ]
         }
@@ -114,5 +113,23 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "06ba1d9312daefafb872"
+  "parentGroupName": "06ba1d9312daefafb872",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3a582cd708d4b9e0ecc4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Qtd Nome Ativo Text OK"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
 }

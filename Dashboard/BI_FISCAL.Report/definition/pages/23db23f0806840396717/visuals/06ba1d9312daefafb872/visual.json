@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "06ba1d9312daefafb872",
   "position": {
-    "x": 181.77339901477833,
-    "y": 147.192118226601,
+    "x": 318.73517786561263,
+    "y": 144.69565217391303,
     "z": 15001,
-    "height": 47.881773399014776,
-    "width": 111.72413793103448
+    "height": 47.557312252964429,
+    "width": 87.0197628458498
   },
   "visualGroup": {
     "displayName": "Ativo sem nulo",

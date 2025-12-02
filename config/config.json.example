@@ -6,36 +6,27 @@
     "client_secret": "SEU_CLIENT_SECRET_AQUI"
   },
 
-  "dbDrogamais": 
-  {
-    "user": "SEU_USUARIO_DB_DROGAMAIS",
-    "password": "SUA_SENHA_DB_DROGAMAIS",
-    "host": "SEU_HOST_DB_DROGAMAIS",
-    "port": 3306,
-    "database": "dbDrogamais",
-    "read_timeout": 300,
-    "write_timeout": 300 
-  },
-
-  "dbSults": 
-  {
-    "user": "SEU_USUARIO_DB_SULTS",
-    "password": "SUA_SENHA_DB_SULTS",
-    "host": "SEU_HOST_DB_SULTS",
-    "port": 3306,
-    "database": "dbSults",
-    "read_timeout": 300,
-    "write_timeout": 300
-  },
-
-  "drogamais": 
-  {
+  "defaults": {
     "user": "SEU_USUARIO_DROGAMAIS",
     "password": "SUA_SENHA_DROGAMAIS",
     "host": "SEU_HOST_DROGAMAIS",
     "port": 3306,
-    "database": "drogamais",
-    "read_timeout": 300,
-    "write_timeout": 300
+    "read_timeout": 900,
+    "write_timeout": 900
+  },
+
+  "dbDrogamais": {
+    "$extends": "defaults",
+    "database": "dbDrogamais"
+  },
+
+  "dbSults": {
+    "$extends": "defaults",
+    "database": "dbSults"
+  },
+
+  "drogamais": {
+    "$extends": "defaults",
+    "database": "drogamais"
   }
 }

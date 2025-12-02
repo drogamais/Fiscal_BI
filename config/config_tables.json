@@ -192,26 +192,6 @@
       "hora_tolerancia": "08:00"
     },
     {
-      "nome": "silver_plugpharma_vendas_campanhaPrincipia",
-      "tipo": "TABELA SILVER",
-      "coluna": "data_atualizacao",
-      "enabled": false,
-      "conn_key": "dbDrogamais",
-      "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 1,
-      "hora_tolerancia": "08:00"
-    },
-    {
-      "nome": "bronze_movidesk_chamados",
-      "tipo": "TABELA BRONZE",
-      "coluna": "data_atualizacao",
-      "enabled": false,
-      "conn_key": "dbSults",
-      "workspace_log": "dbSults",
-      "dias_tolerancia": 1,
-      "hora_tolerancia": "20:00"
-    },
-    {
       "nome": "bronze_sults_chamados",
       "tipo": "TABELA BRONZE",
       "coluna": "data_atualizacao",
@@ -255,10 +235,10 @@
       "nome": "tb_atendimentos",
       "tipo": "TABELA",
       "coluna": "data_atualizacao",
-      "enabled": true,
+      "enabled": false,
       "conn_key": "dbSults",
       "workspace_log": "dbSults",
-      "dias_tolerancia": 1,
+      "dias_tolerancia": 7,
       "hora_tolerancia": "20:00"
     },
     {
@@ -332,42 +312,5 @@
       "hora_tolerancia": "08:30"
     }
     
-  ],
-
-  "silver_sync_checks": [
-    {
-      "nome_bronze": "bronze_exemplo1",
-      "nome_silver": "silver_exemplo1",
-      "coluna": "data_insercao",
-      "workspace_log": "dbDrogamais",
-      "conn_key": "dbDrogamais",
-      "enabled": false
-    },
-    {
-      "nome_bronze": "bronze_exemplo2",
-      "nome_silver": "silver_exemplo2",
-      "coluna": "data_insercao",
-      "workspace_log": "dbDrogamais",
-      "conn_key": "dbDrogamais",
-      "enabled": false
-    }
-  ],
-  "gold_sync_checks": [
-    {
-      "nome_bronze": "bronze_exemplo1",
-      "nome_gold": "gold_exemplo1",
-      "coluna": "data_insercao",
-      "workspace_log": "dbDrogamais",
-      "conn_key": "dbDrogamais",
-      "enabled": false
-    },
-    {
-      "nome_bronze": "bronze_exemplo2",
-      "nome_gold": "gold_exemplo2",
-      "coluna": "data_insercao",
-      "workspace_log": "dbDrogamais",
-      "conn_key": "dbDrogamais",
-      "enabled": false
-    }
   ]
 }

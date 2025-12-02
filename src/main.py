@@ -80,9 +80,7 @@ def main():
     """
     scripts_para_executar = [
         'check_powerbi.py',
-        'check_tables_timestamp.py',
-        'check_tables_silver.py',
-        'check_tables_gold.py'
+        'check_tables_timestamp.py'
     ]
 
     logging.info("############################################################")

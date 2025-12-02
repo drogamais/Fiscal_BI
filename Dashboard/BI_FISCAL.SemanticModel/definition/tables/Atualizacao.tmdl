@@ -22,7 +22,7 @@ table Atualizacao
 		mode: import
 		source =
 				let
-				    Fonte = DateTimeZone.LocalNow(),
+				    Fonte = DateTimeZone.SwitchZone(DateTimeZone.LocalNow(), -3),
 				    #"Convertido para Tabela" = #table(1, {{Fonte}}),
 				    #"Colunas Renomeadas" = Table.RenameColumns(#"Convertido para Tabela",{{"Column1", "Última Atualização"}}),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Última Atualização", type datetimezone}})

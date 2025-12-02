@@ -31,6 +31,23 @@ table _Medidas
 		formatString: 0
 		lineageTag: f512a2e0-6f99-4402-ac4a-89dca196b40e
 
+	measure 'Qtd Nome Ativo Text OK' = ```
+			
+			VAR Total =
+			    DISTINCTCOUNT(fat_fiscal[nome_ativo])
+			
+			VAR OK =
+			    CALCULATE(
+			        DISTINCTCOUNT(fat_fiscal[nome_ativo]),
+			        fat_fiscal[status_atualizacao] = "OK"
+			    )
+			
+			RETURN
+			    OK & " / " & Total
+			
+			```
+		lineageTag: fe7a594e-827f-44dd-9cf7-b4d4278c47bc
+
 	column Column
 		formatString: 0
 		lineageTag: 1e41f2f3-6d77-4651-8ed0-d01695ccc30e
