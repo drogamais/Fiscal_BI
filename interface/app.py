@@ -110,7 +110,7 @@ else:
             except Exception:
                 pass 
 
-        st.info(f"Editando tabela `dim_tabelas_fiscalizadas`. Registros: {len(df)}")
+        st.info(f"Editando tabela `dim_tabelas_fiscal`. Registros: {len(df)}")
 
         # Tabela Editável
         edited_df = st.data_editor(

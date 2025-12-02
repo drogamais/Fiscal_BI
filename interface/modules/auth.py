@@ -2,7 +2,7 @@ import streamlit as st
 from datetime import datetime, timedelta
 
 # Configuração: Tempo de duração da sessão em minutos
-SESSION_DURATION_MINUTES = 10
+SESSION_DURATION_MINUTES = 480
 
 def get_token_from_url():
     """Lê o token de sessão da URL"""
