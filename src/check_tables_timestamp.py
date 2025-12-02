@@ -10,18 +10,36 @@ from pathlib import Path
 # Importa as funções do seu arquivo database.py
 from database import get_db_connection, insert_dataframe
 
-def load_table_config():
-    # 1. Pega a pasta onde ESTE script está (src/)
-    current_dir = Path(__file__).resolve().parent
-    
-    # 2. Sobe um nível para a raiz e entra na pasta config
-    config_file = current_dir.parent / 'config' / 'config_tables.json'
-
+# Nova função para ler do BANCO em vez do JSON
+def load_config_from_db():
     try:
-        with open(config_file, 'r', encoding='utf-8') as f:
-            return json.load(f)
+        # Usa a conexão padrão para ler as configurações
+        conn = get_db_connection('dbDrogamais') 
+        if not conn:
+            return None
+            
+        # Pega apenas tabelas ATIVAS
+        query = """
+            SELECT 
+                nome_ativo as nome,
+                tipo_ativo as tipo,
+                coluna_referencia as coluna,
+                conn_key,
+                workspace_log,
+                dias_tolerancia,
+                TIME_FORMAT(hora_tolerancia, '%H:%i') as hora_tolerancia
+            FROM dim_tabelas_fiscalizadas
+            WHERE ativo = 1
+        """
+        
+        df = pd.read_sql(query, conn)
+        conn.close()
+        
+        # Converte o DataFrame para uma lista de dicionários (formato que o script já espera)
+        return {'freshness_checks': df.to_dict(orient='records')}
+        
     except Exception as e:
-        print(f"Erro ao carregar config: {config_file}. Detalhe: {e}")
+        print(f"Erro ao carregar configurações do banco: {e}")
         return None
 
 # Alteração: Adicionado o parâmetro 'time_tolerance'
@@ -143,7 +161,7 @@ def main():
     print("--- INICIANDO VERIFICACAO DE ATUALIDADE DAS TABELAS (UNIFICADO COM TOLERANCIA) ---")
     print("="*50)
 
-    config = load_table_config()
+    config = load_config_from_db()
     if not config:
         sys.exit(1)
 
