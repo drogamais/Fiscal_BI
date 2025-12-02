@@ -12,28 +12,8 @@
       "hora_tolerancia": "00:10"
     },
     {
-      "nome": "silver_close_up",
-      "tipo": "TABELA SILVER",
-      "coluna": "data_insercao",
-      "enabled": true,
-      "conn_key": "dbDrogamais",
-      "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 60,
-      "hora_tolerancia": "00:10"
-    },
-    {
       "nome": "bronze_iqvia_cpp",
       "tipo": "TABELA BRONZE",
-      "coluna": "data_insercao",
-      "enabled": true,
-      "conn_key": "dbDrogamais",
-      "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 60,
-      "hora_tolerancia": "00:00"
-    },
-    {
-      "nome": "silver_iqvia",
-      "tipo": "TABELA SILVER",
       "coluna": "data_insercao",
       "enabled": true,
       "conn_key": "dbDrogamais",
@@ -54,16 +34,6 @@
     {
       "nome": "bronze_menorPreco_notas",
       "tipo": "TABELA BRONZE",
-      "coluna": "data_atualizacao",
-      "enabled": true,
-      "conn_key": "dbDrogamais",
-      "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 1,
-      "hora_tolerancia": "08:00"
-    },
-    {
-      "nome": "silver_menorPreco_notas",
-      "tipo": "TABELA SILVER",
       "coluna": "data_atualizacao",
       "enabled": true,
       "conn_key": "dbDrogamais",
@@ -142,6 +112,56 @@
       "hora_tolerancia": "09:00"
     },
     {
+      "nome": "gold_acode_vendas_distribuidorYTD",
+      "tipo": "TABELA GOLD",
+      "coluna": "DATA_ATUALIZACAO",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "09:00"
+    },
+    {
+      "nome": "gold_acode_vendas_industriaMAT",
+      "tipo": "TABELA GOLD",
+      "coluna": "DATA_ATUALIZACAO",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "09:00"
+    },
+    {
+      "nome": "gold_acode_vendas_industriaMES",
+      "tipo": "TABELA GOLD",
+      "coluna": "DATA_ATUALIZACAO",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "09:00"
+    },
+    {
+      "nome": "gold_acode_vendas_industriaTRI",
+      "tipo": "TABELA GOLD",
+      "coluna": "DATA_ATUALIZACAO",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "09:00"
+    },
+    {
+      "nome": "gold_acode_vendas_industriaYTD",
+      "tipo": "TABELA GOLD",
+      "coluna": "DATA_ATUALIZACAO",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "09:00"
+    },
+    {
       "nome": "gold_closeUp_estoque_vendas_analise_de_mercado",
       "tipo": "TABELA GOLD",
       "coluna": "data_insercao",
@@ -162,9 +182,79 @@
       "hora_tolerancia": "08:00"
     },
     {
+      "nome": "silver_acode_compras_resumo",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "09:00"
+    },
+    {
+      "nome": "silver_acode_empresas",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "09:00"
+    },
+    {
       "nome": "silver_acode_vendas_parceiros",
       "tipo": "TABELA SILVER",
       "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "09:00"
+    },
+    {
+      "nome": "silver_close_up",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 60,
+      "hora_tolerancia": "00:10"
+    },
+    {
+      "nome": "silver_febrafar_pec_resumo",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "09:00"
+    },
+    {
+      "nome": "silver_iqvia",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 60,
+      "hora_tolerancia": "00:00"
+    },
+    {
+      "nome": "silver_menorPreco_notas",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
+    },
+    {
+      "nome": "silver_plugpharma_dim_produto_analise_de_perfomance",
+      "tipo": "TABELA SILVER",
+      "coluna": "DataAtualizacao",
       "enabled": true,
       "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
@@ -182,9 +272,79 @@
       "hora_tolerancia": "08:00"
     },
     {
+      "nome": "silver_plugpharma_kpis_rede_global_analise_de_perfomance",
+      "tipo": "TABELA SILVER",
+      "coluna": "DataAtualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
+    },
+    {
+      "nome": "silver_plugpharma_resumo_compras_mensais",
+      "tipo": "TABELA SILVER",
+      "coluna": "DataAtualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 30,
+      "hora_tolerancia": "11:00"
+    },
+    {
+      "nome": "silver_plugpharma_resumo_vendas_mensais",
+      "tipo": "TABELA SILVER",
+      "coluna": "DataAtualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 30,
+      "hora_tolerancia": "11:00"
+    },
+    {
       "nome": "silver_plugpharma_vendas",
       "tipo": "TABELA SILVER",
       "coluna": "data_insercao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
+    },
+    {
+      "nome": "silver_plugpharma_vendas_black_friday",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
+    },
+    {
+      "nome": "silver_plugpharma_vendas_lojasMES",
+      "tipo": "TABELA SILVER",
+      "coluna": "DATA_ATUALIZACAO",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
+    },
+    {
+      "nome": "silver_plugpharma_vendas_lojas_medias",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_atualizacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
+    },
+    {
+      "nome": "silver_produtos_life",
+      "tipo": "TABELA SILVER",
+      "coluna": "data_atualizacao",
       "enabled": true,
       "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
