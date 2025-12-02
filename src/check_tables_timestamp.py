@@ -32,8 +32,9 @@ def load_config_from_db():
             WHERE ativo = 1
         """
         
-        df = pd.read_sql(query, conn)
-        conn.close()
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            df = pd.read_sql(query, conn)
         
         # Converte o DataFrame para uma lista de dicionários (formato que o script já espera)
         return {'freshness_checks': df.to_dict(orient='records')}
