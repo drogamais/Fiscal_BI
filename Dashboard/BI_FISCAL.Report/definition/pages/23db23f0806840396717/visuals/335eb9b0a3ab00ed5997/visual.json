@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "335eb9b0a3ab00ed5997",
   "position": {
     "x": 0,
@@ -68,11 +68,11 @@
                       "Property": "data_atualizacao"
                     }
                   },
-                  "Function": 3
+                  "Function": 4
                 }
               },
               "queryRef": "Min(fat_fiscal.data_atualizacao)",
-              "nativeQueryRef": "DATA REFRESH",
+              "nativeQueryRef": "Último data_atualizacao",
               "displayName": "DATA REFRESH"
             },
             {
@@ -88,11 +88,11 @@
                       "Property": "hora_atualizacao"
                     }
                   },
-                  "Function": 3
+                  "Function": 4
                 }
               },
               "queryRef": "Min(fat_fiscal.hora_atualizacao)",
-              "nativeQueryRef": "HORA REFRESH",
+              "nativeQueryRef": "Último hora_atualizacao",
               "displayName": "HORA REFRESH"
             },
             {
@@ -128,11 +128,11 @@
                       "Property": "dias_sem_atualizar"
                     }
                   },
-                  "Function": 0
+                  "Function": 3
                 }
               },
               "queryRef": "Sum(fat_fiscal.dias_sem_atualizar)",
-              "nativeQueryRef": "DIAS SEM ATUALIZAR",
+              "nativeQueryRef": "Mínimo de dias_sem_atualizar",
               "displayName": "DIAS SEM ATUALIZAR"
             }
           ]

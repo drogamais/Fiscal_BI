@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "06ba1d9312daefafb872",
   "position": {
-    "x": 318.73517786561263,
-    "y": 144.69565217391303,
+    "x": 303.25123152709358,
+    "y": 144.53201970443351,
     "z": 15001,
-    "height": 47.557312252964429,
-    "width": 87.0197628458498
+    "height": 47.881773399014776,
+    "width": 102.85714285714286
   },
   "visualGroup": {
     "displayName": "Ativo sem nulo",

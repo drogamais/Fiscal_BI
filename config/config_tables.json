@@ -12,6 +12,16 @@
       "hora_tolerancia": "00:10"
     },
     {
+      "nome": "bronze_febrafar_pec",
+      "tipo": "TABELA BRONZE",
+      "coluna": "data_transacao",
+      "enabled": true,
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 1,
+      "hora_tolerancia": "08:00"
+    },
+    {
       "nome": "bronze_iqvia_cpp",
       "tipo": "TABELA BRONZE",
       "coluna": "data_insercao",
@@ -20,16 +30,6 @@
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 60,
       "hora_tolerancia": "00:00"
-    },
-    {
-      "nome": "bronze_menorPreco_produtos",
-      "tipo": "TABELA BRONZE",
-      "coluna": "data_insercao",
-      "enabled": true,
-      "conn_key": "dbDrogamais",
-      "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 30,
-      "hora_tolerancia": "08:00"
     },
     {
       "nome": "bronze_menorPreco_notas",
@@ -42,14 +42,14 @@
       "hora_tolerancia": "08:00"
     },
     {
-      "nome": "dw_tb_acode_temp",
+      "nome": "bronze_menorPreco_produtos",
       "tipo": "TABELA BRONZE",
-      "coluna": "Ultima_Atualizacao",
+      "coluna": "data_insercao",
       "enabled": true,
-      "conn_key": "drogamais",
-      "workspace_log": "drogamais",
-      "dias_tolerancia": 1,
-      "hora_tolerancia": "07:10"
+      "conn_key": "dbDrogamais",
+      "workspace_log": "dbDrogamais",
+      "dias_tolerancia": 30,
+      "hora_tolerancia": "08:00"
     },
     {
       "nome": "bronze_plugpharma_compras",
@@ -279,7 +279,7 @@
       "conn_key": "dbDrogamais",
       "workspace_log": "dbDrogamais",
       "dias_tolerancia": 1,
-      "hora_tolerancia": "08:00"
+      "hora_tolerancia": "09:00"
     },
     {
       "nome": "silver_plugpharma_resumo_compras_mensais",
