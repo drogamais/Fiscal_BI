@@ -392,16 +392,6 @@
       "hora_tolerancia": "20:00"
     },
     {
-      "nome": "tb_atendimentos",
-      "tipo": "TABELA",
-      "coluna": "data_atualizacao",
-      "enabled": false,
-      "conn_key": "dbSults",
-      "workspace_log": "dbSults",
-      "dias_tolerancia": 7,
-      "hora_tolerancia": "20:00"
-    },
-    {
       "nome": "tb_projetos",
       "tipo": "TABELA",
       "coluna": "data_atualizacao",
@@ -460,17 +450,6 @@
       "workspace_log": "dbSults",
       "dias_tolerancia": 1,
       "hora_tolerancia": "00:10"
-    },
-    {
-      "nome": "silver_produtos_life",
-      "tipo": "TABELA SILVER",
-      "coluna": "data_atualizacao",
-      "enabled": true,
-      "conn_key": "dbDrogamais",
-      "workspace_log": "dbDrogamais",
-      "dias_tolerancia": 1,
-      "hora_tolerancia": "08:30"
     }
-    
   ]
 }
