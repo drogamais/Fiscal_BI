@@ -6,3 +6,4 @@ orchestrator2.py
 venv
 deploy.ps1
 .pbi/
+deploy_interface.ps1

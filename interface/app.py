@@ -5,8 +5,6 @@ import sys
 from pathlib import Path
 
 # --- AJUSTE DE PATH (Para achar a pasta 'src') ---
-# Estamos em: Fiscal_BI/interface/app.py
-# Queremos:   Fiscal_BI/src
 ROOT_DIR = Path(__file__).resolve().parent.parent
 SRC_DIR = ROOT_DIR / 'src'
 
@@ -32,26 +30,85 @@ if not st.session_state.logged_in:
 if not st.session_state.logged_in:
     auth.render_login_screen()
 else:
-    # === ÁREA LOGADA ===
-    
-    # Sidebar
-    with st.sidebar:
-        st.write("👤 Logado como: **admin**")
-        if st.button("Sair"):
-            auth.logout()
-
-    st.title("🗄️ Gestão de Tabelas (Interface)")
-
-    # Carregamento de Dados
+    # Carregamento de Dados (Cacheado na Sessão)
     if 'df_data' not in st.session_state:
         st.session_state.df_data = db_manager.load_data()
 
+    # Trabalha com uma cópia local
     df = st.session_state.df_data.copy()
 
+    # Tratamento visual (Time Object) se houver dados
+    if not df.empty and "hora_tolerancia" in df.columns:
+        df["hora_tolerancia"] = df["hora_tolerancia"].apply(db_manager.parse_time_safe)
+
+    # ==========================================
+    # BARRA LATERAL (CONTROLES)
+    # ==========================================
+    with st.sidebar:
+        st.write("👤 Logado como: **admin**")
+        st.divider()
+        
+        # --- 1. FILTROS DE ORDENAÇÃO (Expansível) ---
+        # Aqui está o "pointer" (setinha) que você pediu.
+        # expanded=False faz ele começar fechado (omitido).
+        with st.expander("🔍 Ordenação Visual", expanded=False):
+            # Seleção de Coluna
+            coluna_ordenar = st.selectbox(
+                "Ordenar por:", 
+                ["(Padrão)"] + list(df.columns), 
+                index=list(df.columns).index('nome_ativo') + 1 if 'nome_ativo' in df.columns else 0
+            )
+            
+            # Seleção de Direção
+            direcao = st.radio("Ordem:", ["ASC", "DESC"], horizontal=True)
+            
+            st.caption("A ordenação é apenas visual.")
+        
+        st.divider()
+
+        # --- 2. OPERAÇÕES (SCRIPTS) ---
+        st.subheader("⚙️ Operações")
+        if st.button("▶️ Rodar Verificação (main.py)", use_container_width=True):
+            with st.status("Processando...", expanded=True):
+                try:
+                    # Aponta para o script main.py na pasta SRC vizinha
+                    script_path = SRC_DIR / 'main.py'
+                    
+                    # Executa o script
+                    res = subprocess.run(
+                        [sys.executable, str(script_path)], 
+                        capture_output=True, 
+                        text=True, 
+                        encoding='utf-8', 
+                        errors='replace'
+                    )
+                    
+                    if res.returncode == 0:
+                        st.success("Sucesso!")
+                        st.code(res.stdout)
+                    else:
+                        st.error("Erro na execução")
+                        st.text(res.stderr)
+                except Exception as e:
+                    st.error(f"Erro crítico ao tentar rodar script: {e}")
+
+        st.divider()
+        if st.button("Sair", type="secondary"):
+            auth.logout()
+
+    # ==========================================
+    # ÁREA PRINCIPAL (TABELA)
+    # ==========================================
+    st.title("🗄️ Gestão de Tabelas Fiscalizadas (Fiscal BI)")
+
     if not df.empty:
-        # Tratamento visual (Time Object) para edição
-        if "hora_tolerancia" in df.columns:
-            df["hora_tolerancia"] = df["hora_tolerancia"].apply(db_manager.parse_time_safe)
+        # Aplica a ordenação no Python (Back-end) antes de exibir a tabela
+        if coluna_ordenar != "(Padrão)":
+            ascendente = True if direcao == "ASC" else False
+            try:
+                df = df.sort_values(by=coluna_ordenar, ascending=ascendente)
+            except Exception:
+                pass 
 
         st.info(f"Editando tabela `dim_tabelas_fiscalizadas`. Registros: {len(df)}")
 
@@ -60,7 +117,7 @@ else:
             df,
             num_rows="dynamic",
             use_container_width=True,
-            height=600,
+            height=700, 
             column_config={
                 "ativo": st.column_config.CheckboxColumn("Ativo?", width="small"),
                 "nome_ativo": st.column_config.TextColumn("Nome da Tabela", width="large", required=True),
@@ -80,43 +137,17 @@ else:
             if st.button("💾 Salvar no Banco", type="primary", use_container_width=True):
                 df_save = edited_df.copy()
                 
-                # Tratamento reverso (Time -> String) para salvar
+                # Tratamento reverso para salvar
                 df_save["hora_tolerancia"] = df_save["hora_tolerancia"].apply(db_manager.format_time_safe)
                 
-                # Regra de negócio: preencher workspace vazio
+                # Preencher workspace vazio
                 df_save['workspace_log'] = df_save.apply(
                     lambda x: x['conn_key'] if pd.isna(x['workspace_log']) or x['workspace_log'] == '' else x['workspace_log'], axis=1
                 )
 
                 if db_manager.save_data(df_save):
                     st.toast("Banco atualizado com sucesso!", icon="✅")
-                    st.session_state.df_data = db_manager.load_data() # Recarrega
+                    # Força recarregamento
+                    if 'df_data' in st.session_state:
+                        del st.session_state.df_data 
                     st.rerun()
-
-    st.divider()
-
-    # Botão Executar Script Backend
-    st.subheader("⚙️ Operações")
-    if st.button("▶️ Rodar Verificação (main.py)"):
-        with st.status("Processando...", expanded=True):
-            try:
-                # Aponta para o script main.py na pasta SRC vizinha
-                script_path = SRC_DIR / 'main.py'
-                
-                # Executa o script
-                res = subprocess.run(
-                    [sys.executable, str(script_path)], 
-                    capture_output=True, 
-                    text=True, 
-                    encoding='utf-8', 
-                    errors='replace'
-                )
-                
-                if res.returncode == 0:
-                    st.success("Sucesso!")
-                    st.code(res.stdout)
-                else:
-                    st.error("Erro na execução")
-                    st.text(res.stderr)
-            except Exception as e:
-                st.error(f"Erro crítico ao tentar rodar script: {e}")
