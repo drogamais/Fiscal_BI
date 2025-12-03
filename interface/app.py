@@ -90,7 +90,44 @@ else:
                         st.error("Erro na execução")
                         st.text(res.stderr)
                 except Exception as e:
-                    st.error(f"Erro crítico ao tentar rodar script: {e}")
+                    st.error(f"Erro crítico ao tentar rodar script: {e}")  
+
+        st.divider()
+        
+        # --- 3. VISUALIZADOR DE LOGS ---
+        st.subheader("📄 Logs do Sistema")
+        
+        # Define o caminho do arquivo de log
+        log_file_path = ROOT_DIR / 'logs' / 'fiscal_bi.log'
+        
+        with st.expander("Abrir Log de Execução", expanded=False):
+            if st.button("🔄 Atualizar Log", use_container_width=True):
+                st.rerun()
+            
+            if log_file_path.exists():
+                try:
+                    # Lê as últimas 100 linhas para não pesar a interface
+                    with open(log_file_path, "r", encoding="utf-8") as f:
+                        lines = f.readlines()
+                        last_lines = "".join(lines[-100:]) if len(lines) > 100 else "".join(lines)
+                    
+                    st.caption(f"Exibindo as últimas {min(len(lines), 100)} linhas:")
+                    # Mostra o log em um bloco de código rolável
+                    st.code(last_lines, language="log", line_numbers=True)
+                    
+                    # Botão para baixar o log completo
+                    with open(log_file_path, "rb") as file:
+                        st.download_button(
+                            label="📥 Baixar Log Completo",
+                            data=file,
+                            file_name="fiscal_bi.log",
+                            mime="text/plain",
+                            use_container_width=True
+                        )
+                except Exception as e:
+                    st.error(f"Erro ao ler o log: {e}")
+            else:
+                st.warning("Arquivo de log ainda não criado.")
 
         st.divider()
         if st.button("Sair", type="secondary"):
