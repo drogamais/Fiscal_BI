@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["Atualizacao","fat_fiscal"]
+annotation PBI_QueryOrder = ["Atualizacao","fat_fiscal","bronze_lojas","view_plugpharma_lojas_dia"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -20,6 +20,14 @@ ref table LocalDateTable_3c50fb53-303e-4a24-8439-833643d31719
 ref table Atualizacao
 ref table LocalDateTable_c1332a40-9717-4d9d-a36e-8da51bb92b6e
 ref table fat_fiscal
+ref table bronze_lojas
+ref table LocalDateTable_e0909cb2-e861-4e8a-b815-3d022943c6c8
+ref table LocalDateTable_00002e20-c29d-4706-866c-6aa2df3d0a57
+ref table LocalDateTable_89f7d3e5-2afb-4068-b212-42c0cd22aaa2
+ref table LocalDateTable_cd8f187e-64da-4b5e-aac2-719eab34735b
+ref table LocalDateTable_44175acf-03fe-44cd-9529-3d9a6ee94813
+ref table LocalDateTable_029d5e76-8ba1-49d4-be50-167d82b3936b
+ref table view_plugpharma_lojas_dia
 
 ref cultureInfo pt-BR
 

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "d7f5b8a0c2702e2d3ec0",
+  "position": {
+    "x": 75,
+    "y": 157.5,
+    "z": 4000,
+    "height": 497.5,
+    "width": 862.5,
+    "tabOrder": 3000
+  },
+  "visualGroup": {
+    "displayName": "Matriz",
+    "groupMode": "ScaleMode"
+  }
+}

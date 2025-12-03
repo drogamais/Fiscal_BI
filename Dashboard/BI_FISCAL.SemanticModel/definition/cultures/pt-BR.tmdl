@@ -60,6 +60,16 @@ cultureInfo pt-BR
 			            },
 			            "Weight": 0.714
 			          }
+			        },
+			        {
+			          "DATA": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ],
 			      "SemanticType": "Time"
@@ -1644,6 +1654,148 @@ cultureInfo pt-BR
 			      "Terms": [
 			        {
 			          "TIPO ATUALIZAÇÃO": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "bronze_lojas.loja_completo": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bronze_lojas",
+			          "ConceptualProperty": "loja_completo"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "LOJA CAPTADA": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "LOJA NÃO CAPTADA": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "bronze_lojas.cidade": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bronze_lojas",
+			          "ConceptualProperty": "cidade"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table_medidas.card_vendeu_vs_total": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Card Captada vs Total"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Captada / Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_medidas.card_não_vendeu_vs_total": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Card Não Captada vs Total"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Não captada / Total": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_medidas.card_não_vendeu_vs_vendeu": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Card Não Captada vs Captada"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table_medidas.card_captada_não_ativa": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Card Captada não ativa"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "bronze_lojas.ativo": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "bronze_lojas",
+			          "ConceptualProperty": "ativo"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ATIVO": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_medidas.captada_nao_ativa": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Medidas",
+			          "ConceptualProperty": "Captada nao ativa"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Captada não ativa": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

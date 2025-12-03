@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "448edbeba1dacb7d2c11",
+  "position": {
+    "x": 349.19397697077056,
+    "y": 13.604960141718335,
+    "z": 6000,
+    "height": 87.298494242692641,
+    "width": 232.4180690876882,
+    "tabOrder": 2000
+  },
+  "visualGroup": {
+    "displayName": "Filtro Hora Fiscalizada",
+    "groupMode": "ScaleMode"
+  }
+}

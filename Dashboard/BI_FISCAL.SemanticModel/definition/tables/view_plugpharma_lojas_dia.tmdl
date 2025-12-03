@@ -1,0 +1,44 @@
+table view_plugpharma_lojas_dia
+	lineageTag: a6f89bb0-bd36-48e6-87f2-a9415cce29d4
+
+	column data_venda
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b986e0d4-59cb-464d-8956-ca1abe87faae
+		summarizeBy: none
+		sourceColumn: data_venda
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column cnpj_loja
+		dataType: string
+		lineageTag: 63292aa5-80ea-4bb9-9fb3-0a28278507d9
+		summarizeBy: none
+		sourceColumn: cnpj_loja
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_fantasia_loja
+		dataType: string
+		lineageTag: 1a0e3890-b164-4158-b7e0-2aab7fe8fb89
+		summarizeBy: none
+		sourceColumn: nome_fantasia_loja
+
+		annotation SummarizationSetBy = Automatic
+
+	partition view_plugpharma_lojas_dia = m
+		mode: import
+		source =
+				let
+				    Fonte = MariaDB.Contents("10.48.12.20:3306;dbDrogamais", null, null),
+				    view_plugpharma_lojas_dia_View = Fonte{[Name="view_plugpharma_lojas_dia",Kind="View"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(view_plugpharma_lojas_dia_View,{{"data_venda", type date}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

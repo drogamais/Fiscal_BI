@@ -48,6 +48,94 @@ table _Medidas
 			```
 		lineageTag: fe7a594e-827f-44dd-9cf7-b4d4278c47bc
 
+	measure 'Check Loja Zerada' = ```
+			
+			VAR QtdVendas = COUNTROWS('view_plugpharma_lojas_dia')
+			RETURN
+			    IF(
+			        ISBLANK(QtdVendas), 
+			        0, -- Retorna 0 se NÃO tiver registro na view (é quem você quer)
+			        1  -- Retorna 1 se tiver vendas
+			    )
+			```
+		formatString: 0
+		lineageTag: 61a27071-f33c-45a9-a2d3-a671f415570c
+
+	measure 'Qtd Total Lojas Vendeu' = DISTINCTCOUNT(view_plugpharma_lojas_dia[cnpj_loja])
+		formatString: 0
+		lineageTag: c5f4b22c-781f-4ef6-861b-db2b8f0d5150
+
+	measure 'Qtd Total Lojas' = DISTINCTCOUNT(bronze_lojas[cnpj])
+		formatString: 0
+		lineageTag: 99768dcd-0553-49ee-9f99-4086ba62d336
+
+	measure 'Card Não Captada vs Total' = ```
+			
+			VAR LojasFiltradas = 
+			    FILTER(
+			        VALUES('bronze_lojas'[cnpj_s]), -- Cria uma lista virtual de lojas
+			        [Check Loja Zerada] = 0             -- Aplica SUA lógica em cada uma (0 = Não Vendeu)
+			    )
+			
+			VAR Numerador = COUNTROWS(LojasFiltradas)   -- Conta quantas sobraram (deve dar 5)
+			VAR Denominador = COUNTROWS('bronze_lojas') -- Total de lojas
+			
+			RETURN
+			    COALESCE(Numerador,0) & " / " & Denominador
+			
+			
+			
+			```
+		lineageTag: 4d792405-3053-40dc-ab19-22c7ceb46228
+
+	measure 'Card Captada vs Total' = ```
+			
+			VAR Numerador = DISTINCTCOUNT('view_plugpharma_lojas_dia'[cnpj_loja])
+			VAR Denominador = COUNTROWS('bronze_lojas') -- Total de lojas
+			
+			RETURN
+			    COALESCE(Numerador,0) & " / " & Denominador
+			
+			
+			
+			```
+		lineageTag: 515a48e2-d7fa-4d81-bf01-12efc24aebc8
+
+	measure 'Card Não Captada vs Captada' = ```
+			
+			VAR LojasFiltradas = 
+			    FILTER(
+			        VALUES('bronze_lojas'[cnpj_s]), -- Cria uma lista virtual de lojas
+			        [Check Loja Zerada] = 0         -- Aplica SUA lógica em cada uma (0 = Não Vendeu)
+			    )
+			
+			VAR Numerador = COUNTROWS(LojasFiltradas)   -- Conta quantas sobraram (deve dar 5)
+			VAR Denominador = DISTINCTCOUNT(view_plugpharma_lojas_dia[cnpj_loja]) -- Total de lojas
+			
+			RETURN
+			    Numerador & " / " & Denominador
+			```
+		lineageTag: 6cf27e9d-7f5f-420c-bdea-2d67bdb1845e
+
+	measure 'Card Captada não ativa' = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT(view_plugpharma_lojas_dia[cnpj_loja]),
+			    TREATAS(
+			        VALUES(view_plugpharma_lojas_dia[cnpj_loja]),
+			        bronze_lojas[cnpj_s]
+			    ),
+			    bronze_lojas[ativo] = FALSE()
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 84984cb2-f504-4dd3-9a93-8b54f07a9fcd
+
+	measure 'Captada nao ativa' = COALESCE(DISTINCTCOUNT(view_plugpharma_lojas_dia[cnpj_loja]),0)
+		formatString: 0
+		lineageTag: 11d87d6c-d03c-4f3d-9bd8-4b20bfc7b62e
+
 	column Column
 		formatString: 0
 		lineageTag: 1e41f2f3-6d77-4651-8ed0-d01695ccc30e

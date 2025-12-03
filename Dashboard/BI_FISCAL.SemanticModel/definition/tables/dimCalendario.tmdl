@@ -102,6 +102,7 @@ table dimCalendario
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Mês/Ano]
+		sortByColumn: Mês
 
 		annotation SummarizationSetBy = Automatic
 
@@ -151,6 +152,7 @@ table dimCalendario
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Dia/Mês]
+		sortByColumn: Mês
 
 		annotation SummarizationSetBy = Automatic
 

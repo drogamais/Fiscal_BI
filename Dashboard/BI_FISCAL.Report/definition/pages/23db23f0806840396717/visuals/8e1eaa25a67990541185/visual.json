@@ -349,23 +349,5 @@
     "drillFilterOtherVisuals": true
   },
   "parentGroupName": "63cd7a50134b5034700e",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "b4b37ff04cea28c6d503",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fat_fiscal"
-              }
-            },
-            "Property": "data_insercao"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
-  },
   "isHidden": true
 }

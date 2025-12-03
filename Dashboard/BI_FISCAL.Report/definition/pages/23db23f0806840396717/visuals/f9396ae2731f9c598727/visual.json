@@ -6,7 +6,8 @@
     "y": 0,
     "z": 14000,
     "height": 47.881773399014776,
-    "width": 102.85714285714288
+    "width": 102.85714285714288,
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "card",
@@ -113,23 +114,5 @@
     },
     "drillFilterOtherVisuals": true
   },
-  "parentGroupName": "06ba1d9312daefafb872",
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "3a582cd708d4b9e0ecc4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Medidas"
-              }
-            },
-            "Property": "Qtd Nome Ativo Text OK"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
-  }
+  "parentGroupName": "06ba1d9312daefafb872"
 }

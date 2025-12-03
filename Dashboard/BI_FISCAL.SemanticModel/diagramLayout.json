@@ -11,7 +11,7 @@
         {
           "location": {
             "x": 68,
-            "y": 119
+            "y": 136
           },
           "nodeIndex": "dimCalendario",
           "nodeLineageTag": "59501126-252e-4de5-812f-0d007ed7c6c3",
@@ -23,8 +23,8 @@
         },
         {
           "location": {
-            "x": 336,
-            "y": 486
+            "x": 10,
+            "y": 485
           },
           "nodeIndex": "_Medidas",
           "nodeLineageTag": "2b71c345-dddf-4f0e-9980-9d693ac1ef94",
@@ -36,8 +36,8 @@
         },
         {
           "location": {
-            "x": 492,
-            "y": 0
+            "x": 901,
+            "y": 51
           },
           "nodeIndex": "fat_fiscal",
           "nodeLineageTag": "a9d274b4-b7b9-4944-af6b-e7df0a76bb16",
@@ -49,12 +49,39 @@
         },
         {
           "location": {
-            "x": 862,
-            "y": 243
+            "x": 912,
+            "y": 432
           },
           "nodeIndex": "Atualizacao",
+          "nodeLineageTag": "30f64c9c-a85c-4d65-a763-bba2bd7da63b",
           "size": {
             "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 0
+          },
+          "nodeIndex": "bronze_lojas",
+          "nodeLineageTag": "ea175c1e-63da-4c3d-8ace-278c2f013265",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 368,
+            "y": 357
+          },
+          "nodeIndex": "view_plugpharma_lojas_dia",
+          "nodeLineageTag": "a6f89bb0-bd36-48e6-87f2-a9415cce29d4",
+          "size": {
+            "height": 152,
             "width": 234
           },
           "zIndex": 0

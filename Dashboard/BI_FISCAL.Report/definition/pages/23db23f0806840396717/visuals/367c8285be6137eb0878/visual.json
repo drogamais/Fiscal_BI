@@ -6,7 +6,8 @@
     "y": 0.23377696732763434,
     "z": 14000,
     "height": 87.549474264199461,
-    "width": 233.07190799469197
+    "width": 233.07190799469197,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -417,20 +418,6 @@
         },
         "howCreated": "User",
         "isLockedInViewMode": true
-      },
-      {
-        "name": "22fb2103343c0abd706b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "fat_fiscal"
-              }
-            },
-            "Property": "hora_insercao_hh"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

@@ -1,12 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "a130bbfc4cc332983c53",
   "position": {
     "x": 818.423645320197,
     "y": 35.467980295566505,
-    "z": 10000,
+    "z": 8000,
     "height": 44.334975369458128,
-    "width": 126.79802955665025
+    "width": 126.79802955665025,
+    "tabOrder": 1000
   },
   "visualGroup": {
     "displayName": "Botão Outro",

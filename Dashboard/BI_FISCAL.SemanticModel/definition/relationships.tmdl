@@ -13,3 +13,41 @@ relationship fdb33d7c-ed80-4f38-aec1-43236d4ab569
 	fromColumn: Atualizacao.'Última Atualização'
 	toColumn: LocalDateTable_c1332a40-9717-4d9d-a36e-8da51bb92b6e.Date
 
+relationship a6a3fe25-b92a-473c-bc28-8beace2171f9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bronze_lojas.data_cadastro
+	toColumn: LocalDateTable_e0909cb2-e861-4e8a-b815-3d022943c6c8.Date
+
+relationship a2658419-e0e5-42b2-9721-2140ec2b06bd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bronze_lojas.data_inauguracao
+	toColumn: LocalDateTable_00002e20-c29d-4706-866c-6aa2df3d0a57.Date
+
+relationship 85929070-c3f4-4c50-996c-5914bd0076eb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bronze_lojas.data_associacao
+	toColumn: LocalDateTable_89f7d3e5-2afb-4068-b212-42c0cd22aaa2.Date
+
+relationship dae2bf10-a5ff-4e18-b4cd-87f63fcad6e9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bronze_lojas.data_desassociacao
+	toColumn: LocalDateTable_cd8f187e-64da-4b5e-aac2-719eab34735b.Date
+
+relationship 6d46532c-bf81-49b7-87e6-24942858fab7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bronze_lojas.certificado_vencimento
+	toColumn: LocalDateTable_44175acf-03fe-44cd-9529-3d9a6ee94813.Date
+
+relationship 32726216-bbca-43ad-850f-d09eacf3187e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bronze_lojas.ultima_atualizacao
+	toColumn: LocalDateTable_029d5e76-8ba1-49d4-be50-167d82b3936b.Date
+
+relationship 357284f2-8c71-d12a-2341-13fd180051a0
+	fromColumn: view_plugpharma_lojas_dia.data_venda
+	toColumn: dimCalendario.Date
+
+relationship 8ffc9328-9ded-a599-6314-01c08c620517
+	fromColumn: view_plugpharma_lojas_dia.cnpj_loja
+	toColumn: bronze_lojas.cnpj_s
+
