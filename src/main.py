@@ -2,13 +2,11 @@ import subprocess
 import sys
 import logging
 from pathlib import Path
-
+from database import limpar_logs_hora_atual
 # --- Configuração Simplificada de Caminhos e Logs ---
 # 1. Define a pasta src (onde este script está) e a raiz
 src_dir = Path(__file__).resolve().parent
 raiz = src_dir.parent 
-
-# 2. Define a pasta de logs e cria se não existir
 log_dir = raiz / 'logs'
 log_dir.mkdir(exist_ok=True)
 
@@ -33,7 +31,6 @@ def run_script(script_name):
 
     python_executable = sys.executable
     
-    # --- CORREÇÃO PRINCIPAL AQUI ---
     # Monta o caminho completo: Pasta src + nome do script
     script_path = src_dir / script_name
     # -------------------------------
@@ -81,16 +78,23 @@ def main():
         'check_tables_timestamp.py'
     ]
 
+    # --- LIMPEZA PRÉVIA ---
+    logging.info(">>> Executando limpeza preventiva de dados da hora atual...")
+    limpar_logs_hora_atual()
+    logging.info(">>> Limpeza concluída. Iniciando scripts de coleta...\n")
+
     logging.info("############################################################")
     logging.info("### INICIANDO ORQUESTRADOR DE VERIFICAÇÃO DE DADOS ###")
     logging.info("############################################################\n")
 
     all_success = True 
     for script in scripts_para_executar:
-        if not run_script(script):
-            logging.error(f"\nA orquestração foi interrompida devido a um erro no script: {script}")
-            all_success = False
-            break 
+        # Verifica se o arquivo existe antes de tentar rodar
+        if (src_dir / script).exists():
+            if not run_script(script):
+                logging.error(f"\nA orquestração foi interrompida devido a um erro no script: {script}")
+                all_success = False
+                break 
 
     logging.info("############################################################")
     if all_success:

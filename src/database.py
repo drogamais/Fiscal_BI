@@ -60,7 +60,6 @@ def get_db_connection(config_key='dbDrogamais'):
         logging.error(f"ERRO CRÍTICO: Ocorreu um erro inesperado ao conectar. Detalhe: {e}")
         return None
 
-
 def insert_dataframe(conn, df, table_name):
     """
     Insere um DataFrame do Pandas em uma tabela do MariaDB.
@@ -116,3 +115,42 @@ def insert_dataframe(conn, df, table_name):
         return False
     finally:
         if cursor: cursor.close()
+
+def limpar_logs_hora_atual():
+    """
+    Remove registros da hora atual e RESETA o Auto Increment
+    para reutilizar os IDs deletados.
+    """
+    conn = get_db_connection('dbDrogamais')
+    if not conn:
+        logging.error("Não foi possível conectar para limpar logs antigos.")
+        return
+
+    try:
+        cursor = conn.cursor()
+        
+        # 1. Deleta os dados da hora atual
+        query_delete = """
+            DELETE FROM fat_fiscal 
+            WHERE data_insercao = CURDATE() 
+              AND hora_insercao_hh = DATE_FORMAT(NOW(), '%H')
+        """
+        cursor.execute(query_delete)
+        linhas_removidas = cursor.rowcount
+        
+        # 2. Reseta o AUTO_INCREMENT se algo foi deletado
+        if linhas_removidas > 0:
+            # Esse comando reinicia o contador para o (Máximo ID existente + 1)
+            cursor.execute("ALTER TABLE fat_fiscal AUTO_INCREMENT = 1")
+            
+            logging.info(f"--- LIMPEZA: {linhas_removidas} registros removidos e AUTO_INCREMENT resetado. ---")
+        else:
+            logging.info("--- LIMPEZA: Nenhum registro anterior encontrado para esta hora. ---")
+            
+        conn.commit()
+            
+    except Exception as e:
+        logging.error(f"Erro ao tentar limpar logs da hora atual: {e}")
+        conn.rollback()
+    finally:
+        conn.close()
