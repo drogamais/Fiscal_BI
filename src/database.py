@@ -5,9 +5,6 @@ import pandas as pd
 import logging
 from pathlib import Path
 
-# Configuração de Logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
 def get_db_connection(config_key='dbDrogamais'):
     """
     Lê o config.json, processa a herança ($extends) e conecta ao MariaDB.
@@ -116,14 +113,14 @@ def insert_dataframe(conn, df, table_name):
     finally:
         if cursor: cursor.close()
 
-def limpar_logs_hora_atual():
+def limpar_historico_hora_atual():
     """
     Remove registros da hora atual e RESETA o Auto Increment
     para reutilizar os IDs deletados.
     """
     conn = get_db_connection('dbDrogamais')
     if not conn:
-        logging.error("Não foi possível conectar para limpar logs antigos.")
+        logging.error("Não foi possível conectar para limpar historico antigos.")
         return
 
     try:

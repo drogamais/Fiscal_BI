@@ -2,7 +2,7 @@ import subprocess
 import sys
 import logging
 from pathlib import Path
-from database import limpar_logs_hora_atual
+from database import limpar_historico_hora_atual
 # --- Configuração Simplificada de Caminhos e Logs ---
 # 1. Define a pasta src (onde este script está) e a raiz
 src_dir = Path(__file__).resolve().parent
@@ -14,6 +14,7 @@ log_dir.mkdir(exist_ok=True)
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
+    force=True,
     handlers=[
         logging.FileHandler(log_dir / 'fiscal_bi.log', mode='w', encoding='utf-8'),
         logging.StreamHandler(sys.stdout)
@@ -80,7 +81,7 @@ def main():
 
     # --- LIMPEZA PRÉVIA ---
     logging.info(">>> Executando limpeza preventiva de dados da hora atual...")
-    limpar_logs_hora_atual()
+    limpar_historico_hora_atual()
     logging.info(">>> Limpeza concluída. Iniciando scripts de coleta...\n")
 
     logging.info("############################################################")
