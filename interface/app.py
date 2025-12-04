@@ -30,6 +30,12 @@ if not st.session_state.logged_in:
 if not st.session_state.logged_in:
     auth.render_login_screen()
 else:
+    # --- NOVO: Feedback de Sucesso Pós-Recarregamento ---
+    if st.session_state.get('save_success'):
+        st.success("✅ Sucesso! Os dados foram salvos e atualizados no banco de dados.", icon="🚀")
+        # Reseta a flag para não mostrar a mensagem novamente em futuros recarregamentos
+        st.session_state['save_success'] = False
+
     # Carregamento de Dados (Cacheado na Sessão)
     if 'df_data' not in st.session_state:
         st.session_state.df_data = db_manager.load_data()
@@ -47,22 +53,20 @@ else:
     with st.sidebar:
         st.write("👤 Logado como: **admin**")
         
-        # --- NOVO: Botão Link para o Dashboard ---
+        # --- Botão Link para o Dashboard ---
         st.divider()
         
         st.link_button(
             label="Acessar Dashboard", 
             url="https://indicamais.drogamais.com.br/Organization/7915ffe5-a81e-4086-803d-433c892dd785/Report/df64bef8-8838-4372-bf5f-69b32008c50f",
-            icon="📊",  # Ícone de gráfico/dashboard
+            icon="📊",
             use_container_width=True,
-            type="primary" # Opcional: deixa o botão destacado (preenchido)
+            type="primary"
         )
 
         st.divider()
 
         # --- 1. FILTROS DE ORDENAÇÃO (Expansível) ---
-        # Aqui está o "pointer" (setinha) que você pediu.
-        # expanded=False faz ele começar fechado (omitido).
         with st.expander("🔍 Ordenação Visual", expanded=False):
             # Seleção de Coluna
             coluna_ordenar = st.selectbox(
@@ -194,9 +198,16 @@ else:
                     lambda x: x['conn_key'] if pd.isna(x['workspace_log']) or x['workspace_log'] == '' else x['workspace_log'], axis=1
                 )
 
+                # --- Lógica de Salvar com Feedback Explícito ---
                 if db_manager.save_data(df_save):
-                    st.toast("Banco atualizado com sucesso!", icon="✅")
-                    # Força recarregamento
+                    # Define uma flag de sucesso na sessão para mostrar a mensagem APÓS o rerun
+                    st.session_state['save_success'] = True
+                    
+                    # Força recarregamento do cache de dados
                     if 'df_data' in st.session_state:
                         del st.session_state.df_data 
+                    
                     st.rerun()
+                else:
+                    # Se falhar (retornar False), mostramos o erro explicitamente aqui
+                    st.error("❌ Falha ao salvar no banco! Verifique a conexão ou os logs.", icon="⚠️")
