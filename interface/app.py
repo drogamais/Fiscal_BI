@@ -46,8 +46,20 @@ else:
     # ==========================================
     with st.sidebar:
         st.write("👤 Logado como: **admin**")
+        
+        # --- NOVO: Botão Link para o Dashboard ---
         st.divider()
         
+        st.link_button(
+            label="Acessar Dashboard", 
+            url="https://indicamais.drogamais.com.br/Organization/7915ffe5-a81e-4086-803d-433c892dd785/Report/df64bef8-8838-4372-bf5f-69b32008c50f",
+            icon="📊",  # Ícone de gráfico/dashboard
+            use_container_width=True,
+            type="primary" # Opcional: deixa o botão destacado (preenchido)
+        )
+
+        st.divider()
+
         # --- 1. FILTROS DE ORDENAÇÃO (Expansível) ---
         # Aqui está o "pointer" (setinha) que você pediu.
         # expanded=False faz ele começar fechado (omitido).
