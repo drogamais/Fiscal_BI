@@ -1,0 +1,248 @@
+import json
+import msal
+import requests
+import pandas as pd
+import sys
+from datetime import datetime, timezone 
+import pytz
+from pathlib import Path
+
+# Linha comentada: não precisamos mais do módulo de banco de dados
+# from database import get_db_connection, insert_dataframe
+
+# Pega a pasta src, sobe um nivel, entra em config e pega o arquivo
+src_dir = Path(__file__).resolve().parent
+config_path = src_dir.parent / 'config' / 'config.json'
+
+# --- 1. CARREGAR CONFIGURAÇÕES ---
+try:
+    with open(config_path, 'r', encoding='utf-8') as f:
+        config = json.load(f)
+        pbi_config = config['powerbi_api']
+except FileNotFoundError:
+    print("ERRO CRÍTICO: Arquivo 'config.json' não encontrado.")
+    sys.exit(1)
+except KeyError:
+    print("ERRO CRÍTICO: A chave 'powerbi_api' não foi encontrada no 'config.json'.")
+    sys.exit(1)
+
+
+# --- 2. FUNÇÕES AUXILIARES ---
+
+def obter_token_acesso():
+    """Obtém um token de acesso para a API do Power BI."""
+    authority = f"https://login.microsoftonline.com/{pbi_config['tenant_id']}"
+    scope = ["https://analysis.windows.net/powerbi/api/.default"]
+    app = msal.ConfidentialClientApplication(
+        pbi_config['client_id'], authority=authority, client_credential=pbi_config['client_secret']
+    )
+    result = app.acquire_token_for_client(scopes=scope)
+    if "access_token" in result:
+        return result['access_token']
+    else:
+        raise Exception(f"Erro de autenticação no Power BI: {result.get('error_description')}")
+
+def descobrir_datasets(headers):
+    """Varre os workspaces e descobre todos os datasets acessíveis."""
+    print("INFO: Descobrindo datasets em todos os workspaces...")
+    datasets_encontrados = []
+    
+    try:
+        workspaces_url = "https://api.powerbi.com/v1.0/myorg/groups"
+        all_workspaces = []
+        
+        while workspaces_url:
+            response = requests.get(workspaces_url, headers=headers)
+            response.raise_for_status()
+            data = response.json()
+            all_workspaces.extend(data.get('value', []))
+            workspaces_url = data.get('@odata.nextLink')
+
+        print(f"INFO: Encontrados {len(all_workspaces)} workspaces.")
+
+        for ws in all_workspaces:
+            workspace_id = ws['id']
+            workspace_name = ws['name']
+            datasets_url = f"https://api.powerbi.com/v1.0/myorg/groups/{workspace_id}/datasets"
+            
+            while datasets_url:
+                response = requests.get(datasets_url, headers=headers)
+                response.raise_for_status()
+                data = response.json()
+                datasets_no_workspace = data.get('value', [])
+                
+                for ds in datasets_no_workspace:
+                    datasets_encontrados.append({
+                        'nome_bi': ds['name'], 'workspace_name': workspace_name,
+                        'workspace_id': workspace_id, 'dataset_id': ds['id']
+                    })
+                
+                datasets_url = data.get('@odata.nextLink')
+
+        print(f"INFO: Descoberta finalizada. Total de {len(datasets_encontrados)} datasets encontrados.")
+        return datasets_encontrados
+
+    except requests.exceptions.RequestException as e:
+        if e.response is not None:
+              print(f"ERRO: Falha ao descobrir datasets. Detalhe: {e}. Resposta da API: {e.response.text}")
+        else:
+              print(f"ERRO: Falha ao descobrir datasets. Detalhe: {e}")
+        return []
+
+def main():
+    """Função principal: descobre, puxa os dados, formata e insere no console."""
+    try:
+        access_token = obter_token_acesso()
+        print("INFO: Token de acesso obtido com sucesso.")
+    except Exception as e:
+        print(e)
+        return
+
+    headers = {'Authorization': f'Bearer {access_token}'}
+    datasets_para_monitorar = descobrir_datasets(headers)
+    
+    if not datasets_para_monitorar:
+        print("Nenhum dataset encontrado para monitorar. Encerrando.")
+        return
+
+    todos_os_dados = []
+    print("-" * 50)
+
+    for dataset in datasets_para_monitorar:
+        nome_bi = dataset['nome_bi']
+        print(f"INFO: Puxando historico para o BI: '{nome_bi}' no workspace '{dataset['workspace_name']}'...")
+        # Chamada à API para o histórico de atualizações (apenas a última)
+        url = f"https://api.powerbi.com/v1.0/myorg/groups/{dataset['workspace_id']}/datasets/{dataset['dataset_id']}/refreshes?$top=1"
+        try:
+            # Requisitando os dados
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+            
+            # ... (Tratamento de sucesso) ...
+            historico = response.json().get('value', [])
+            if not historico:
+                dados_bi = {'workspace_name': dataset['workspace_name'], 'nome_bi': nome_bi,'status': 'Sem Histórico', 'endTime': None, 'refreshType': 'N/A'}
+                todos_os_dados.append(dados_bi)
+            else:
+                for registro in historico:
+                    registro['nome_bi'] = nome_bi
+                    registro['workspace_name'] = dataset['workspace_name']
+                todos_os_dados.extend(historico)
+                
+        except requests.exceptions.RequestException as e:
+            # --- NOVO BLOCO DE DIAGNÓSTICO ---
+            if e.response is None:
+                # Falha de conexão/rede. O 'e' conterá a mensagem de erro detalhada (Timeout, ConnectionError, etc.)
+                error_message = str(e)
+                print(f"ERRO CRÍTICO no Console para '{nome_bi}': {error_message}")
+                status_registro = f'ERRO DE CONEXÃO: {error_message[:40]}...' # Limita o tamanho para caber no DataFrame
+            else:
+                # Falha HTTP (4xx ou 5xx).
+                status_registro = f'Erro na API: {e.response.status_code}'
+            
+            dados_erro = {'workspace_name': dataset['workspace_name'], 
+                          'nome_bi': nome_bi,
+                          'status': status_registro, 
+                          'endTime': None, 
+                          'refreshType': 'Erro'}
+            todos_os_dados.append(dados_erro)
+            # --- FIM NOVO BLOCO DE DIAGNÓSTICO ---
+            
+    print("-" * 50)
+
+    if not todos_os_dados:
+        print("Nenhum dado foi coletado para os BIs descobertos.")
+        return
+
+    # --- Processamento com Pandas ---
+    df = pd.DataFrame(todos_os_dados)
+    
+    # Define o fuso horário de Brasília (America/Sao_Paulo é o TZ para Brasília)
+    fuso_brasilia = pytz.timezone('America/Sao_Paulo') 
+
+    # Converte a coluna de data para o fuso horário UTC (Original da API)
+    df['endTime'] = pd.to_datetime(df['endTime'], errors='coerce', utc=True)
+    
+    # Converte a coluna 'endTime' (UTC) para o fuso de Brasília.
+    df['endTime_local'] = df['endTime'].dt.tz_convert(fuso_brasilia)
+    
+    # >>>>> FIX: Preenche valores NaT (que vêm de BIs sem histórico) com o timestamp atual em Brasília.
+    # Cria o objeto datetime com o fuso horário de Brasília
+    now_brasilia = datetime.now(fuso_brasilia)
+    
+    # Preenche NaT com a hora atual de Brasília.
+    df['endTime_local'] = df['endTime_local'].fillna(now_brasilia)
+    # <<<<< FIM FIX
+
+    # --- LÓGICA DE CÁLCULO DE DIAS ---
+    # Data de referência de "hoje" (meia-noite de Brasília) para o cálculo de dias
+    hoje_brasilia_normalized = pd.to_datetime(datetime.now(fuso_brasilia)).normalize()
+
+    # O cálculo de dias é feito com a data localizada e normalizada.
+    df['dias_sem_atualizar'] = (hoje_brasilia_normalized - df['endTime_local'].dt.normalize()).dt.days
+    
+    df['tipo_ativo'] = 'POWER BI'
+    
+    # Remove a informação de TimeZone para ser compatível com o MariaDB (DATE/TIME)
+    df['data_atualizacao_temp'] = df['endTime_local'].dt.tz_localize(None)
+
+
+    # Renomeia as colunas para o padrão do banco de dados
+    mapa_de_colunas_para_sql = {
+        'workspace_name': 'nome_workspace',
+        'nome_bi': 'nome_ativo',
+        'status': 'status_atualizacao',
+        'data_atualizacao_temp': 'data_atualizacao', # Usa a coluna sem TimeZone
+        'refreshType': 'tipo_atualizacao'
+    }
+    
+    # Remove as colunas temporárias e originais que não serão usadas (endTime, endTime_local)
+    df_para_inserir = df.drop(columns=['endTime', 'endTime_local']).rename(columns=mapa_de_colunas_para_sql)
+
+    # --- NOVO PROCESSAMENTO: Separação de Data e Hora ---
+    
+    # 1. Cria a coluna de hora (Time)
+    df_para_inserir['hora_atualizacao'] = df_para_inserir['data_atualizacao'].apply(
+        lambda x: x.strftime('%H:%M:%S') if pd.notna(x) else None
+    )
+    
+    # 2. Formata a coluna original (Date)
+    df_para_inserir['data_atualizacao'] = df_para_inserir['data_atualizacao'].apply(
+        lambda x: x.strftime('%Y-%m-%d') if pd.notna(x) else None
+    )
+    
+    # 3. Trata nulos restantes para garantir que a inserção SQL seja segura
+    for col in ['data_atualizacao', 'hora_atualizacao']:
+        df_para_inserir[col] = df_para_inserir[col].fillna(pd.NA).replace({pd.NaT: None})
+    # --- FIM NOVO PROCESSAMENTO ---
+
+    # --- SIMPLIFICAÇÃO DO STATUS PARA 'OK' ou 'Failed' (Ainda Comentado para Diagnóstico) ---
+    # status_map_simplified = {
+    #     'Completed': 'OK',
+    #     'Atualizada': 'OK',
+    #     'Sincronizado': 'OK',
+    #     'Sincronizada': 'OK',
+    #     'Sem Histórico': 'OK'
+    # }
+    # df_para_inserir['status_atualizacao'] = df_para_inserir['status_atualizacao'].apply(
+    #     lambda x: status_map_simplified.get(x, 'Failed')
+    # )
+
+    colunas_finais = [
+        'nome_workspace', 'nome_ativo', 'tipo_ativo', 
+        'status_atualizacao', 'data_atualizacao', 'hora_atualizacao', 
+        'tipo_atualizacao', 
+        'dias_sem_atualizar' 
+    ]
+    df_para_inserir = df_para_inserir[colunas_finais]
+
+    print("--- Visualizando as Últimas Atualizações (Todos os BIs Descobertos) ---")
+    print(df_para_inserir.to_string())
+
+    # ///// ----- ETAPA DE INSERÇÃO NO BANCO DE DADOS (REMOVIDA) ----- \\\\\
+    print("\n" + "="*50)
+    print("--- PROCESSO DE GRAVAÇÃO NO BANCO DE DADOS FOI IGNORADO CONFORME SOLICITADO. ---")
+    print("="*50)
+
+if __name__ == "__main__":
+    main()
